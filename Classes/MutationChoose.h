@@ -1,23 +1,17 @@
 #pragma once
 
-#ifndef GENESELECTION_H
-#define GENESELECTION_H
-
+#ifndef MutationChoose_h
+#define MutationChoose_h
 #include "cocos2d.h"
-#include "../Outsourcing/Definitions.h"
-#include "MainMenu.h"
-#include "Level.h"
-
-using namespace cocos2d;
+#include <string>
 using namespace std;
 
-class GeneSelection : public Scene
+
+class MutationChoose : cocos2d::Scene 
 {
+	
 
 public:
-	// Create the prolog scene.
-	static Scene* createScene();
-	// Implement the create function.
 
 	cocos2d::Label * testingText;
 	// Mutation Image Reference
@@ -35,9 +29,30 @@ public:
 	static string mutationElevenPng, mutationElevenPngSelected;
 	static string mutationTwelvePng, mutationTwelvePngSelected;
 	*/
-	// Verfügbare Fähigkeiten
-	int mutationOneInt, mutationTwoInt, mutationThreeInt, mutationFourInt, mutationFiveInt, mutationSixInt, mutationSevenInt, mutationEightInt, mutationNineInt, mutationTenInt, mutationElevenInt, mutationTwelveInt;
 
+
+	static cocos2d::Scene* createScene();
+	cocos2d::Label* menuLabel;
+	virtual bool init();
+	cocos2d::MenuItemImage *mutationOneBtn;
+	cocos2d::MenuItemImage *mutationTwoBtn;
+	cocos2d::MenuItemImage *mutationThreeBtn;
+	cocos2d::MenuItemImage *mutationFourBtn;
+	cocos2d::MenuItemImage *mutationFiveBtn;
+	cocos2d::MenuItemImage *mutationSixBtn;
+	cocos2d::MenuItemImage *mutationSevenBtn;
+	cocos2d::MenuItemImage *mutationEightBtn;
+	cocos2d::MenuItemImage *mutationNineBtn;
+	cocos2d::MenuItemImage *mutationTenBtn;
+	cocos2d::MenuItemImage *mutationElevenBtn;
+	cocos2d::MenuItemImage *mutationTwelveBtn;
+
+	cocos2d::MenuItemImage *debugMutationBtn;
+	
+
+	// Verfügbare Fähigkeiten
+	int mutationOneInt, mutationTwoInt, mutationThreeInt, mutationFourInt,mutationFiveInt, mutationSixInt, mutationSevenInt, mutationEightInt, mutationNineInt, mutationTenInt, mutationElevenInt, mutationTwelveInt;
+	
 	// Ausgewählte Fähigkeiten
 	int specialOne = 0;
 	int specialTwo = 0;
@@ -55,31 +70,14 @@ public:
 	void mutationTen(Ref *pSender);
 	void mutationEleven(Ref *pSender);
 	void mutationTwelve(Ref *pSender);
+	
+	void exitGame(Ref *pSender);
 
-
-	// Initializing.
-	virtual bool init();
-
-	cocos2d::MenuItemImage *mutationOneBtn;
-	cocos2d::MenuItemImage *mutationTwoBtn;
-	cocos2d::MenuItemImage *mutationThreeBtn;
-	cocos2d::MenuItemImage *mutationFourBtn;
-	cocos2d::MenuItemImage *mutationFiveBtn;
-	cocos2d::MenuItemImage *mutationSixBtn;
-	cocos2d::MenuItemImage *mutationSevenBtn;
-	cocos2d::MenuItemImage *mutationEightBtn;
-	cocos2d::MenuItemImage *mutationNineBtn;
-	cocos2d::MenuItemImage *mutationTenBtn;
-	cocos2d::MenuItemImage *mutationElevenBtn;
-	cocos2d::MenuItemImage *mutationTwelveBtn;
+	void debugMutation(Ref *pSender);
 
 	void ChosenMutation(int mutationKind);
-	CREATE_FUNC(GeneSelection);
 
-private:
-	// Scene handlings.
-	void GoToMainMenuScene(float delta);
-	void GoToLevelScene(float delta);
+	CREATE_FUNC(MutationChoose);
 };
 
 #endif
