@@ -26,17 +26,17 @@ bool MainMenu::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
 	// INSERT PNG PATH LOCATION
-	string infoPng = "Test/info_1.png";
-	string infoPngSelected = "Test/info_2.png";
+	string infoPng = "Png/Info.png";
+	string infoPngSelected = "Png/InfoSelected.png";
 
-	string helpPng = "Test/help_1.png";
-	string helpPngSelected = "Test/help_2.png";
+	string helpPng = "Png/help.png";
+	string helpPngSelected = "Png/helpSelected.png";
 
-	string levelSelectionPng = "Test/levelSelection_1.png";
-	string levelSelectionPngSelected = "Test/levelSelection_2.png";
+	string levelSelectionPng = "Png/LevelSelection.png";
+	string levelSelectionPngSelected = "Png/LevelSelectionSelected.png";
 
-	string settingsPng = "Test/settings_1.png";
-	string settingsPngSelected = "Test/settings_2.png";
+	string settingsPng = "Png/settings.png";
+	string settingsPngSelected = "Png/settingsSelected.png";
 
 	string exitGamePng = "Test/exit_1.png";
 	string exitGamePngSelected = "Test/exit_2.png";
@@ -61,8 +61,8 @@ bool MainMenu::init()
 	levelSelectionButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 50);
 	settingsButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+ 100);
 	infoButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+150);
-	helpButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+200);
-	exitGameButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+250);
+	//helpButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+200);
+	//exitGameButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+250);
 
 
 

@@ -20,42 +20,44 @@ public:
 	// Implement the create function.
 
 	cocos2d::Label * testingText;
-	// Mutation Image Reference
-	/*
-	static string mutationOnePng, mutationOnePngSelected;
-	static string mutationTwoPng, mutationTwoPngSelected;
-	static string mutationThreePng, mutationThreePngSelected;
-	static string mutationFourPng, mutationFourPngSelected;
-	static string mutationFivePng, mutationFivePngSelected;
-	static string mutationSixPng, mutationSixPngSelected;
-	static string mutationSevenPng, mutationSevenPngSelected;
-	static string mutationEightPng, mutationEightPngSelected;
-	static string mutationNinePng, mutationNinePngSelected;
-	static string mutationTenPng, mutationTenPngSelected;
-	static string mutationElevenPng, mutationElevenPngSelected;
-	static string mutationTwelvePng, mutationTwelvePngSelected;
-	*/
+
 	// Verfügbare Fähigkeiten
 	int mutationOneInt, mutationTwoInt, mutationThreeInt, mutationFourInt, mutationFiveInt, mutationSixInt, mutationSevenInt, mutationEightInt, mutationNineInt, mutationTenInt, mutationElevenInt, mutationTwelveInt;
+
+	string mutationOnePng;
+	string mutationOnePngSelected;
+
+	string mutationTwoPng;
+	string mutationTwoPngSelected;
+
+	string mutationThreePng;
+	string mutationThreePngSelected;
+
+	string mutationFourPng;
+	string mutationFourPngSelected;
+
+	string mutationFivePng;
+	string mutationFivePngSelected;
+
+	string reset;
+	string resetSelected;
 
 	// Ausgewählte Fähigkeiten
 	int specialOne = 0;
 	int specialTwo = 0;
 	int specialThree = 0;
+	
+	string chosenMutationPngFirst, chosenMutationPngSecond, chosenMutationPngThird;
+
+
 
 	void mutationOne(Ref *pSender);
 	void mutationTwo(Ref *pSender);
 	void mutationThree(Ref *pSender);
 	void mutationFour(Ref *pSender);
 	void mutationFive(Ref *pSender);
-	void mutationSix(Ref *pSender);
-	void mutationSeven(Ref *pSender);
-	void mutationEight(Ref *pSender);
-	void mutationNine(Ref *pSender);
-	void mutationTen(Ref *pSender);
-	void mutationEleven(Ref *pSender);
-	void mutationTwelve(Ref *pSender);
 
+	void ResetSelectedMutation(Ref *pSender);
 
 	// Initializing.
 	virtual bool init();
@@ -65,15 +67,12 @@ public:
 	cocos2d::MenuItemImage *mutationThreeBtn;
 	cocos2d::MenuItemImage *mutationFourBtn;
 	cocos2d::MenuItemImage *mutationFiveBtn;
-	cocos2d::MenuItemImage *mutationSixBtn;
-	cocos2d::MenuItemImage *mutationSevenBtn;
-	cocos2d::MenuItemImage *mutationEightBtn;
-	cocos2d::MenuItemImage *mutationNineBtn;
-	cocos2d::MenuItemImage *mutationTenBtn;
-	cocos2d::MenuItemImage *mutationElevenBtn;
-	cocos2d::MenuItemImage *mutationTwelveBtn;
 
-	void ChosenMutation(int mutationKind);
+	cocos2d::MenuItemImage *resetSelectedMutationBtn;
+
+
+	void ChosenMutation(int mutationKind, string mutationPng);
+	
 	CREATE_FUNC(GeneSelection);
 
 private:
