@@ -38,7 +38,7 @@ void MainMenu::GoToInfoScene(float delta)
 void MainMenu::GoToLevelSelectionScene(float delta)
 {
 	// Declare variables.
-	Scene* scene = MainMenu::createScene();
+	Scene* scene = LevelSelection::createScene();
 
 	// Replace the scene.
 	this->removeAllChildrenWithCleanup(true);
