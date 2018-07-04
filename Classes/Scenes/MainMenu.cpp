@@ -1,14 +1,8 @@
 #include "MainMenu.h"
-#include "Help.h"
-#include "Info.h"
-#include <string>
 
-using namespace std;
 // Create the prolog scene.
 Scene* MainMenu::createScene()
 {
-
-//info help levelselection settings
 	return MainMenu::create();
 }
 
@@ -21,7 +15,7 @@ bool MainMenu::init()
 
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	
+
 	// INSERT PNG PATH LOCATION
 	string infoPng = "Png/Info.png";
 	string infoPngSelected = "Png/InfoSelected.png";
@@ -38,39 +32,29 @@ bool MainMenu::init()
 	string exitGamePng = "Test/exit_1.png";
 	string exitGamePngSelected = "Test/exit_2.png";
 
-	exitGameButton = MenuItemImage::create(exitGamePng, exitGamePngSelected, CC_CALLBACK_1(MainMenu::ExitGame, this));
-
+	//exitGameButton = MenuItemImage::create(exitGamePng, exitGamePngSelected, CC_CALLBACK_1(MainMenu::ExitGame, this));
 	infoButton = MenuItemImage::create(infoPng, infoPngSelected, CC_CALLBACK_1(MainMenu::GoToInfoScene, this));
-
-	helpButton = MenuItemImage::create(helpPng, helpPngSelected, CC_CALLBACK_1(MainMenu::GoToHelpScene, this));
-
+	//helpButton = MenuItemImage::create(helpPng, helpPngSelected, CC_CALLBACK_1(MainMenu::GoToHelpScene, this));
 	levelSelectionButton = MenuItemImage::create(levelSelectionPng, levelSelectionPngSelected, CC_CALLBACK_1(MainMenu::GoToLevelSelectionScene, this));
-
 	settingsButton = MenuItemImage::create(settingsPng, settingsPngSelected, CC_CALLBACK_1(MainMenu::GoToSettingsScene, this));
 
-
-	auto menu = Menu::create(levelSelectionButton, settingsButton, infoButton, helpButton, exitGameButton, nullptr);
-
+	auto menu = Menu::create(levelSelectionButton, settingsButton, infoButton, nullptr);
 
 	menu->setPosition(Point::ZERO);
 
-
 	levelSelectionButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 50);
-	settingsButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+ 100);
-	infoButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+150);
+	settingsButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 100);
+	infoButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 150);
 	//helpButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+200);
 	//exitGameButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+250);
 
-
-
 	this->addChild(menu);
-	
 
 	return true;
 }
 
 // Scene handlings
-void MainMenu::GoToSettingsScene(Ref *pSender)
+void MainMenu::GoToSettingsScene(Ref* pSender)
 {
 	// Declare variables.
 	Scene* scene = Settings::createScene();
@@ -79,14 +63,7 @@ void MainMenu::GoToSettingsScene(Ref *pSender)
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
-void MainMenu::GoToHelpScene(Ref *pSender)
-{
-	Scene* scene = Help::createScene();
-	
-	this->removeAllChildrenWithCleanup(true);
-	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
-}
-void MainMenu::GoToInfoScene(Ref *pSender)
+void MainMenu::GoToInfoScene(Ref* pSender)
 {
 	// Declare variables.
 	Scene* scene = Info::createScene();
@@ -95,7 +72,14 @@ void MainMenu::GoToInfoScene(Ref *pSender)
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
-void MainMenu::GoToLevelSelectionScene(Ref *pSender)
+void MainMenu::GoToHelpScene(Ref* pSender)
+{
+	Scene* scene = Help::createScene();
+
+	this->removeAllChildrenWithCleanup(true);
+	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+}
+void MainMenu::GoToLevelSelectionScene(Ref* pSender)
 {
 	// Declare variables.
 	Scene* scene = LevelSelection::createScene();
@@ -106,7 +90,7 @@ void MainMenu::GoToLevelSelectionScene(Ref *pSender)
 }
 
 // ExitGame
-void MainMenu::ExitGame(Ref *pSender) 
+void MainMenu::ExitGame(Ref* pSender)
 {
 	Director::getInstance()->end();
 }

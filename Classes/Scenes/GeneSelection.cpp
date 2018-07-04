@@ -1,14 +1,8 @@
 #include "GeneSelection.h"
-#include <string>	
-
-USING_NS_CC;
-
-using namespace std;
 
 // Create the prolog scene.
 Scene* GeneSelection::createScene()
 {
-
 	return GeneSelection::create();
 }
 
@@ -37,19 +31,17 @@ bool GeneSelection::init()
 	mutationFivePng = "Png/Mutation/mutation5.png";
 	mutationFivePngSelected = "Png/Mutation/mutation5Selected.png";
 
-
 	reset = "Png/Mutation/reset.png";
 	resetSelected = "Png/Mutation/resetSelected";
 
 	chosenMutationPngFirst = "Png/nothingSelected.png";
 	chosenMutationPngSecond = "Png/nothingSelected.png";
 	chosenMutationPngThird = "Png/nothingSelected.png";
-	
+
 	firstGeneSprite = Sprite::create(chosenMutationPngFirst);
 	secondGeneSprite = Sprite::create(chosenMutationPngSecond);
 	thirdGeneSprite = Sprite::create(chosenMutationPngThird);
 
-	
 	mutationOneBtn = MenuItemImage::create(mutationOnePng, mutationOnePngSelected, CC_CALLBACK_1(GeneSelection::mutationOne, this));
 	mutationTwoBtn = MenuItemImage::create(mutationTwoPng, mutationTwoPngSelected, CC_CALLBACK_1(GeneSelection::mutationTwo, this));
 	mutationThreeBtn = MenuItemImage::create(mutationThreePng, mutationThreePngSelected, CC_CALLBACK_1(GeneSelection::mutationThree, this));
@@ -58,22 +50,19 @@ bool GeneSelection::init()
 
 	resetSelectedMutationBtn = MenuItemImage::create(reset, resetSelected, CC_CALLBACK_1(GeneSelection::ResetSelectedMutation, this));
 
-
-
-
-	auto menu = Menu::create(mutationOneBtn, mutationTwoBtn, mutationThreeBtn, mutationFourBtn, mutationFiveBtn,resetSelectedMutationBtn, nullptr);
+	auto menu = Menu::create(mutationOneBtn, mutationTwoBtn, mutationThreeBtn, mutationFourBtn, mutationFiveBtn, resetSelectedMutationBtn, nullptr);
 	menu->setPosition(Point::ZERO);
 
 	mutationOneBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-	mutationTwoBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2+50);
-	mutationThreeBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2+100);
-	mutationFourBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2+150);
-	mutationFiveBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2+200);
+	mutationTwoBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 50);
+	mutationThreeBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 100);
+	mutationFourBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 150);
+	mutationFiveBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 200);
 
-	firstGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2+ 50);
-	secondGeneSprite->setPosition(visibleSize.width / 2+ 200, visibleSize.height / 2 + 150);
-	thirdGeneSprite->setPosition(visibleSize.width / 2+ 200, visibleSize.height / 2 + 200);
-	
+	firstGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 50);
+	secondGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 150);
+	thirdGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 200);
+
 	this->addChild(firstGeneSprite);
 	this->addChild(secondGeneSprite);
 	this->addChild(thirdGeneSprite);
@@ -81,11 +70,10 @@ bool GeneSelection::init()
 	resetSelectedMutationBtn->setPosition(visibleSize.width / 2 + 250, visibleSize.height / 2 - 200);
 	this->addChild(menu);
 
-
 	this->scheduleUpdate();
+
 	return true;
 }
-
 
 void GeneSelection::update(float delta)
 {
@@ -106,7 +94,6 @@ void GeneSelection::update(float delta)
 
 }
 
-
 // Scene handlings
 void GeneSelection::GoToMainMenuScene(float delta)
 {
@@ -117,82 +104,82 @@ void GeneSelection::GoToMainMenuScene(float delta)
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
-void GeneSelection::GoToLevelScene(float delta)
+void GeneSelection::GoToLoadScene(float delta)
 {
 	// Declare variables.
-	Scene* scene = Level::createScene();
+	Scene* scene = Load::createScene();
 
 	// Replace the scene.
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
 
-
-
-
-
-void GeneSelection::mutationOne(Ref *pSender) {
-
+// Mutation handlings.
+void GeneSelection::mutationOne(Ref* pSender) 
+{
 	GeneSelection::mutationOneInt = 1;
 	ChosenMutation(1, mutationOnePng, mutationOnePng);
-	cocos2d::log("%d", specialOne);
-	cocos2d::log("%d", specialTwo);
-	cocos2d::log("%d", specialThree);
+	log("%d", specialOne);
+	log("%d", specialTwo);
+	log("%d", specialThree);
 
-	cocos2d::log("%s", chosenMutationPngFirst.c_str());
-	cocos2d::log("%s", chosenMutationPngSecond.c_str());
-	cocos2d::log("%s", chosenMutationPngThird.c_str());
-
+	log("%s", chosenMutationPngFirst.c_str());
+	log("%s", chosenMutationPngSecond.c_str());
+	log("%s", chosenMutationPngThird.c_str());
 }
 
-void GeneSelection::mutationTwo(Ref* pSender) {
+void GeneSelection::mutationTwo(Ref* pSender) 
+{
 	GeneSelection::mutationTwoInt = 2;
 	ChosenMutation(2, mutationTwoPng, mutationTwoPng);
-	cocos2d::log("%d", specialOne);
-	cocos2d::log("%d", specialTwo);
-	cocos2d::log("%d", specialThree);
+	log("%d", specialOne);
+	log("%d", specialTwo);
+	log("%d", specialThree);
 
-	cocos2d::log("%s", chosenMutationPngFirst.c_str());
-	cocos2d::log("%s", chosenMutationPngSecond.c_str());
-	cocos2d::log("%s", chosenMutationPngThird.c_str());
+	log("%s", chosenMutationPngFirst.c_str());
+	log("%s", chosenMutationPngSecond.c_str());
+	log("%s", chosenMutationPngThird.c_str());
 }
 
-void GeneSelection::mutationThree(Ref* pSender) {
+void GeneSelection::mutationThree(Ref* pSender) 
+{
 	GeneSelection::mutationThreeInt = 3;
 	ChosenMutation(3, mutationThreePng, mutationThreePng);
-	cocos2d::log("%d", specialOne);
-	cocos2d::log("%d", specialTwo);
-	cocos2d::log("%d", specialThree);
+	log("%d", specialOne);
+	log("%d", specialTwo);
+	log("%d", specialThree);
 
-	cocos2d::log("%s", chosenMutationPngFirst.c_str());
-	cocos2d::log("%s", chosenMutationPngSecond.c_str());
-	cocos2d::log("%s", chosenMutationPngThird.c_str());
+	log("%s", chosenMutationPngFirst.c_str());
+	log("%s", chosenMutationPngSecond.c_str());
+	log("%s", chosenMutationPngThird.c_str());
 }
 
-void GeneSelection::mutationFour(Ref* pSender) {
+void GeneSelection::mutationFour(Ref* pSender) 
+{
 	GeneSelection::mutationFourInt = 4;
 	ChosenMutation(4, mutationFourPng, mutationFourPng);
-	cocos2d::log("%d", specialOne);
-	cocos2d::log("%d", specialTwo);
-	cocos2d::log("%d", specialThree);
+	log("%d", specialOne);
+	log("%d", specialTwo);
+	log("%d", specialThree);
 
-	cocos2d::log("%s", chosenMutationPngFirst.c_str());
-	cocos2d::log("%s", chosenMutationPngSecond.c_str());
-	cocos2d::log("%s", chosenMutationPngThird.c_str());
+	log("%s", chosenMutationPngFirst.c_str());
+	log("%s", chosenMutationPngSecond.c_str());
+	log("%s", chosenMutationPngThird.c_str());
 }
 
-void GeneSelection::mutationFive(Ref* pSender) {
+void GeneSelection::mutationFive(Ref* pSender) 
+{
 	GeneSelection::mutationFiveInt = 5;
 
 	ChosenMutation(5, mutationFivePng, mutationFivePng);
 
-	cocos2d::log("%d", specialOne);
-	cocos2d::log("%d", specialTwo);
-	cocos2d::log("%d", specialThree);
+	log("%d", specialOne);
+	log("%d", specialTwo);
+	log("%d", specialThree);
 
-	cocos2d::log("%s", chosenMutationPngFirst.c_str());
-	cocos2d::log("%s", chosenMutationPngSecond.c_str());
-	cocos2d::log("%s", chosenMutationPngThird.c_str());
+	log("%s", chosenMutationPngFirst.c_str());
+	log("%s", chosenMutationPngSecond.c_str());
+	log("%s", chosenMutationPngThird.c_str());
 }
 
 void GeneSelection::ResetSelectedMutation(Ref* pSender)
@@ -209,17 +196,14 @@ void GeneSelection::ResetSelectedMutation(Ref* pSender)
 	specialThreePng = "Png/nothingSelected.png";
 }
 
-void GeneSelection::ChosenMutation(int mutationKind, string mutationPng, string specialPngSelected) {
-
+void GeneSelection::ChosenMutation(int mutationKind, string mutationPng, string specialPngSelected) 
+{
 	if (specialOne == 0)
 	{
 		// erster mutations slot
 		specialOne = mutationKind;
 		chosenMutationPngFirst = mutationPng;
 		specialOnePng = specialPngSelected;
-
-		
-
 	}
 	else if (specialTwo == 0)
 	{
@@ -235,7 +219,8 @@ void GeneSelection::ChosenMutation(int mutationKind, string mutationPng, string 
 		chosenMutationPngThird = mutationPng;
 		specialThreePng = specialPngSelected;
 	}
-	else {
+	else 
+	{
 		return;
 	}
 }

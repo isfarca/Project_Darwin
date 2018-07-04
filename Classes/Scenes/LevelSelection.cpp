@@ -1,5 +1,4 @@
 #include "LevelSelection.h"
-#include <string>
 
 // Create the prolog scene.
 Scene* LevelSelection::createScene()
@@ -17,10 +16,7 @@ bool LevelSelection::init()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	int selectedLevel = 0;
-	
 	// LEVEL PNG PATH
-
 	string levelOnePng = "Png/Level_1.png";
 	string levelOnePngSelected = "Png/Level_1Selected.png";
 	string levelOnePngBlocked = "";
@@ -37,15 +33,12 @@ bool LevelSelection::init()
 	string levelFourPngSelected = "Png/Level_4Selected.png";
 	string levelFourPngBlocked = "Png/.png";
 
-
 	// MENU PNG PATH
-
 	string goToMainMenuPng = "";
 	string goToMainMenuPngSelected = "";
 
 	string goToGeneSelectionPng = "Png/continue.png";
 	string goToGeneSelectionPngSelected = "Png/continue.png";
-	
 
 	// Buttons
 	levelOneButton = MenuItemImage::create(levelOnePng, levelOnePngSelected, CC_CALLBACK_1(LevelSelection::StartLevelOne, this));
@@ -56,9 +49,7 @@ bool LevelSelection::init()
 	goToMainMenuButton = MenuItemImage::create(goToMainMenuPng, goToMainMenuPngSelected, CC_CALLBACK_1(LevelSelection::GoToMainMenuScene, this));
 	goToGeneSelectionButton = MenuItemImage::create(goToGeneSelectionPng, goToGeneSelectionPngSelected, CC_CALLBACK_1(LevelSelection::GoToGeneSelectionScene, this));
 
-
-	auto menu = Menu::create(levelOneButton, levelTwoButton, levelThreeButton, levelFourButton, goToMainMenuButton,goToGeneSelectionButton, nullptr);
-
+	auto menu = Menu::create(levelOneButton, levelTwoButton, levelThreeButton, levelFourButton, goToMainMenuButton, goToGeneSelectionButton, nullptr);
 
 	menu->setPosition(Point::ZERO);
 
@@ -76,11 +67,8 @@ bool LevelSelection::init()
 	return true;
 }
 
-
-
-
 // Scene handlings
-void LevelSelection::GoToMainMenuScene(Ref *pSender)
+void LevelSelection::GoToMainMenuScene(Ref* pSender)
 {
 	// Declare variables.
 	Scene* scene = MainMenu::createScene();
@@ -89,7 +77,7 @@ void LevelSelection::GoToMainMenuScene(Ref *pSender)
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
-void LevelSelection::GoToGeneSelectionScene(Ref *pSender)
+void LevelSelection::GoToGeneSelectionScene(Ref* pSender)
 {
 	// Declare variables.
 	Scene* scene = GeneSelection::createScene();
@@ -99,35 +87,33 @@ void LevelSelection::GoToGeneSelectionScene(Ref *pSender)
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
 
-void LevelSelection::StartLevelOne(Ref *pSender) 
+// Set level id.
+void LevelSelection::StartLevelOne(Ref* pSender)
 {
 	Scene* scene = GeneSelection::createScene();
-	selectedLevel = 1;
+	LevelManager::SetLevelId(1);
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
-
-void LevelSelection::StartLevelTwo(Ref *pSender)
+void LevelSelection::StartLevelTwo(Ref* pSender)
 {
 	Scene* scene = GeneSelection::createScene();
-	selectedLevel = 2;
+	LevelManager::SetLevelId(2);
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 
 }
-
-void LevelSelection::StartLevelThree(Ref *pSender)
+void LevelSelection::StartLevelThree(Ref* pSender)
 {
 	Scene* scene = GeneSelection::createScene();
-	selectedLevel = 3;
+	LevelManager::SetLevelId(3);
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
-
-void LevelSelection::StartLevelFour(Ref *pSender)
+void LevelSelection::StartLevelFour(Ref* pSender)
 {
 	Scene* scene = GeneSelection::createScene();
-	selectedLevel = 4;
+	LevelManager::SetLevelId(4);
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }

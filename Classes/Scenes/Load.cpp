@@ -83,17 +83,17 @@ void Load::UpdateProgress(float delta)
 bool Load::onTouchBegan(Touch* touch, Event* event)
 {
 	// Go to next scene and disable the loading progress.
-	this->scheduleOnce(schedule_selector(Load::GoToLevelScene), DISPLAY_TIME_NEXT_SCENE);
+	this->scheduleOnce(schedule_selector(Load::GoToLevelManagerScene), DISPLAY_TIME_NEXT_SCENE);
 	unschedule(schedule_selector(Load::UpdateProgress));
 
 	return true;
 }
 
 // Scene handlings.
-void Load::GoToLevelScene(float delta)
+void Load::GoToLevelManagerScene(float delta)
 {
 	// Declare variables.
-	Scene* scene = Level::createScene();
+	Scene* scene = LevelManager::createScene();
 
 	// Replace the scene.
 	this->removeAllChildrenWithCleanup(true);
