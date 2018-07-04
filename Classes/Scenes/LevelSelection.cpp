@@ -37,8 +37,8 @@ bool LevelSelection::init()
 	string goToMainMenuPng = "";
 	string goToMainMenuPngSelected = "";
 
-	string goToGeneSelectionPng = "Png/continue.png";
-	string goToGeneSelectionPngSelected = "Png/continue.png";
+	//string goToGeneSelectionPng = "Png/continue.png"; **********DELETED
+	//string goToGeneSelectionPngSelected = "Png/continue.png"; **********DELETED
 
 	// Buttons
 	levelOneButton = MenuItemImage::create(levelOnePng, levelOnePngSelected, CC_CALLBACK_1(LevelSelection::StartLevelOne, this));
@@ -47,9 +47,9 @@ bool LevelSelection::init()
 	levelFourButton = MenuItemImage::create(levelFourPng, levelFourPngSelected, CC_CALLBACK_1(LevelSelection::StartLevelFour, this));
 
 	goToMainMenuButton = MenuItemImage::create(goToMainMenuPng, goToMainMenuPngSelected, CC_CALLBACK_1(LevelSelection::GoToMainMenuScene, this));
-	goToGeneSelectionButton = MenuItemImage::create(goToGeneSelectionPng, goToGeneSelectionPngSelected, CC_CALLBACK_1(LevelSelection::GoToGeneSelectionScene, this));
+	//goToGeneSelectionButton = MenuItemImage::create(goToGeneSelectionPng, goToGeneSelectionPngSelected, CC_CALLBACK_1(LevelSelection::GoToGeneSelectionScene, this)); **********DELETED
 
-	auto menu = Menu::create(levelOneButton, levelTwoButton, levelThreeButton, levelFourButton, goToMainMenuButton, goToGeneSelectionButton, nullptr);
+	auto menu = Menu::create(levelOneButton, levelTwoButton, levelThreeButton, levelFourButton, goToMainMenuButton,/* goToGeneSelectionButton**********DELETED,*/ nullptr);
 
 	menu->setPosition(Point::ZERO);
 
@@ -60,7 +60,7 @@ bool LevelSelection::init()
 	levelFourButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 200);
 
 	goToMainMenuButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 400);
-	goToGeneSelectionButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 450);
+	//goToGeneSelectionButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 450); **********DELETED
 
 	this->addChild(menu);
 
@@ -77,6 +77,8 @@ void LevelSelection::GoToMainMenuScene(Ref* pSender)
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
+
+
 void LevelSelection::GoToGeneSelectionScene(Ref* pSender)
 {
 	// Declare variables.

@@ -41,12 +41,17 @@ bool GeneSelection::init()
 	firstGeneSprite = Sprite::create(chosenMutationPngFirst);
 	secondGeneSprite = Sprite::create(chosenMutationPngSecond);
 	thirdGeneSprite = Sprite::create(chosenMutationPngThird);
+	
+	
 
 	mutationOneBtn = MenuItemImage::create(mutationOnePng, mutationOnePngSelected, CC_CALLBACK_1(GeneSelection::mutationOne, this));
 	mutationTwoBtn = MenuItemImage::create(mutationTwoPng, mutationTwoPngSelected, CC_CALLBACK_1(GeneSelection::mutationTwo, this));
 	mutationThreeBtn = MenuItemImage::create(mutationThreePng, mutationThreePngSelected, CC_CALLBACK_1(GeneSelection::mutationThree, this));
 	mutationFourBtn = MenuItemImage::create(mutationFourPng, mutationFourPngSelected, CC_CALLBACK_1(GeneSelection::mutationFour, this));
 	mutationFiveBtn = MenuItemImage::create(mutationFivePng, mutationFivePngSelected, CC_CALLBACK_1(GeneSelection::mutationFive, this));
+
+	
+
 
 	resetSelectedMutationBtn = MenuItemImage::create(reset, resetSelected, CC_CALLBACK_1(GeneSelection::ResetSelectedMutation, this));
 
@@ -58,6 +63,8 @@ bool GeneSelection::init()
 	mutationThreeBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 100);
 	mutationFourBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 150);
 	mutationFiveBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 200);
+
+	
 
 	firstGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 50);
 	secondGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 150);
@@ -80,6 +87,8 @@ void GeneSelection::update(float delta)
 	firstGeneSprite = Sprite::create(chosenMutationPngFirst);
 	secondGeneSprite = Sprite::create(chosenMutationPngSecond);
 	thirdGeneSprite = Sprite::create(chosenMutationPngThird);
+
+	
 
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -118,7 +127,12 @@ void GeneSelection::GoToLoadScene(float delta)
 void GeneSelection::mutationOne(Ref* pSender) 
 {
 	GeneSelection::mutationOneInt = 1;
-	ChosenMutation(1, mutationOnePng, mutationOnePng);
+	ChosenMutation(1, mutationOnePng/***DELETED, mutationFourPng*/);
+
+	mutationOneBtn->setEnabled(false);
+
+	mutationOneBtn->setDisabledImage(disabledTest);
+
 	log("%d", specialOne);
 	log("%d", specialTwo);
 	log("%d", specialThree);
@@ -126,12 +140,18 @@ void GeneSelection::mutationOne(Ref* pSender)
 	log("%s", chosenMutationPngFirst.c_str());
 	log("%s", chosenMutationPngSecond.c_str());
 	log("%s", chosenMutationPngThird.c_str());
+
 }
 
 void GeneSelection::mutationTwo(Ref* pSender) 
 {
 	GeneSelection::mutationTwoInt = 2;
-	ChosenMutation(2, mutationTwoPng, mutationTwoPng);
+	ChosenMutation(2, mutationTwoPng/***DELETED, mutationFourPng*/);
+
+	mutationTwoBtn->setEnabled(false);
+
+	//mutationTwoBtn->setDisabledImage(disabledTest);
+
 	log("%d", specialOne);
 	log("%d", specialTwo);
 	log("%d", specialThree);
@@ -144,10 +164,13 @@ void GeneSelection::mutationTwo(Ref* pSender)
 void GeneSelection::mutationThree(Ref* pSender) 
 {
 	GeneSelection::mutationThreeInt = 3;
-	ChosenMutation(3, mutationThreePng, mutationThreePng);
+	ChosenMutation(3, mutationThreePng/***DELETED, mutationFourPng*/);
 	log("%d", specialOne);
 	log("%d", specialTwo);
 	log("%d", specialThree);
+	mutationThreeBtn->setEnabled(false);
+
+	//mutationThreeBtn->setDisabledImage(disabledTest);
 
 	log("%s", chosenMutationPngFirst.c_str());
 	log("%s", chosenMutationPngSecond.c_str());
@@ -157,7 +180,11 @@ void GeneSelection::mutationThree(Ref* pSender)
 void GeneSelection::mutationFour(Ref* pSender) 
 {
 	GeneSelection::mutationFourInt = 4;
-	ChosenMutation(4, mutationFourPng, mutationFourPng);
+	ChosenMutation(4, mutationFourPng/***DELETED, mutationFourPng*/);
+	mutationFourBtn->setEnabled(false);
+
+	//mutationFourBtn->setDisabledImage(disabledTest);
+
 	log("%d", specialOne);
 	log("%d", specialTwo);
 	log("%d", specialThree);
@@ -171,7 +198,11 @@ void GeneSelection::mutationFive(Ref* pSender)
 {
 	GeneSelection::mutationFiveInt = 5;
 
-	ChosenMutation(5, mutationFivePng, mutationFivePng);
+	ChosenMutation(5, mutationFivePng/***DELETED, mutationFivePng*/);
+
+	mutationFiveBtn->setEnabled(false);
+
+	//mutationFiveBtn->setDisabledImage(disabledTest);
 
 	log("%d", specialOne);
 	log("%d", specialTwo);
@@ -194,30 +225,38 @@ void GeneSelection::ResetSelectedMutation(Ref* pSender)
 	specialOnePng = "Png/nothingSelected.png";
 	specialTwoPng = "Png/nothingSelected.png";
 	specialThreePng = "Png/nothingSelected.png";
+
+	mutationOneBtn->setEnabled(true);
+	mutationTwoBtn->setEnabled(true);
+	mutationThreeBtn->setEnabled(true);
+	mutationFourBtn->setEnabled(true);
+	mutationFiveBtn->setEnabled(true);
+
+	
+
 }
 
-void GeneSelection::ChosenMutation(int mutationKind, string mutationPng, string specialPngSelected) 
+void GeneSelection::ChosenMutation(int mutationKind, string mutationPng/***DELETED, string specialPngSelected*/) 
 {
 	if (specialOne == 0)
 	{
 		// erster mutations slot
 		specialOne = mutationKind;
 		chosenMutationPngFirst = mutationPng;
-		specialOnePng = specialPngSelected;
+
 	}
 	else if (specialTwo == 0)
 	{
 		// zweiter mutationsslot
 		specialTwo = mutationKind;
 		chosenMutationPngSecond = mutationPng;
-		specialTwoPng = specialPngSelected;
 	}
 	else if (specialThree == 0)
 	{
 		// dritter mutationsslot
 		specialThree = mutationKind;
 		chosenMutationPngThird = mutationPng;
-		specialThreePng = specialPngSelected;
+
 	}
 	else 
 	{

@@ -61,6 +61,8 @@ public:
 	Sprite* secondGeneSprite;
 	Sprite* thirdGeneSprite;
 
+	MenuItemImage* disabledTest;
+
 	// Create the gene selection scene.
 	static Scene* createScene();
 	// Implement the create function.
@@ -80,7 +82,7 @@ public:
 
 	void ResetSelectedMutation(Ref *pSender);
 
-	void ChosenMutation(int mutationKind, string mutationPng, string specialPngSelected);
+	void ChosenMutation(int mutationKind, string mutationPng/***DELETED**, string specialPngSelected*/);
 
 private:
 	// Scene handlings.

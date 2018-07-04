@@ -25,7 +25,7 @@ public:
 	MenuItemImage* levelFourButton;
 
 	MenuItemImage* goToMainMenuButton;
-	MenuItemImage* goToGeneSelectionButton;
+	// MenuItemImage* goToGeneSelectionButton; **********DELETED
 
 	// Create the prolog scene.
 	static Scene* createScene();

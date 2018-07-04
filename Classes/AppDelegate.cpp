@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "Scenes/MainMenu.h"
+#include "Scenes/LevelManager.h"
 
 static Size designResolutionSize = Size(2048, 1536);
 static Size smallResolutionSize = Size(512, 384);
