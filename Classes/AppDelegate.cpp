@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "Scenes/Load.h"
+#include "Scenes/MainMenu.h"
 
 static Size designResolutionSize = Size(2048, 1536);
 static Size smallResolutionSize = Size(512, 384);
@@ -9,8 +9,8 @@ static Size largeResolutionSize = Size(2048, 1536);
 void AppDelegate::initMultiResolution()
 {
 	// Declare variables.
-	Director *director = Director::getInstance();
-	GLView *glview = director->getOpenGLView();
+	Director* director = Director::getInstance();
+	GLView* glview = director->getOpenGLView();
 	vector<string> searchPaths;
 	float scaleFactor = 1.0f;
 	Size frameSize;
@@ -74,7 +74,7 @@ void AppDelegate::initDirector()
 void AppDelegate::createAndRunScene()
 {
 	// Declare variables.
-	Scene *scene = Load::createScene();
+	Scene* scene =  MainMenu::createScene();
 
 	Director::getInstance()->runWithScene(scene);
 }
