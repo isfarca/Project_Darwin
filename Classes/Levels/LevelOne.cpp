@@ -6,6 +6,11 @@ Scene* LevelOne::createScene()
 	return LevelOne::create();
 }
 
+//>>>>>>>>>>>>>>>>>>>> moved here from header
+int mutationButtonEffect1, mutationButtonEffect2, mutationButtonEffect3;
+string mutationButtonPicture1_1, mutationButtonPicture1_2, mutationButtonPicture2_1, mutationButtonPicture2_2, mutationButtonPicture3_1, mutationButtonPicture3_2;
+//<<<<<<<<<<<<<<<<<<<<
+
 // Initializing.
 bool LevelOne::init()
 {
@@ -53,7 +58,10 @@ bool LevelOne::init()
 	Health::InitialHealth(this);
 	SpecialAbilities::Initiation();
 
+
+	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Deleted
 	//testwerte -> später löschen
+	/*
 	mutationButtonPicture1_1 = "CloseNormal.png";
 	mutationButtonPicture1_2 = "CloseSelected.png";
 	mutationButtonEffect1 = 2;
@@ -63,6 +71,11 @@ bool LevelOne::init()
 	mutationButtonPicture3_1 = "CloseNormal.png";
 	mutationButtonPicture3_2 = "CloseSelected.png";
 	mutationButtonEffect3 = 5;
+	*/
+
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
 
 	abilityPicture1 = "CloseNormal.png";
 	abilityPicture2 = "CloseSelected.png";
@@ -268,17 +281,42 @@ void LevelOne::onTouchCancelled(Touch* touch, Event* event)
 #pragma region Alexander Sinzig
 // ************************************************** Alexander Sinzig *******************************************************************************************************
 
-//the 4 transimitters
+//>>>>>>>>>>>>>> added function
+//called from from gene-selection to fill the button-variables with values
+void LevelOne::ButtonValues(int slot, int chosenSpecialAbility, string chosenPic, string chosenPicSelected)
+{
+	switch (slot)
+	{
+	case 1:
+		mutationButtonEffect1 = chosenSpecialAbility;
+		mutationButtonPicture1_1 = chosenPic;
+		mutationButtonPicture1_2 = chosenPicSelected;
+		break;
+	case 2:
+		mutationButtonEffect2 = chosenSpecialAbility;
+		mutationButtonPicture2_1 = chosenPic;
+		mutationButtonPicture2_2 = chosenPicSelected;
+		break;
+	case 3:
+		mutationButtonEffect3 = chosenSpecialAbility;
+		mutationButtonPicture3_1 = chosenPic;
+		mutationButtonPicture3_2 = chosenPicSelected;
+		break;
+	default:
+		break;
+	}
+}
+//<<<<<<<<<<<<<<
+
+//the 3 transimitters to hand over effects to buttons
 void LevelOne::Transmitter1(Ref *pSender)
 {
 	LevelOne::ChangeMutation(mutationButtonEffect1);
 }
-
 void LevelOne::Transmitter2(Ref *pSender)
 {
 	LevelOne::ChangeMutation(mutationButtonEffect2);
 }
-
 void LevelOne::Transmitter3(Ref *pSender)
 {
 	LevelOne::ChangeMutation(mutationButtonEffect3);
@@ -289,7 +327,7 @@ void LevelOne::ChangeMutation(int effect)
 	//save current form for ability
 	currentForm = effect;
 	//different effect depending on the mutation
-	//call mutation-function
+	//call mutation in different script
 	switch (currentForm)
 	{
 	case 1:
@@ -313,6 +351,7 @@ void LevelOne::ChangeMutation(int effect)
 	}
 }
 
+//call ability inSpecialAbilities-sctipt depending on current form
 void LevelOne::UseAbility(Ref *pSender)
 {
 	switch (currentForm)

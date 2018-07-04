@@ -9,7 +9,7 @@ Scene* GeneSelection::createScene()
 // Initializing.
 bool GeneSelection::init()
 {
-	// When the scene don't init, then stop the init process.
+	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 
@@ -204,6 +204,9 @@ void GeneSelection::ChosenMutation(int mutationKind, string mutationPng, string 
 		specialOne = mutationKind;
 		chosenMutationPngFirst = mutationPng;
 		specialOnePng = specialPngSelected;
+		//>>>>>>>>>>> added
+		LevelOne::ButtonValues(1, specialOne, chosenMutationPngFirst, chosenMutationPngFirstSelected);
+		//<<<<<<<<<<<
 	}
 	else if (specialTwo == 0)
 	{
@@ -211,6 +214,9 @@ void GeneSelection::ChosenMutation(int mutationKind, string mutationPng, string 
 		specialTwo = mutationKind;
 		chosenMutationPngSecond = mutationPng;
 		specialTwoPng = specialPngSelected;
+		//>>>>>>>>>>> added
+		LevelOne::ButtonValues(2, specialTwo, chosenMutationPngSecond, chosenMutationPngSecondSelected);
+		//<<<<<<<<<<<
 	}
 	else if (specialThree == 0)
 	{
@@ -218,6 +224,9 @@ void GeneSelection::ChosenMutation(int mutationKind, string mutationPng, string 
 		specialThree = mutationKind;
 		chosenMutationPngThird = mutationPng;
 		specialThreePng = specialPngSelected;
+		//>>>>>>>>>>> added
+		LevelOne::ButtonValues(3, specialThree, chosenMutationPngThird, chosenMutationPngThirdSelected);
+		//<<<<<<<<<<<
 	}
 	else 
 	{

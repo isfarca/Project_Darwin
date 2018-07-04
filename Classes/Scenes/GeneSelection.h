@@ -7,6 +7,9 @@
 #include "../Outsourcing/Definitions.h"
 #include "MainMenu.h"
 #include "Load.h"
+//>>>>>>>>>>>>>>>>>> added
+#include "../Levels/LevelOne.h"
+//<<<<<<<<<<<<<<<<<<
 
 using namespace cocos2d;
 using namespace std;
@@ -38,6 +41,7 @@ public:
 	string reset;
 	string resetSelected;
 
+	//needed 
 	string specialOnePng;
 	string specialTwoPng;
 	string specialThreePng;
@@ -47,7 +51,10 @@ public:
 	int specialTwo = 0;
 	int specialThree = 0;
 
-	string chosenMutationPngFirst, chosenMutationPngSecond, chosenMutationPngThird;
+	//>>>>>>>>>>>> 3 new strings added to the rest
+	//strings for button-pictures
+	string chosenMutationPngFirst, chosenMutationPngSecond, chosenMutationPngThird, chosenMutationPngFirstSelected, chosenMutationPngSecondSelected, chosenMutationPngThirdSelected;
+	//<<<<<<<<<<<<
 
 	MenuItemImage* mutationOneBtn;
 	MenuItemImage* mutationTwoBtn;

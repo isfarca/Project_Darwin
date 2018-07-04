@@ -14,6 +14,7 @@
 #include "../Outsourcing/PlaceholderEffect.h"
 //später robins header includen, um auf seine int-variablen, welche dann die mutationbuttoneffects ersetzen zuzugreifen
 #include "../Outsourcing/Health.h"
+#include "../Scenes/GeneSelection.h"
 
 using namespace cocos2d;
 
@@ -57,12 +58,14 @@ private:
 	Label* menuLabel;
 	Sprite* sprite;
 
-	//variables for mutationButton-picture-loading
-	string mutationButtonPicture1_1, mutationButtonPicture1_2, mutationButtonPicture2_1, mutationButtonPicture2_2, mutationButtonPicture3_1, mutationButtonPicture3_2;
 	string abilityPicture1, abilityPicture2;
 
+	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>> moved to cpp
+	//variables for mutationButton-picture-loading
+	//string mutationButtonPicture1_1, mutationButtonPicture1_2, mutationButtonPicture2_1, mutationButtonPicture2_2, mutationButtonPicture3_1, mutationButtonPicture3_2;
 	//variables for the mutationButton-effect
-	int mutationButtonEffect1, mutationButtonEffect2, mutationButtonEffect3;
+	//int mutationButtonEffect1, mutationButtonEffect2, mutationButtonEffect3;
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
 
 	//save the current form fpr selecting special abilty
 	int currentForm;
@@ -102,7 +105,9 @@ public:
 	void Transmitter3(Ref * pSender);
 	void UseAbility(Ref * pSender);
 	void ChangeMutation(int effect);
-
+	//>>>>>>>>>>>>> added
+	static void ButtonValues(int slot, int chosenSpecialAbility, string chosenPic, string chosenPicSelected);
+	//<<<<<<<<<<<<<
 	// ***************************************************************************************************
 	#pragma endregion
 
