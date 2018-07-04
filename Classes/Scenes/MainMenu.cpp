@@ -3,9 +3,6 @@
 #include "Info.h"
 #include <string>
 
-
-
-
 using namespace std;
 // Create the prolog scene.
 Scene* MainMenu::createScene()

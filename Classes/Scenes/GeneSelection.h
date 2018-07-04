@@ -42,6 +42,10 @@ public:
 	string reset;
 	string resetSelected;
 
+	string specialOnePng;
+	string specialTwoPng;
+	string specialThreePng;
+
 	// Ausgewählte Fähigkeiten
 	int specialOne = 0;
 	int specialTwo = 0;
@@ -71,9 +75,17 @@ public:
 	cocos2d::MenuItemImage *resetSelectedMutationBtn;
 
 
-	void ChosenMutation(int mutationKind, string mutationPng);
+	void ChosenMutation(int mutationKind, string mutationPng, string specialPngSelected);
 	
 	CREATE_FUNC(GeneSelection);
+
+	cocos2d::Sprite *firstGeneSprite;
+	cocos2d::Sprite *secondGeneSprite;
+	cocos2d::Sprite *thirdGeneSprite;
+
+	void update(float) override;
+
+
 
 private:
 	// Scene handlings.
