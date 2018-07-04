@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "Scenes/Level.h"
+#include "Scenes/MainMenu.h"
 
 static Size designResolutionSize = Size(2048, 1536);
 static Size smallResolutionSize = Size(512, 384);
@@ -74,7 +74,7 @@ void AppDelegate::initDirector()
 void AppDelegate::createAndRunScene()
 {
 	// Declare variables.
-	Scene* scene = Level::createScene();
+	Scene* scene =  MainMenu::createScene();
 
 	Director::getInstance()->runWithScene(scene);
 }

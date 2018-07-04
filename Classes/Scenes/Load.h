@@ -5,7 +5,7 @@
 
 #include "cocos2d.h"
 #include "../Outsourcing/Definitions.h"
-#include "Level.h"
+#include "LevelManager.h"
 
 using namespace cocos2d;
 
@@ -41,7 +41,7 @@ public:
 
 private:
 	// Scene handlings
-	void GoToLevelScene(float delta);
+	void GoToLevelManagerScene(float delta);
 };
 
 #endif
