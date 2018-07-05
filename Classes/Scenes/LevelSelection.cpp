@@ -31,7 +31,7 @@ bool LevelSelection::init()
 
 	string levelFourPng = "Png/Level_4.png";
 	string levelFourPngSelected = "Png/Level_4Selected.png";
-	string levelFourPngBlocked = "Png/.png";
+	string levelFourPngBlocked = "Png/nothingSelected.png";
 
 	// MENU PNG PATH
 	string goToMainMenuPng = "";
@@ -41,10 +41,10 @@ bool LevelSelection::init()
 	//string goToGeneSelectionPngSelected = "Png/continue.png"; **********DELETED
 
 	// Buttons
-	levelOneButton = MenuItemImage::create(levelOnePng, levelOnePngSelected, CC_CALLBACK_1(LevelSelection::StartLevelOne, this));
-	levelTwoButton = MenuItemImage::create(levelTwoPng, levelTwoPngSelected, CC_CALLBACK_1(LevelSelection::StartLevelTwo, this));
-	levelThreeButton = MenuItemImage::create(levelThreePng, levelThreePngSelected, CC_CALLBACK_1(LevelSelection::StartLevelThree, this));
-	levelFourButton = MenuItemImage::create(levelFourPng, levelFourPngSelected, CC_CALLBACK_1(LevelSelection::StartLevelFour, this));
+	levelOneButton = MenuItemImage::create(levelOnePng, levelOnePngSelected, levelOnePngBlocked,CC_CALLBACK_1(LevelSelection::StartLevelOne, this));
+	levelTwoButton = MenuItemImage::create(levelTwoPng, levelTwoPngSelected, levelTwoPngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelTwo, this));
+	levelThreeButton = MenuItemImage::create(levelThreePng, levelThreePngSelected, levelThreePngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelThree, this));
+	levelFourButton = MenuItemImage::create(levelFourPng, levelFourPngSelected, levelFourPngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelFour, this));
 
 	goToMainMenuButton = MenuItemImage::create(goToMainMenuPng, goToMainMenuPngSelected, CC_CALLBACK_1(LevelSelection::GoToMainMenuScene, this));
 	//goToGeneSelectionButton = MenuItemImage::create(goToGeneSelectionPng, goToGeneSelectionPngSelected, CC_CALLBACK_1(LevelSelection::GoToGeneSelectionScene, this)); **********DELETED
@@ -61,6 +61,10 @@ bool LevelSelection::init()
 
 	goToMainMenuButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 400);
 	//goToGeneSelectionButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 450); **********DELETED
+
+	levelTwoButton->setEnabled(false);
+	levelThreeButton->setEnabled(false);
+	levelFourButton->setEnabled(false);
 
 	this->addChild(menu);
 
@@ -95,14 +99,14 @@ void LevelSelection::StartLevelOne(Ref* pSender)
 	Scene* scene = GeneSelection::createScene();
 	LevelManager::SetLevelId(1);
 	this->removeAllChildrenWithCleanup(true);
-	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+	Director::getInstance()->replaceScene(scene);
 }
 void LevelSelection::StartLevelTwo(Ref* pSender)
 {
 	Scene* scene = GeneSelection::createScene();
 	LevelManager::SetLevelId(2);
 	this->removeAllChildrenWithCleanup(true);
-	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+	Director::getInstance()->replaceScene(scene);
 
 }
 void LevelSelection::StartLevelThree(Ref* pSender)
@@ -110,12 +114,12 @@ void LevelSelection::StartLevelThree(Ref* pSender)
 	Scene* scene = GeneSelection::createScene();
 	LevelManager::SetLevelId(3);
 	this->removeAllChildrenWithCleanup(true);
-	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+	Director::getInstance()->replaceScene(scene);
 }
 void LevelSelection::StartLevelFour(Ref* pSender)
 {
 	Scene* scene = GeneSelection::createScene();
 	LevelManager::SetLevelId(4);
 	this->removeAllChildrenWithCleanup(true);
-	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+	Director::getInstance()->replaceScene(scene);
 }

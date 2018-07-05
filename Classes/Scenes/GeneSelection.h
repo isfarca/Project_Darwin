@@ -17,23 +17,30 @@ public:
 	// Declare variables.
 	Label* testingText;
 
-	// Verfügbare Fähigkeiten
+	// available  mutations
 	int mutationOneInt, mutationTwoInt, mutationThreeInt, mutationFourInt, mutationFiveInt, mutationSixInt, mutationSevenInt, mutationEightInt, mutationNineInt, mutationTenInt, mutationElevenInt, mutationTwelveInt;
+
+	// reference for mutation pngs
 
 	string mutationOnePng;
 	string mutationOnePngSelected;
+	string mutationOnePngBlocked;
 
 	string mutationTwoPng;
 	string mutationTwoPngSelected;
+	string mutationTwoPngBlocked;
 
 	string mutationThreePng;
 	string mutationThreePngSelected;
+	string mutationThreePngBlocked;
 
 	string mutationFourPng;
 	string mutationFourPngSelected;
+	string mutationFourPngBlocked;
 
 	string mutationFivePng;
 	string mutationFivePngSelected;
+	string mutationFivePngBlocked;
 
 	string reset;
 	string resetSelected;
@@ -42,24 +49,47 @@ public:
 	string specialTwoPng;
 	string specialThreePng;
 
-	// Ausgewählte Fähigkeiten
+	// reference for start png
+	string startPng;
+	string startPngSelected;
+
+	string characterWithMutationOne;
+	string characterWithMutationTwo;
+	string characterWithMutationThree;
+	string characterWithMutationFour;
+	string characterWithMutationFive;
+
+	string characterWithMutationClear;
+
+	string currentCharacter;
+
+	// chosen mutations
 	int specialOne = 0;
 	int specialTwo = 0;
 	int specialThree = 0;
 
-	string chosenMutationPngFirst, chosenMutationPngSecond, chosenMutationPngThird;
+	// png reference for chosen mutations
+	string chosenMutationPngFirst, chosenMutationPngSecond, chosenMutationPngThird, chosenMutationPngFirstSelected, chosenMutationPngSecondSelected, chosenMutationPngThirdSelected;
 
+	// mutation button reference
 	MenuItemImage* mutationOneBtn;
 	MenuItemImage* mutationTwoBtn;
 	MenuItemImage* mutationThreeBtn;
 	MenuItemImage* mutationFourBtn;
 	MenuItemImage* mutationFiveBtn;
 
+	// reset mutations that are selected button reference
 	MenuItemImage* resetSelectedMutationBtn;
 
+	// start button reference
+	MenuItemImage* startGameBtn;
+
+	// sprite reference for selected genes
 	Sprite* firstGeneSprite;
 	Sprite* secondGeneSprite;
 	Sprite* thirdGeneSprite;
+
+	Sprite* ChosenCharacterMutation;
 
 	MenuItemImage* disabledTest;
 
@@ -79,6 +109,7 @@ public:
 	void mutationThree(Ref* pSender);
 	void mutationFour(Ref* pSender);
 	void mutationFive(Ref* pSender);
+	void startGame(Ref* pSender);
 
 	void ResetSelectedMutation(Ref *pSender);
 

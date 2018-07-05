@@ -26,14 +26,17 @@ bool LevelManager::init()
 			this->scheduleOnce(schedule_selector(LevelManager::GoToLevelOne), DISPLAY_TIME_NEXT_SCENE);
 			break;
 		case 2:
+			CCLOG("%i", LevelManager::GetLevelId());
 			// Go to next scene and disable the loading progress.
 			this->scheduleOnce(schedule_selector(LevelManager::GoToLevelTwo), DISPLAY_TIME_NEXT_SCENE);
 			break;
 		case 3:
+			CCLOG("%i", LevelManager::GetLevelId());
 			// Go to next scene and disable the loading progress.
 			this->scheduleOnce(schedule_selector(LevelManager::GoToLevelThree), DISPLAY_TIME_NEXT_SCENE);
 			break;
 		case 4:
+			CCLOG("%i", LevelManager::GetLevelId());
 			// Go to next scene and disable the loading progress.
 			this->scheduleOnce(schedule_selector(LevelManager::GoToLevelFour), DISPLAY_TIME_NEXT_SCENE);
 			break;

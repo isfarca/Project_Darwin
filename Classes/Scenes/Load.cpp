@@ -97,5 +97,5 @@ void Load::GoToLevelManagerScene(float delta)
 
 	// Replace the scene.
 	this->removeAllChildrenWithCleanup(true);
-	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+	Director::getInstance()->replaceScene(scene);
 }
