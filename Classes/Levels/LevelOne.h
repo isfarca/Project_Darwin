@@ -11,7 +11,7 @@
 #include "../Scenes/LevelSelection.h"
 #include "../Outsourcing/SpecialAbilities.h"
 //später durch fethis mutationen-header ersetzen
-#include "../Outsourcing/PlaceholderEffect.h"
+#include "../Outsourcing/ChangeForm.h"
 //später robins header includen, um auf seine int-variablen, welche dann die mutationbuttoneffects ersetzen zuzugreifen
 #include "../Outsourcing/Health.h"
 #include "../Scenes/GeneSelection.h"
@@ -21,8 +21,9 @@ using namespace cocos2d;
 class LevelOne : public Scene
 {
 private:
-	// Constants.
-	const float PLAYERSPEED = 200;
+	//>>>>>>>>>>>>>>> changed to non-const
+	float playerspeed = 200;
+	//<<<<<<<<<<<<<<<
 
 private:
 	#pragma region Fethi Isfarca
@@ -32,10 +33,10 @@ private:
 	Camera * camera;
 	float cameraEndPositionX, cameraShakePositionX;
 	Vec2 cameraPosition;
-	float cameraSpeed = PLAYERSPEED / 4;
+	float cameraSpeed = playerspeed / 4;
 	Sprite* helloWorldSprite;
 	Vec2 helloWorldSpritePosition;
-	float tick = PLAYERSPEED;
+	float tick = playerspeed;
 	Size visibleSize;
 	Vec2 origin;
 	EventListenerTouchOneByOne* eventListenerTouchOneByOne;
@@ -55,10 +56,17 @@ private:
 	// ****************************************** Alexander Sinzig ******************************************
 
 	// Declare variables.
+private:
 	Label* menuLabel;
 	Sprite* sprite;
 
 	string abilityPicture1, abilityPicture2;
+
+	//>>>>>>>>>>>>>> added private variables
+	float cameraX;
+	float cameraY;
+
+	//<<<<<<<<<<<<<<
 
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>> moved to cpp
 	//variables for mutationButton-picture-loading
@@ -67,7 +75,7 @@ private:
 	//int mutationButtonEffect1, mutationButtonEffect2, mutationButtonEffect3;
 	//<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
 
-	//save the current form fpr selecting special abilty
+	//save the current form for selecting special abilty
 	int currentForm;
 
 	MenuItemImage *mutationButton1;
@@ -106,6 +114,12 @@ public:
 	void UseAbility(Ref * pSender);
 	void ChangeMutation(int effect);
 	//>>>>>>>>>>>>> added
+	static void JumpValues(bool midAirJump, float jumpDuration, int jumpOffset, int jumpExtremum, float fallDuration, int fallOffset, int fallExtremum);
+
+	static void ChargeMode(bool enabled, float speedMulitplyer);
+
+	static void TrampleMode(bool enabled, float speedMulitplyer);
+
 	static void ButtonValues(int slot, int chosenSpecialAbility, string chosenPic, string chosenPicSelected);
 	//<<<<<<<<<<<<<
 	// ***************************************************************************************************

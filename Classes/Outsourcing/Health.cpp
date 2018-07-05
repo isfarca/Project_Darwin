@@ -15,14 +15,14 @@ void Health::InitialHealth(Scene* scene)
 	visibleSize = Director::getInstance()->getVisibleSize();
 	origin = Director::getInstance()->getVisibleOrigin();
 
-	//create parent for heartse
-	heartParent = Sprite::create("Heart.png");
+	//create parent for hearts
+	heartParent = Sprite::create("CloseSelected.png");
 	scene->addChild(heartParent);
 
 	for (int i = 1; i < hp + 1; i++)
 	{
 		hearts = Sprite::create("Heart.png");
-		hearts->setPosition(visibleSize.width * i / 15 + origin.x, visibleSize.height * 14 / 15 + origin.y);
+		hearts->setPosition(-(visibleSize.width / 2) + (i+1) * 40 + origin.x, visibleSize.height * 29 / 40 + origin.y);
 		heartParent->addChild(hearts, 0);
 	}
 }
@@ -37,7 +37,7 @@ void Health::InvulnerableStart()
 	for (int i = 1; i < hp + 1; i++)
 	{
 		ironhearts = Sprite::create("IronHeart.png");
-		ironhearts->setPosition(visibleSize.width * i / 15 + origin.x, visibleSize.height * 14 / 15 + origin.y);
+		ironhearts->setPosition(-(visibleSize.width / 2) + (i + 1) * 40 + origin.x, visibleSize.height * 29 / 40 + origin.y);
 		heartParent->addChild(ironhearts, 0);
 	}
 }
@@ -52,7 +52,7 @@ void Health::InvulnerableEnd()
 	for (int i = 1; i < hp + 1; i++)
 	{
 		hearts = Sprite::create("Heart.png");
-		hearts->setPosition(visibleSize.width * i / 15 + origin.x, visibleSize.height * 14 / 15 + origin.y);
+		hearts->setPosition(-(visibleSize.width / 2) + (i + 1) * 40 + origin.x, visibleSize.height * 29 / 40 + origin.y);
 		heartParent->addChild(hearts, 0);
 	}
 }
@@ -78,7 +78,7 @@ void Health::TakeDamage()
 			for (int i = 1; i < hp + 1; i++)
 			{
 				hearts = Sprite::create("Heart.png");
-				hearts->setPosition(visibleSize.width * i / 15 + origin.x, visibleSize.height * 14 / 15 + origin.y);
+				hearts->setPosition(-(visibleSize.width / 2) + (i + 1) * 40 + origin.x, visibleSize.height * 29 / 40 + origin.y);
 				heartParent->addChild(hearts, 0);
 			}
 		}
@@ -87,6 +87,11 @@ void Health::TakeDamage()
 	{
 		//play blockSound
 	}
+}
+
+void Health::MoveHearts(float xPosition, float yPosition)
+{
+	heartParent->setPosition(xPosition, yPosition);
 }
 
 void Health::GameOver()

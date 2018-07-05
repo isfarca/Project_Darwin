@@ -1,12 +1,14 @@
 #pragma once
 
-#ifndef PlaceholderEffect_h
-#define PlaceholderEffect_h
+#ifndef ChangeForm_h
+#define ChangeForm_h
 
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 using namespace cocos2d;
 
-class PlaceholderEffect
+class ChangeForm
 {
 public:
 	static void mutationRhino();

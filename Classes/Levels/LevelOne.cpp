@@ -7,6 +7,12 @@ Scene* LevelOne::createScene()
 }
 
 //>>>>>>>>>>>>>>>>>>>> moved here from header
+//jumping / falling-properties
+bool inWater;
+bool isGrounded, midAirJumping;
+float jumpingDuration, fallingDuration;
+int jumpingOffset, jumpingExtremum, fallingOffset, fallingExtremum;
+//buttonValues
 int mutationButtonEffect1, mutationButtonEffect2, mutationButtonEffect3;
 string mutationButtonPicture1_1, mutationButtonPicture1_2, mutationButtonPicture2_1, mutationButtonPicture2_2, mutationButtonPicture3_1, mutationButtonPicture3_2;
 //<<<<<<<<<<<<<<<<<<<<
@@ -14,7 +20,7 @@ string mutationButtonPicture1_1, mutationButtonPicture1_2, mutationButtonPicture
 // Initializing.
 bool LevelOne::init()
 {
-	// When the scene don't init, then stop the init process.
+	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 
@@ -75,16 +81,47 @@ bool LevelOne::init()
 
 	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>> added
+	//starting values for jumping / falling properties
+	bool inWater = false;
+	midAirJumping = false;
+	jumpingDuration = 1.0;
+	fallingDuration = 1.0;
+	jumpingOffset = 0;
+	jumpingExtremum = 300;
+	fallingOffset = 0;
+	fallingExtremum = -200;
+
+	//default-values for the buttons if GeneSelection did not hand over values
+	if (mutationButtonPicture1_1 == "") 
+	{
+		mutationButtonPicture1_1 = "CloseNormal.png";
+		mutationButtonPicture1_2 = "CloseSelected.png";
+		mutationButtonEffect1 = 1;
+	}
+	if (mutationButtonPicture2_1 == "")
+	{
+		mutationButtonPicture2_1 = "CloseNormal.png";
+		mutationButtonPicture2_2 = "CloseSelected.png";
+		mutationButtonEffect2 = 2;
+	}
+	if (mutationButtonPicture3_1 == "")
+	{
+		mutationButtonPicture3_1 = "CloseNormal.png";
+		mutationButtonPicture3_2 = "CloseSelected.png";
+		mutationButtonEffect3 = 5;
+	}
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 
 
 	abilityPicture1 = "CloseNormal.png";
 	abilityPicture2 = "CloseSelected.png";
 
-	//später müssen mutationbuttoneffects auf die strings von robin gesetzt werden
 
 
-	auto visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	//auto visibleSize = Director::getInstance()->getVisibleSize();
+	//Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	//create the 3 mutationButtons
 	mutationButton1 = MenuItemImage::create(mutationButtonPicture1_1, mutationButtonPicture1_2, CC_CALLBACK_1(LevelOne::Transmitter1, this));
@@ -96,12 +133,15 @@ bool LevelOne::init()
 
 	auto menu = Menu::create(mutationButton1, mutationButton2, mutationButton3, specialAbilityButton, nullptr);
 	menu->setPosition(Point::ZERO);
-	mutationButton1->setPosition(visibleSize.width * 3 / 10 + origin.x, origin.y + 20);
-	mutationButton2->setPosition(visibleSize.width * 4 / 10 + origin.x, origin.y + 20);
-	mutationButton3->setPosition(visibleSize.width * 5 / 10 + origin.x, origin.y + 20);
-	specialAbilityButton->setPosition(visibleSize.width * 6 / 10 + origin.x, origin.y + 20);
 	this->addChild(menu);
 
+	//>>>>>>>>>>>>>>>>>>>>>>>>>>>> deleted / changed and moved to update
+	//mutationButton1->setPosition(visibleSize.width * 3 / 10 + origin.x, origin.y + 20);
+	//mutationButton2->setPosition(visibleSize.width * 4 / 10 + origin.x, origin.y + 20);
+	//mutationButton3->setPosition(visibleSize.width * 5 / 10 + origin.x, origin.y + 20);
+	//specialAbilityButton->setPosition(visibleSize.width * 6 / 10 + origin.x, origin.y + 20);
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
 	// ************************************************************************************************************************************************************************
 	#pragma endregion
 
@@ -133,7 +173,7 @@ void LevelOne::update(float delta)
 
 			isTouched = false;
 
-			tick = PLAYERSPEED;
+			tick = playerspeed;
 		}
 		else if (initialTouchPosition[0] - currentTouchPosition[0] < -visibleSize.width * 0.05f)
 		{
@@ -143,7 +183,7 @@ void LevelOne::update(float delta)
 
 			isTouched = false;
 
-			tick = PLAYERSPEED;
+			tick = playerspeed;
 		}
 		else if (initialTouchPosition[1] - currentTouchPosition[1] > visibleSize.width * 0.05f)
 		{
@@ -166,19 +206,18 @@ void LevelOne::update(float delta)
 		// Go to left or stop slowly.
 		if (!moveDown)
 		{
-			CCLOG("Go to LEFT!");
-			helloWorldSpritePosition.x -= PLAYERSPEED * delta;
+			helloWorldSpritePosition.x -= playerspeed * delta;
 		}
 		else if (moveDown && tick > 0)
 		{
-			tick -= PLAYERSPEED * delta;
+			tick -= playerspeed * delta;
 			helloWorldSpritePosition.x -= tick * delta;
 		}
 		else if (moveDown && tick <= 0)
 		{
 			moveLeft = false;
 			moveDown = false;
-			tick = PLAYERSPEED;
+			tick = playerspeed;
 		}
 	}
 	else if (moveRight)
@@ -186,45 +225,50 @@ void LevelOne::update(float delta)
 		// Go to right or stop slowly.
 		if (!moveDown)
 		{
-			CCLOG("Go to RIGHT!");
-			helloWorldSpritePosition.x += PLAYERSPEED * delta;
+			helloWorldSpritePosition.x += playerspeed * delta;
 		}
 		else if (moveDown && tick > 0)
 		{
-			tick -= PLAYERSPEED * delta;
+			tick -= playerspeed * delta;
 			helloWorldSpritePosition.x += tick * delta;
 		}
 		else if (moveDown && tick <= 0)
 		{
 			moveRight = false;
 			moveDown = false;
-			tick = PLAYERSPEED;
+			tick = playerspeed;
 		}
 	}
 	helloWorldSprite->setPosition(helloWorldSpritePosition);
 
+	//>>>>>>>>>>>>>>>>>> an variablen angepasdst und mit bedingung versehen
 	// Jump by swiping up.
-	if (jump)
+	if (jump && midAirJumping)
 	{
 		jumpTo = new JumpTo();
-		jumpTo->initWithDuration(1, Vec2(helloWorldSprite->getPositionX(), helloWorldSprite->getPositionY()), 300, 1);
+		jumpTo->initWithDuration(jumpingDuration, Vec2(helloWorldSprite->getPositionX(), helloWorldSprite->getPositionY() + jumpingOffset), jumpingExtremum, 1);
 		helloWorldSprite->runAction(jumpTo);
 		jumpTo->autorelease();
-		CCLOG("JUMP!");
 		jump = false;
 	}
+	else if (jump && isGrounded)
+	{
+		jumpTo = new JumpTo();
+		jumpTo->initWithDuration(jumpingDuration, Vec2(helloWorldSprite->getPositionX(), helloWorldSprite->getPositionY() + jumpingOffset), jumpingExtremum, 1);
+		helloWorldSprite->runAction(jumpTo);
+		jumpTo->autorelease();
+		jump = false;
+	}
+	//<<<<<<<<<<<<<<<<<<<<
 
-	// Debug output.
-	CCLOG("CameraPositionX: %f", camera->getPositionX());
-	CCLOG("HelloWorldSpritePositionX: %f", helloWorldSprite->getPositionX());
 
 	// At screen ends, do activate the screen shake.
 	if (camera->getPositionX() > helloWorldSprite->getPositionX() + cameraShakePositionX)
 		ShakeScreen();
 	else if (helloWorldSprite->getPositionX() > camera->getPositionX() + cameraShakePositionX)
-		cameraSpeed = PLAYERSPEED;
+		cameraSpeed = playerspeed;
 	else
-		cameraSpeed = PLAYERSPEED / 4;
+		cameraSpeed = playerspeed / 4;
 
 	// By lost, go to the loading screen.
 	if (camera->getPositionX() > helloWorldSprite->getPositionX() + cameraEndPositionX)
@@ -243,10 +287,39 @@ void LevelOne::update(float delta)
 	//call 'FakeUpdate' for 'SpecialAbilities'
 	SpecialAbilities::TimingHandler();
 
+	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> added
+	//hand over cameraX to Health-script
+	cameraX = camera->getPositionX();
+	cameraY = camera->getPositionY() - visibleSize.width / 4;
+	Health::MoveHearts(cameraX, cameraY);
+
+	//tell SpecialAbilities if player is in water
+	SpecialAbilities::Water(inWater);
+
+	//set mutationButton-Positions
+	mutationButton1->setPosition(camera->getPositionX() - 40, camera->getPositionY() - visibleSize.width / 4 + 40);
+	mutationButton2->setPosition(camera->getPositionX(), camera->getPositionY() - visibleSize.width / 4 + 40);
+	mutationButton3->setPosition(camera->getPositionX() + 40, camera->getPositionY() - visibleSize.width / 4 + 40);
+	specialAbilityButton->setPosition(camera->getPositionX() + 90, camera->getPositionY() - visibleSize.width / 4 + 40);
+
+
+
+	//falling
+	//muss wiewder aktiviert werden, wenn 
+	/*
+	jumpTo = new JumpTo();
+	jumpTo->initWithDuration(fallingDuration, Vec2(helloWorldSprite->getPositionX(), helloWorldSprite->getPositionY() + fallingOffset), fallingExtremum, 1);
+	helloWorldSprite->runAction(jumpTo);
+	jumpTo->autorelease();
+	*/
+
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 	// ************************************************************************************************************************************************************************
 	#pragma endregion
 }
 
+#pragma region touch
 // Touch events.
 bool LevelOne::onTouchBegan(Touch* touch, Event* event)
 {
@@ -277,11 +350,12 @@ void LevelOne::onTouchCancelled(Touch* touch, Event* event)
 	// Touch is ended.
 	onTouchEnded(touch, event);
 }
+#pragma endregion
 
 #pragma region Alexander Sinzig
 // ************************************************** Alexander Sinzig *******************************************************************************************************
 
-//>>>>>>>>>>>>>> added function
+//>>>>>>>>>>>>>> added functions
 //called from from gene-selection to fill the button-variables with values
 void LevelOne::ButtonValues(int slot, int chosenSpecialAbility, string chosenPic, string chosenPicSelected)
 {
@@ -305,6 +379,28 @@ void LevelOne::ButtonValues(int slot, int chosenSpecialAbility, string chosenPic
 	default:
 		break;
 	}
+}
+
+//change jumping and falling-properties when called
+void LevelOne::JumpValues(bool midAirJump, float jumpDuration, int jumpOffset, int jumpExtremum, float fallDuration, int fallOffset, int fallExtremum) 
+{
+	midAirJumping = midAirJump;
+	jumpingDuration = jumpDuration;
+	jumpingOffset = jumpOffset;
+	jumpingExtremum = jumpExtremum;
+	fallingDuration = fallDuration;
+	fallingOffset = fallOffset;
+	fallingExtremum = fallExtremum;
+}
+
+void LevelOne::ChargeMode(bool enabled, float speedMulitplyer)
+{
+	//change speed and check collision with trapdoors
+}
+
+void LevelOne::TrampleMode(bool enabled, float speedMulitplyer)
+{
+	//change speed and check collision with doors
 }
 //<<<<<<<<<<<<<<
 
@@ -331,19 +427,19 @@ void LevelOne::ChangeMutation(int effect)
 	switch (currentForm)
 	{
 	case 1:
-		PlaceholderEffect::mutationRhino();
+		ChangeForm::mutationHawk();
 		break;
 	case 2:
-		PlaceholderEffect::mutationTurtle();
+		ChangeForm::mutationRhino();
 		break;
 	case 3:
-		PlaceholderEffect::mutationHawk();
+		ChangeForm::mutationElephant();
 		break;
 	case 4:
-		PlaceholderEffect::mutationElephant();
+		ChangeForm::mutationFish();
 		break;
 	case 5:
-		PlaceholderEffect::mutationFish();
+		ChangeForm::mutationTurtle();
 		break;
 	default:
 		log("mutation does not exist");
@@ -357,19 +453,19 @@ void LevelOne::UseAbility(Ref *pSender)
 	switch (currentForm)
 	{
 	case 1:
-		SpecialAbilities::RhinoAbility();
-		break;
-	case 2:
-		SpecialAbilities::TurtleAbility();
-		break;
-	case 3:
 		SpecialAbilities::HawkAbility();
 		break;
-	case 4:
+	case 2:
+		SpecialAbilities::RhinoAbility();
+		break;
+	case 3:
 		SpecialAbilities::ElephantAbility();
 		break;
-	case 5:
+	case 4:
 		SpecialAbilities::FishAbility();
+		break;
+	case 5:
+		SpecialAbilities::TurtleAbility();
 		break;
 	default:
 		log("invalid mutation for ability");
