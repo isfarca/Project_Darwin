@@ -4,12 +4,10 @@
   LevelOne.cpp
   LevelThree.cpp
   LevelTwo.cpp
-  Health.cpp
-  PlaceholderEffect.cpp
-  ScreenShake.cpp
   SpecialAbilities.cpp
   Credits.cpp
   GeneSelection.cpp
+c:\users\f.isfarca\desktop\darwin\classes\levels\levelone.cpp(18): warning C4305: 'argument': truncation from 'double' to 'float'
   Help.cpp
   Info.cpp
   LevelManager.cpp
@@ -19,153 +17,47 @@
   MainMenu.cpp
   Prolog.cpp
   Settings.cpp
-  main.cpp
      Creating library C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\Darwin.lib and object C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\Darwin.exp
   Generating code
-  All 693 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  19 of 634 functions ( 3.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    11 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Darwin.vcxproj -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\Darwin.exe
   Performing Custom Build Step
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\.gitkeep -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\.gitkeep
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\CloseNormal.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\CloseNormal.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\CloseSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\CloseSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Heart.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Heart.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\HelloWorld.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\HelloWorld.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\fonts\arial.ttf -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\fonts\arial.ttf
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\fonts\Marker Felt.ttf -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\fonts\Marker Felt.ttf
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\continue.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\continue.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\continueSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\continueSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Help.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Help.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\HelpSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\HelpSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Info.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Info.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\InfoSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\InfoSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\LevelSelection.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\LevelSelection.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\LevelSelectionSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\LevelSelectionSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Level_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Level_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Level_1Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Level_1Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Level_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Level_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Level_2Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Level_2Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Level_3.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Level_3.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Level_3Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Level_3Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Level_4.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Level_4.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Level_4Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Level_4Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\nothingSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\nothingSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Settings.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Settings.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\SettingsSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\SettingsSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\mutation1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\mutation1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\mutation1Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\mutation1Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\mutation2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\mutation2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\mutation2Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\mutation2Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\mutation3.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\mutation3.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\mutation3Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\mutation3Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\mutation4.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\mutation4.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\mutation4Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\mutation4Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\mutation5.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\mutation5.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\mutation5Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\mutation5Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\reset.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\reset.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Png\Mutation\resetSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Png\Mutation\resetSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Test\exit_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Test\exit_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Test\exit_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Test\exit_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Test\help_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Test\help_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Test\help_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Test\help_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Test\info_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Test\info_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Test\info_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Test\info_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Test\levelSelection_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Test\levelSelection_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Test\levelSelection_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Test\levelSelection_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Test\settings_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Test\settings_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\Test\settings_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\Test\settings_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\CloseNormal.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\CloseNormal.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\CloseSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\CloseSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Heart.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Heart.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\HelloWorld.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\HelloWorld.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\fonts\arial.ttf -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\fonts\arial.ttf
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\fonts\Marker Felt.ttf -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\fonts\Marker Felt.ttf
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\continue.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\continue.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\continueSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\continueSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Help.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Help.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\HelpSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\HelpSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Info.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Info.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\InfoSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\InfoSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\LevelSelection.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\LevelSelection.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\LevelSelectionSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\LevelSelectionSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Level_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Level_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Level_1Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Level_1Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Level_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Level_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Level_2Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Level_2Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Level_3.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Level_3.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Level_3Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Level_3Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Level_4.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Level_4.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Level_4Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Level_4Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\nothingSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\nothingSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Settings.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Settings.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\SettingsSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\SettingsSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\mutation1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\mutation1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\mutation1Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\mutation1Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\mutation2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\mutation2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\mutation2Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\mutation2Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\mutation3.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\mutation3.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\mutation3Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\mutation3Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\mutation4.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\mutation4.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\mutation4Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\mutation4Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\mutation5.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\mutation5.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\mutation5Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\mutation5Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\reset.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\reset.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Png\Mutation\resetSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Png\Mutation\resetSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Test\exit_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Test\exit_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Test\exit_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Test\exit_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Test\help_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Test\help_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Test\help_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Test\help_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Test\info_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Test\info_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Test\info_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Test\info_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Test\levelSelection_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Test\levelSelection_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Test\levelSelection_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Test\levelSelection_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Test\settings_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Test\settings_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\Test\settings_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\Test\settings_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\CloseNormal.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\CloseNormal.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\CloseSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\CloseSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Heart.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Heart.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\HelloWorld.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\HelloWorld.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\fonts\arial.ttf -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\fonts\arial.ttf
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\fonts\Marker Felt.ttf -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\fonts\Marker Felt.ttf
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\continue.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\continue.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\continueSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\continueSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Help.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Help.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\HelpSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\HelpSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Info.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Info.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\InfoSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\InfoSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\LevelSelection.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\LevelSelection.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\LevelSelectionSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\LevelSelectionSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Level_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Level_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Level_1Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Level_1Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Level_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Level_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Level_2Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Level_2Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Level_3.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Level_3.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Level_3Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Level_3Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Level_4.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Level_4.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Level_4Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Level_4Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\nothingSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\nothingSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Settings.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Settings.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\SettingsSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\SettingsSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\mutation1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\mutation1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\mutation1Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\mutation1Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\mutation2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\mutation2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\mutation2Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\mutation2Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\mutation3.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\mutation3.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\mutation3Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\mutation3Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\mutation4.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\mutation4.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\mutation4Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\mutation4Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\mutation5.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\mutation5.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\mutation5Selected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\mutation5Selected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\reset.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\reset.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Png\Mutation\resetSelected.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Png\Mutation\resetSelected.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Test\exit_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Test\exit_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Test\exit_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Test\exit_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Test\help_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Test\help_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Test\help_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Test\help_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Test\info_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Test\info_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Test\info_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Test\info_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Test\levelSelection_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Test\levelSelection_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Test\levelSelection_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Test\levelSelection_2.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Test\settings_1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Test\settings_1.png
-  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\Test\settings_2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\Test\settings_2.png
-  142 Datei(en) kopiert
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna1-1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna1-1.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna1.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna2-1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna2-1.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna2-2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna2-2.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna3-1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna3-1.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna3-2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna3-2.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna4-1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna4-1.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna4-2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna4-2.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna5-1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna5-1.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna5-2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna5-2.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna6-1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna6-1.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna6-2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna6-2.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna_empty.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna_empty.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna_line1.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna_line1.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna_line2.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna_line2.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna_line3.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna_line3.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna_line4.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna_line4.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna_line5.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna_line5.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\dna\dna_line6.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\dna\dna_line6.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HD\LevelOne.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HD\LevelOne.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\HDR\LevelOne.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\HDR\LevelOne.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\arrow.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\arrow.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\back_icon.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\back_icon.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\broken_heart.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\broken_heart.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\community.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\community.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\gear.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\gear.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\heart.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\heart.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\home.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\home.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\locked.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\locked.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\questionmark.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\questionmark.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\speech_bubbles.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\speech_bubbles.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\star.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\star.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\unlocked.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\unlocked.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\Icons\X.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\Icons\X.png
+  C:\Users\f.isfarca\Desktop\Darwin\Resources\res\SD\LevelOne.png -> C:\Users\f.isfarca\Desktop\Darwin\proj.win32\Release.win32\res\SD\LevelOne.png
+  35 Datei(en) kopiert
