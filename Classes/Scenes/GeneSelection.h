@@ -63,6 +63,14 @@ public:
 
 	string currentCharacter;
 
+	// reference for exit buttons
+
+	string returnToLevelSelectionPng;
+	string returnToLevelSelectionPngSelected;
+
+	string returnToMainMenuPng;
+	string returnToMainMenuPngSelected;
+
 	// chosen mutations
 	int specialOne = 0;
 	int specialTwo = 0;
@@ -91,7 +99,10 @@ public:
 
 	Sprite* ChosenCharacterMutation;
 
-	MenuItemImage* disabledTest;
+
+	// Return Buttons
+	MenuItemImage* returnToLevelSelectionBtn;
+	MenuItemImage* returnToMainMenuBtn;
 
 	// Create the gene selection scene.
 	static Scene* createScene();
@@ -114,6 +125,10 @@ public:
 	void ResetSelectedMutation(Ref *pSender);
 
 	void ChosenMutation(int mutationKind, string mutationPng/***DELETED**, string specialPngSelected*/);
+
+
+	void ReturnToLevelSelection(Ref* pSender);
+	void ReturnToMainMenu(Ref* pSender);
 
 private:
 	// Scene handlings.

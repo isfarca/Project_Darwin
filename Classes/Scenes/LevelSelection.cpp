@@ -34,8 +34,8 @@ bool LevelSelection::init()
 	string levelFourPngBlocked = "Png/nothingSelected.png";
 
 	// MENU PNG PATH
-	string goToMainMenuPng = "";
-	string goToMainMenuPngSelected = "";
+	string goToMainMenuPng = "MainMenu.png";
+	string goToMainMenuPngSelected = "MainMenuSelected.png";
 
 	//string goToGeneSelectionPng = "Png/continue.png"; **********DELETED
 	//string goToGeneSelectionPngSelected = "Png/continue.png"; **********DELETED
