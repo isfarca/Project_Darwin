@@ -1,6 +1,6 @@
 #include "Info.h"
 
-// Create the prolog scene.
+// Create the info scene.
 Scene* Info::createScene()
 {
 	return Info::create();
@@ -9,7 +9,7 @@ Scene* Info::createScene()
 // Initializing.
 bool Info::init()
 {
-	// When the scene don't init, then stop the init process.
+	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 
