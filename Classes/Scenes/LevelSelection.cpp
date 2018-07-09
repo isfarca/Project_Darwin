@@ -41,7 +41,7 @@ bool LevelSelection::init()
 	//string goToGeneSelectionPngSelected = "Png/continue.png"; **********DELETED
 
 	// Buttons
-	levelOneButton = MenuItemImage::create(levelOnePng, levelOnePngSelected, levelOnePngBlocked,CC_CALLBACK_1(LevelSelection::StartLevelOne, this));
+	levelOneButton = MenuItemImage::create(levelOnePng, levelOnePngSelected, levelOnePngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelOne, this));
 	levelTwoButton = MenuItemImage::create(levelTwoPng, levelTwoPngSelected, levelTwoPngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelTwo, this));
 	levelThreeButton = MenuItemImage::create(levelThreePng, levelThreePngSelected, levelThreePngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelThree, this));
 	levelFourButton = MenuItemImage::create(levelFourPng, levelFourPngSelected, levelFourPngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelFour, this));
@@ -99,14 +99,14 @@ void LevelSelection::StartLevelOne(Ref* pSender)
 	Scene* scene = GeneSelection::createScene();
 	LevelManager::SetLevelId(1);
 	this->removeAllChildrenWithCleanup(true);
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
 void LevelSelection::StartLevelTwo(Ref* pSender)
 {
 	Scene* scene = GeneSelection::createScene();
 	LevelManager::SetLevelId(2);
 	this->removeAllChildrenWithCleanup(true);
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 
 }
 void LevelSelection::StartLevelThree(Ref* pSender)
@@ -114,12 +114,12 @@ void LevelSelection::StartLevelThree(Ref* pSender)
 	Scene* scene = GeneSelection::createScene();
 	LevelManager::SetLevelId(3);
 	this->removeAllChildrenWithCleanup(true);
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
 void LevelSelection::StartLevelFour(Ref* pSender)
 {
 	Scene* scene = GeneSelection::createScene();
 	LevelManager::SetLevelId(4);
 	this->removeAllChildrenWithCleanup(true);
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }

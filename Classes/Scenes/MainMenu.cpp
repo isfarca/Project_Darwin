@@ -38,7 +38,7 @@ bool MainMenu::init()
 	levelSelectionButton = MenuItemImage::create(levelSelectionPng, levelSelectionPngSelected, CC_CALLBACK_1(MainMenu::GoToLevelSelectionScene, this));
 	settingsButton = MenuItemImage::create(settingsPng, settingsPngSelected, CC_CALLBACK_1(MainMenu::GoToSettingsScene, this));
 
-	auto menu = Menu::create(levelSelectionButton, settingsButton, infoButton,exitGameButton, nullptr);
+	auto menu = Menu::create(levelSelectionButton, settingsButton, infoButton, exitGameButton, nullptr);
 
 	menu->setPosition(Point::ZERO);
 
@@ -46,7 +46,7 @@ bool MainMenu::init()
 	settingsButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 100);
 	infoButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 150);
 	//helpButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+200);
-	exitGameButton->setPosition(visibleSize.width / 2, visibleSize.height / 2+250);
+	exitGameButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 250);
 
 	this->addChild(menu);
 

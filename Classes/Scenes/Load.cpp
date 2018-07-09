@@ -1,6 +1,9 @@
 #include "Load.h"
 
-// Create the loading scene.
+// Declare variables.
+__String* currentLoadingName; //= __String::createWithFormat("%c", "Loading...");
+
+// Create the load scene.
 Scene* Load::createScene()
 {
 	return Load::create();
@@ -9,7 +12,7 @@ Scene* Load::createScene()
 // Initializing.
 bool Load::init()
 {
-	// When the scene don't init, then stop the init process.
+	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 
@@ -45,11 +48,11 @@ void Load::UpdateProgress(float delta)
 	if (counter <= 99)
 	{
 		// Set the label texts.
-		labelLoadingProcess = Label::createWithTTF("Loading...", "fonts/Marker Felt.ttf", 100);
+		labelLoadingProcess = Label::createWithTTF("Loading...", "fonts/Marker Felt.ttf", 60);
 		this->addChild(labelLoadingProcess, 0);
 
 		currentSentence = __String::createWithFormat("%c", sentence[randomIndex]);
-		darwinInfoLabel = Label::createWithTTF(currentSentence->getCString(), "fonts/Marker Felt.ttf", 100);
+		darwinInfoLabel = Label::createWithTTF(currentSentence->getCString(), "fonts/Marker Felt.ttf", 60);
 		this->addChild(darwinInfoLabel, 0);
 	}
 	else if (counter >= 100)
@@ -58,11 +61,11 @@ void Load::UpdateProgress(float delta)
 		counter = 100;
 
 		// Set the label texts.
-		labelLoadingProcess = Label::createWithTTF("Tap to continue", "fonts/Marker Felt.ttf", 100);
+		labelLoadingProcess = Label::createWithTTF("Tap to continue", "fonts/Marker Felt.ttf", 60);
 		this->addChild(labelLoadingProcess, 0);
 
 		currentSentence = __String::createWithFormat("%c", sentence[randomIndex]);
-		darwinInfoLabel = Label::createWithTTF(currentSentence->getCString(), "fonts/Marker Felt.ttf", 100);
+		darwinInfoLabel = Label::createWithTTF(currentSentence->getCString(), "fonts/Marker Felt.ttf", 60);
 		this->addChild(darwinInfoLabel, 0);
 
 		// Touch event for began.

@@ -9,7 +9,7 @@ Scene* Prolog::createScene()
 // Initializing.
 bool Prolog::init()
 {
-	// When the scene don't init, then stop the init process.
+	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 

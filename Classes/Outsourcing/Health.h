@@ -17,6 +17,7 @@ public:
 	static void GameOver();
 	static void InvulnerableStart();
 	static void InvulnerableEnd();
+	static void MoveHearts(float xPosition, float yPosition);
 };
 
 #endif

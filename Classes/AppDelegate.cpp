@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "Scenes/LevelManager.h"
+#include "Scenes/MainMenu.h"
 
 static Size designResolutionSize = Size(2048, 1536);
 static Size smallResolutionSize = Size(512, 384);
@@ -65,7 +65,7 @@ void AppDelegate::initOpenGL()
 void AppDelegate::initDirector()
 {
 	// Declare variables.
-	Director *director = Director::getInstance();
+	Director* director = Director::getInstance();
 
 	director->setAnimationInterval(1.0f / 60);
 	director->setDisplayStats(false);

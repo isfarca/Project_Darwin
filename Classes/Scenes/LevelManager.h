@@ -17,7 +17,7 @@ using namespace cocos2d;
 class LevelManager : public Scene
 {
 public:
-	// Create the prolog scene.
+	// Create the level manager scene.
 	static Scene* createScene();
 	// Implement the create function.
 	CREATE_FUNC(LevelManager);
