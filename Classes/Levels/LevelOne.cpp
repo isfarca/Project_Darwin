@@ -6,6 +6,10 @@ bool inWater;
 bool isGrounded, midAirJumping;
 float jumpingDuration, fallingDuration;
 int jumpingOffset, jumpingExtremum, fallingOffset, fallingExtremum;
+//>>>>>>>>>> added
+//abilityStates
+bool hawkReady, rhinoReady, elephantReady, turtleReady;
+//<<<<<<<<<<
 //buttonValues
 int mutationButtonEffect1, mutationButtonEffect2, mutationButtonEffect3;
 string mutationButtonPicture1_1, mutationButtonPicture1_2, mutationButtonPicture2_1, mutationButtonPicture2_2, mutationButtonPicture3_1, mutationButtonPicture3_2;
@@ -77,22 +81,6 @@ bool LevelOne::init()
 	SpecialAbilities::Initiation();
 
 
-	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Deleted
-	//testwerte -> später löschen
-	/*
-	mutationButtonPicture1_1 = "CloseNormal.png";
-	mutationButtonPicture1_2 = "CloseSelected.png";
-	mutationButtonEffect1 = 2;
-	mutationButtonPicture2_1 = "CloseNormal.png";
-	mutationButtonPicture2_2 = "CloseSelected.png";
-	mutationButtonEffect2 = 3;
-	mutationButtonPicture3_1 = "CloseNormal.png";
-	mutationButtonPicture3_2 = "CloseSelected.png";
-	mutationButtonEffect3 = 5;
-	*/
-
-	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
 	//starting values for jumping / falling properties
 	bool inWater = false;
 	midAirJumping = false;
@@ -123,26 +111,27 @@ bool LevelOne::init()
 		mutationButtonEffect3 = 5;
 	}
 
-	abilityPicture1 = "CloseNormal.png";
-	abilityPicture2 = "CloseSelected.png";
+	//>>>>>>>>>> added
+	//a new Object to spawn the smoke for ChangeForm
+	smokeParent = Sprite::create("CloseSelected.png");
+	playerSprite->addChild(smokeParent);
+	//<<<<<<<<<<
+
+	//>>>>>>>>>> changed
 
 	//create the 3 mutationButtons
 	mutationButton1 = MenuItemImage::create(mutationButtonPicture1_1, mutationButtonPicture1_2, CC_CALLBACK_1(LevelOne::Transmitter1, this));
 	mutationButton2 = MenuItemImage::create(mutationButtonPicture2_1, mutationButtonPicture2_2, CC_CALLBACK_1(LevelOne::Transmitter2, this));
 	mutationButton3 = MenuItemImage::create(mutationButtonPicture3_1, mutationButtonPicture3_2, CC_CALLBACK_1(LevelOne::Transmitter3, this));
 
-	specialAbilityButton = MenuItemImage::create(abilityPicture1, abilityPicture2, CC_CALLBACK_1(LevelOne::UseAbility, this));
+	specialAbilityButton = MenuItemImage::create("dna6-2.png", "dna_line6.png", "dna_empty.png", CC_CALLBACK_1(LevelOne::UseAbility, this));
+	specialAbilityButton->setScale(0.1f, 0.1f);
+
+	//<<<<<<<<<
 
 	auto menu = Menu::create(mutationButton1, mutationButton2, mutationButton3, specialAbilityButton, nullptr);
 	menu->setPosition(Point::ZERO);
 	this->addChild(menu);
-
-	//>>>>>>>>>>>>>>>>>>>>>>>>>>>> deleted / changed and moved to update
-	//mutationButton1->setPosition(visibleSize.width * 3 / 10 + origin.x, origin.y + 20);
-	//mutationButton2->setPosition(visibleSize.width * 4 / 10 + origin.x, origin.y + 20);
-	//mutationButton3->setPosition(visibleSize.width * 5 / 10 + origin.x, origin.y + 20);
-	//specialAbilityButton->setPosition(visibleSize.width * 6 / 10 + origin.x, origin.y + 20);
-	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 	// ************************************************************************************************************************************************************************
 	#pragma endregion
@@ -283,8 +272,9 @@ void LevelOne::update(float delta)
 	#pragma region Alexander Sinzig
 	// ************************************************** Alexander Sinzig *******************************************************************************************************
 
-	//call 'FakeUpdate' for 'SpecialAbilities'
+	//call 'FakeUpdates'
 	SpecialAbilities::TimingHandler();
+	ChangeForm::SmokeTimer(smokeParent);
 
 	//hand over cameraX to Health-script
 	cameraX = camera->getPositionX();
@@ -299,6 +289,39 @@ void LevelOne::update(float delta)
 	mutationButton2->setPosition(camera->getPositionX(), camera->getPositionY() - visibleSize.width / 4 + 40);
 	mutationButton3->setPosition(camera->getPositionX() + 40, camera->getPositionY() - visibleSize.width / 4 + 40);
 	specialAbilityButton->setPosition(camera->getPositionX() + 90, camera->getPositionY() - visibleSize.width / 4 + 40);
+
+	//>>>>>>>>>>>>>>>> added
+	//enable/disable special-ability depending on currentForm and cooldowns
+	switch (currentForm)
+	{
+	case 1:
+		if (hawkReady)
+			specialAbilityButton->setEnabled(true);
+		else
+			specialAbilityButton->setEnabled(false);
+		break;
+	case 2:
+		if (rhinoReady)
+			specialAbilityButton->setEnabled(true);
+		else
+			specialAbilityButton->setEnabled(false);
+		break;
+	case 3:
+		if (elephantReady)
+			specialAbilityButton->setEnabled(true);
+		else
+			specialAbilityButton->setEnabled(false);
+		break;
+	case 5:
+		if (turtleReady)
+			specialAbilityButton->setEnabled(true);
+		else
+			specialAbilityButton->setEnabled(false);
+		break;
+	default:
+		break;
+	}
+	//<<<<<<<<<<<<<<<<
 
 
 
@@ -414,6 +437,7 @@ void LevelOne::Transmitter3(Ref *pSender)
 	LevelOne::ChangeMutation(mutationButtonEffect3);
 }
 
+//>>>>>>>>>>>>>>> IMPORTANT: changed
 void LevelOne::ChangeMutation(int effect)
 {
 	//save current form for ability
@@ -423,19 +447,19 @@ void LevelOne::ChangeMutation(int effect)
 	switch (currentForm)
 	{
 	case 1:
-		PlaceholderEffect::mutationRhino();
+		ChangeForm::mutationHawk(smokeParent);
 		break;
 	case 2:
-		PlaceholderEffect::mutationTurtle();
+		ChangeForm::mutationRhino(smokeParent);
 		break;
 	case 3:
-		PlaceholderEffect::mutationHawk();
+		ChangeForm::mutationElephant(smokeParent);
 		break;
 	case 4:
-		PlaceholderEffect::mutationElephant();
+		ChangeForm::mutationFish(smokeParent);
 		break;
 	case 5:
-		PlaceholderEffect::mutationFish();
+		ChangeForm::mutationTurtle(smokeParent);
 		break;
 	default:
 		break;
@@ -447,24 +471,48 @@ void LevelOne::UseAbility(Ref *pSender)
 	switch (currentForm)
 	{
 	case 1:
-		SpecialAbilities::RhinoAbility();
-		break;
-	case 2:
-		SpecialAbilities::TurtleAbility();
-		break;
-	case 3:
 		SpecialAbilities::HawkAbility();
 		break;
-	case 4:
+	case 2:
+		SpecialAbilities::RhinoAbility();
+		break;
+	case 3:
 		SpecialAbilities::ElephantAbility();
 		break;
-	case 5:
+	case 4:
 		SpecialAbilities::FishAbility();
+		break;
+	case 5:
+		SpecialAbilities::TurtleAbility();
 		break;
 	default:
 		break;
 	}
 }
+//<<<<<<<<<<<<<<<
+
+//>>>>>>>>>>>>>>> added
+void LevelOne::Usable(int abilityNumber, bool usabilityState)
+{
+	switch (abilityNumber)
+	{
+	case 1:
+		hawkReady = usabilityState;
+		break;
+	case 2:
+		rhinoReady = usabilityState;
+		break;
+	case 3:
+		elephantReady = usabilityState;
+		break;
+	case 5:
+		turtleReady = usabilityState;
+		break;
+	default:
+		break;
+	}
+}
+//<<<<<<<<<<<<<<<
 
 // ************************************************************************************************************************************************************************
 #pragma endregion
@@ -509,12 +557,14 @@ void LevelOne::PlayerCollisionBox(Sprite* playerSprite, Sprite* boxSprite)
 // Scene handlings
 void LevelOne::GoToLoseLoadScene(float delta)
 {
+	/*
 	// Declare variables.
 	Scene* scene = LoseLoad::createScene();
 
 	// Replace the scene.
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+	*/
 }
 void LevelOne::GoToLevelSelectionScene(float delta)
 {

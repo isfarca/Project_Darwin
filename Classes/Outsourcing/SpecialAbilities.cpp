@@ -1,12 +1,12 @@
 #include "SpecialAbilities.h"
 
+// Declare variables.
 #define FLY_SFX "Bruellen.wav"
 #define CHARGE_SFX "Bruellen.wav"
 #define TRAMPLE_SFX "Bruellen.wav"
 #define SWIM_SFX "Bruellen.wav"
 #define HOLE_UP_SFX "Bruellen.wav"
 
-// Declare variables.
 int turtleCooldown, turtleDuration, hawkCooldown, hawkDuration, rhinoCooldown, rhinoDuration, elephantCooldown, elephantDuration;
 
 bool turtleActive, hawkActive, fishActive, rhinoActive, elephantActive;
@@ -29,13 +29,13 @@ void SpecialAbilities::Initiation()
 
 	//Fish
 	fishActive = 0;
+
+
 }
 
 //ability 1
 void SpecialAbilities::HawkAbility()
 {
-	if (hawkCooldown <= 0)
-	{
 		//equals 5 seconds
 		hawkDuration = 300;
 		//equals 15 seconds
@@ -47,14 +47,11 @@ void SpecialAbilities::HawkAbility()
 		//play sound and debug
 		SimpleAudioEngine::getInstance()->playEffect(FLY_SFX);
 		log("fly");
-	}
 }
 
 //ability 2
 void SpecialAbilities::RhinoAbility()
 {
-	if (rhinoCooldown <= 0)
-	{
 		//equals 3 seconds
 		rhinoDuration = 180;
 		//equals 9 seconds
@@ -65,14 +62,11 @@ void SpecialAbilities::RhinoAbility()
 		//play sound and debug
 		SimpleAudioEngine::getInstance()->playEffect(CHARGE_SFX);
 		log("charge");
-	}
 }
 
 //ability 3
 void SpecialAbilities::ElephantAbility()
 {
-	if (elephantCooldown <= 0)
-	{
 		//equals 3 seconds
 		elephantDuration = 180;
 		//equals 9 seconds
@@ -81,12 +75,9 @@ void SpecialAbilities::ElephantAbility()
 		//call other script to start charging
 		LevelOne::TrampleMode(true, 1.2f);
 		//play sound and debug
-		SimpleAudioEngine::getInstance()->playEffect(CHARGE_SFX);
-		log("charge");
-	}
-	//play sound and debug
-	SimpleAudioEngine::getInstance()->playEffect(TRAMPLE_SFX);
-	log("stomp");
+		SimpleAudioEngine::getInstance()->playEffect(TRAMPLE_SFX);
+		log("stomp");
+
 }
 
 //ability 4
@@ -116,8 +107,6 @@ void SpecialAbilities::FishAbility()
 //ability 5
 void SpecialAbilities::TurtleAbility()
 {
-	if (turtleCooldown <= 0)
-	{
 		//equals 4 seconds
 		turtleDuration = 240;
 		//equels 12 seconds
@@ -127,28 +116,48 @@ void SpecialAbilities::TurtleAbility()
 		//play sound and debug
 		SimpleAudioEngine::getInstance()->playEffect(HOLE_UP_SFX);
 		log("hole up");
-	}
 }
 
 //to manage cooldowns and durations
 void SpecialAbilities::TimingHandler()
 {
 	//cooldowns
-	if (turtleCooldown > 0)
-	{
-		turtleCooldown--;
-	}
+	//tell LevelOne if abilities are ready or not
 	if (hawkCooldown > 0)
 	{
 		hawkCooldown--;
+		LevelOne::Usable(1, false);
+	}
+	else
+	{
+		LevelOne::Usable(1, true);
 	}
 	if (rhinoCooldown > 0)
 	{
 		rhinoCooldown--;
+		LevelOne::Usable(2, false);
+	}
+	else
+	{
+		LevelOne::Usable(2, true);
 	}
 	if (elephantCooldown > 0)
 	{
 		elephantCooldown--;
+		LevelOne::Usable(3, false);
+	}
+	else
+	{
+		LevelOne::Usable(3, true);
+	}
+	if (turtleCooldown > 0)
+	{
+		turtleCooldown--;
+		LevelOne::Usable(5, false);
+	}
+	else
+	{
+		LevelOne::Usable(5, true);
 	}
 
 	//durations
@@ -213,4 +222,13 @@ void SpecialAbilities::TimingHandler()
 void SpecialAbilities::Water(bool isInWater)
 {
 	playerIsInWater = isInWater;
+}
+
+void SpecialAbilities::ResetAllEffects()
+{
+	turtleDuration = 0; 
+	hawkDuration = 0;
+	rhinoDuration = 0;
+	elephantDuration = 0;
+	fishActive = false;
 }

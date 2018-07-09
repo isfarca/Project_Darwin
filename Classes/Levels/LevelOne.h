@@ -10,9 +10,10 @@
 #include "../Scenes/LoseLoad.h"
 #include "../Scenes/LevelSelection.h"
 #include "../Outsourcing/SpecialAbilities.h"
-//später durch fethis mutationen-header ersetzen
-#include "../Outsourcing/PlaceholderEffect.h"
-//später robins header includen, um auf seine int-variablen, welche dann die mutationbuttoneffects ersetzen zuzugreifen
+//>>>>>>>>>>>> added
+#include "../Outsourcing/ChangeForm.h"
+#include "../Scenes/GeneSelection.h"
+//<<<<<<<<<<<<
 #include "../Outsourcing/Health.h"
 
 using namespace cocos2d;
@@ -55,6 +56,9 @@ private:
 	// Declare variables.
 	Label* menuLabel;
 	Sprite* sprite;
+	//>>>>>>> added
+	Sprite* smokeParent;
+	//<<<<<<<
 
 	//variables for mutationButton-picture-loading
 	string abilityPicture1, abilityPicture2;
@@ -111,6 +115,10 @@ public:
 	static void ChargeMode(bool enabled, float speedMulitplyer);
 	static void TrampleMode(bool enabled, float speedMulitplyer);
 	static void ButtonValues(int slot, int chosenSpecialAbility, string chosenPic, string chosenPicSelected);
+
+	//>>>>>>>>>>>>>>> added
+	static void Usable(int abilityNumber, bool usabilityState);
+	//<<<<<<<<<<<<<<<
 
 	// ***************************************************************************************************
 	#pragma endregion
