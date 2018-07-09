@@ -48,6 +48,7 @@ bool GeneSelection::init()
 
 	currentCharacter = "Png/nothingSelected.png";
 
+
 	// png reference start
 	startPng = "Png/continue.png";
 	startPngSelected = "Png/continueSelected.png";
@@ -88,40 +89,42 @@ bool GeneSelection::init()
 	// start game button create
 	startGameBtn = MenuItemImage::create(startPng, startPngSelected, CC_CALLBACK_1(GeneSelection::startGame, this));
 
+
 	// MainMenu / Return to Level Selection create
 	returnToMainMenuBtn = MenuItemImage::create(returnToMainMenuPng, returnToMainMenuPngSelected, CC_CALLBACK_1(GeneSelection::ReturnToMainMenu, this));
 
-	returnToLevelSelectionBtn = MenuItemImage::create(returnToLevelSelectionPng, returnToLevelSelectionPngSelected, CC_CALLBACK_1(GeneSelection::ReturnToLevelSelection, this));
+	returnToLevelSelectionBtn = MenuItemImage::create(returnToLevelSelectionPng,returnToLevelSelectionPngSelected, CC_CALLBACK_1(GeneSelection::ReturnToLevelSelection, this));
 
 	// reset selected mutations create
 	resetSelectedMutationBtn = MenuItemImage::create(reset, resetSelected, CC_CALLBACK_1(GeneSelection::ResetSelectedMutation, this));
 
-	auto menu = Menu::create(mutationOneBtn, mutationTwoBtn, mutationThreeBtn, mutationFourBtn, mutationFiveBtn, resetSelectedMutationBtn, startGameBtn, returnToMainMenuBtn, returnToLevelSelectionBtn, nullptr);
+	auto menu = Menu::create(mutationOneBtn, mutationTwoBtn, mutationThreeBtn, mutationFourBtn, mutationFiveBtn, resetSelectedMutationBtn, startGameBtn,returnToMainMenuBtn, returnToLevelSelectionBtn, nullptr);
 	menu->setPosition(Point::ZERO);
 
 	// mutation button position
-	mutationOneBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-	mutationTwoBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 50);
-	mutationThreeBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 100);
-	mutationFourBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 150);
-	mutationFiveBtn->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 200);
+	mutationOneBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1200));
+	mutationTwoBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1150));
+	mutationThreeBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1100));
+	mutationFourBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1050));
+	mutationFiveBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1000));
 
 	// MainMenu / LevelSelection button position
-	returnToMainMenuBtn->setPosition(visibleSize.width / 2 + 400, visibleSize.height / 2 + 10);
-	returnToLevelSelectionBtn->setPosition(visibleSize.width / 2 + 250, visibleSize.height / 2 + 10);
+	returnToMainMenuBtn->setPosition(Vec2(visibleSize.width / 2 + 800, 1200));
+	returnToLevelSelectionBtn->setPosition(Vec2(visibleSize.width / 2 + 700, 1200));
 
-	ChosenCharacterMutation->setPosition(visibleSize.width / 2 + 500, visibleSize.height / 2);
+
+	//ChosenCharacterMutation->setPosition(Vec2(visibleSize.width / 2 + 300, 1200));
 
 	// selected mutations sprite position
-	firstGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 50);
-	secondGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 150);
-	thirdGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 200);
+	//firstGeneSprite->setPosition(Vec2(visibleSize.width / 2, 1000));
+	//secondGeneSprite->setPosition(Vec2(visibleSize.width / 2, 950));
+	//thirdGeneSprite->setPosition(Vec2(visibleSize.width / 2, 900));
 
 	// reset selected mutations position	
-	resetSelectedMutationBtn->setPosition(visibleSize.width / 2 + 250, visibleSize.height / 2 - 200);
+	resetSelectedMutationBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 800));
 
 	// start game button position
-	startGameBtn->setPosition(visibleSize.width / 2 + 100, visibleSize.height / 2 - 100);
+	startGameBtn->setPosition(Vec2(visibleSize.width / 2 , 300));
 
 	startGameBtn->setEnabled(false);
 
@@ -136,7 +139,10 @@ bool GeneSelection::init()
 
 	this->scheduleUpdate();
 
+	
+
 	return true;
+
 }
 
 void GeneSelection::update(float delta)
@@ -157,16 +163,16 @@ void GeneSelection::update(float delta)
 	ChosenCharacterMutation->setPosition(visibleSize.width / 2 + 500, visibleSize.height / 2);
 
 	// selected gene position
-	firstGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 50);
-	secondGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 150);
-	thirdGeneSprite->setPosition(visibleSize.width / 2 + 200, visibleSize.height / 2 + 200);
+	firstGeneSprite->setPosition(Vec2(visibleSize.width / 2, 1000));
+	secondGeneSprite->setPosition(Vec2(visibleSize.width / 2, 950));
+	thirdGeneSprite->setPosition(Vec2(visibleSize.width / 2, 900));
 
 	this->addChild(firstGeneSprite);
 	this->addChild(secondGeneSprite);
 	this->addChild(thirdGeneSprite);
 	this->addChild(ChosenCharacterMutation);
 }
-// MainMenu
+	// MainMenu
 void GeneSelection::ReturnToMainMenu(Ref* pSender)
 {
 	Scene* scene = MainMenu::createScene();
@@ -174,6 +180,7 @@ void GeneSelection::ReturnToMainMenu(Ref* pSender)
 	// Replace the scene.
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+
 }
 
 void GeneSelection::ReturnToLevelSelection(Ref* pSender)
@@ -353,7 +360,7 @@ void GeneSelection::ChosenMutation(int mutationKind, string mutationPng/***DELET
 		// first mutation information
 		specialOne = mutationKind;
 		chosenMutationPngFirst = mutationPng;
-		LevelOne::ButtonValues(1, specialOne, chosenMutationPngFirst, chosenMutationPngFirstSelected);
+		//LevelOne::ButtonValues(1, specialOne, chosenMutationPngFirst, chosenMutationPngFirstSelected);
 
 	}
 	else if (specialTwo == 0)
@@ -361,15 +368,21 @@ void GeneSelection::ChosenMutation(int mutationKind, string mutationPng/***DELET
 		// second mutation information
 		specialTwo = mutationKind;
 		chosenMutationPngSecond = mutationPng;
-		LevelOne::ButtonValues(2, specialTwo, chosenMutationPngSecond, chosenMutationPngSecondSelected);
+		//LevelOne::ButtonValues(2, specialTwo, chosenMutationPngSecond, chosenMutationPngSecondSelected);
 	}
 	else if (specialThree == 0)
 	{
 		// third mutation information
 		specialThree = mutationKind;
 		chosenMutationPngThird = mutationPng;
-		LevelOne::ButtonValues(3, specialThree, chosenMutationPngThird, chosenMutationPngThirdSelected);
+		//LevelOne::ButtonValues(3, specialThree, chosenMutationPngThird, chosenMutationPngThirdSelected);
 		startGameBtn->setEnabled(true);
+
+		mutationOneBtn->setEnabled(false);
+		mutationTwoBtn->setEnabled(false);
+		mutationThreeBtn->setEnabled(false);
+		mutationFourBtn->setEnabled(false);
+		mutationFiveBtn->setEnabled(false);
 	}
 	else
 	{

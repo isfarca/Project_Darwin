@@ -1,6 +1,6 @@
 #include "Credits.h"
 
-// Create the credits scene.
+// Create the prolog scene.
 Scene* Credits::createScene()
 {
 	return Credits::create();
@@ -9,7 +9,7 @@ Scene* Credits::createScene()
 // Initializing.
 bool Credits::init()
 {
-	// When the scene doesn't init, then stop the init process.
+	// When the scene don't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 

@@ -1,6 +1,6 @@
 #include "Help.h"
 
-// Create the help scene.
+// Create the prolog scene.
 Scene* Help::createScene()
 {
 	return Help::create();
@@ -9,7 +9,7 @@ Scene* Help::createScene()
 // Initializing.
 bool Help::init()
 {
-	// When the scene doesn't init, then stop the init process.
+	// When the scene don't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 

@@ -1,6 +1,6 @@
 #include "LevelThree.h"
 
-// Create the level three scene.
+// Create the prolog scene.
 Scene* LevelThree::createScene()
 {
 	return LevelTwo::create();
@@ -9,7 +9,7 @@ Scene* LevelThree::createScene()
 // Initializing.
 bool LevelThree::init()
 {
-	// When the scene doesn't init, then stop the init process.
+	// When the scene don't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 
@@ -17,10 +17,10 @@ bool LevelThree::init()
 }
 
 // Scene handlings
-void LevelThree::GoToLoseLoadScene(float delta)
+void LevelThree::GoToLoadScene(float delta)
 {
 	// Declare variables.
-	Scene* scene = LoseLoad::createScene();
+	Scene* scene = Load::createScene();
 
 	// Replace the scene.
 	this->removeAllChildrenWithCleanup(true);

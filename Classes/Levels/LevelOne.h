@@ -7,7 +7,7 @@
 #include "cocos2d.h"
 #include "../Outsourcing/ScreenShake.h"
 #include "../Outsourcing/Definitions.h"
-#include "../Scenes/LoseLoad.h"
+#include "../Scenes/Load.h"
 #include "../Scenes/LevelSelection.h"
 #include "../Outsourcing/SpecialAbilities.h"
 //später durch fethis mutationen-header ersetzen
@@ -20,21 +20,21 @@ using namespace cocos2d;
 class LevelOne : public Scene
 {
 private:
+	// Constants.
+	const float PLAYERSPEED = 200;
+
+private:
 	#pragma region Fethi Isfarca
 	// ****************************************** Fethi Isfarca ******************************************
+
 	// Declare variables.
-	float playerSpeed = 200;
-	Camera* camera;
+	Camera * camera;
 	float cameraEndPositionX, cameraShakePositionX;
 	Vec2 cameraPosition;
-	float cameraSpeed = playerSpeed / 4;
-	Sprite* mapSprite;
-	Sprite* greyBoxSprite;
-	Sprite* playerSprite;
-	Size playerSpriteSize;
-	PhysicsBody* playerPhysicsBody;
-	Vec2 playerSpritePosition;
-	float tick = playerSpeed;
+	float cameraSpeed = PLAYERSPEED / 4;
+	Sprite* helloWorldSprite;
+	Vec2 helloWorldSpritePosition;
+	float tick = PLAYERSPEED;
 	Size visibleSize;
 	Vec2 origin;
 	EventListenerTouchOneByOne* eventListenerTouchOneByOne;
@@ -46,6 +46,7 @@ private:
 	};
 	float currentTouchPosition[2];
 	JumpTo* jumpTo;
+
 	// ***************************************************************************************************
 	#pragma endregion
 
@@ -57,10 +58,11 @@ private:
 	Sprite* sprite;
 
 	//variables for mutationButton-picture-loading
+	string mutationButtonPicture1_1, mutationButtonPicture1_2, mutationButtonPicture2_1, mutationButtonPicture2_2, mutationButtonPicture3_1, mutationButtonPicture3_2;
 	string abilityPicture1, abilityPicture2;
 
-	float cameraX;
-	float cameraY;
+	//variables for the mutationButton-effect
+	int mutationButtonEffect1, mutationButtonEffect2, mutationButtonEffect3;
 
 	//save the current form fpr selecting special abilty
 	int currentForm;
@@ -74,43 +76,32 @@ private:
 	#pragma endregion
 
 public:
-	#pragma region Scene
-	// Create the level one scene.
+	// Create the prolog scene.
 	static Scene* createScene();
 	// Implement the create function.
 	CREATE_FUNC(LevelOne);
-	#pragma endregion
 
-	#pragma region Cocos2d-x messages
 	// Initializing.
 	virtual bool init();
 
 	// Calling per frame.
 	void update(float delta);
-	#pragma endregion
 
-	#pragma region Touch events
 	// Touch events.
 	bool onTouchBegan(Touch* touch, Event* event);
 	void onTouchMoved(Touch* touch, Event* event);
 	void onTouchEnded(Touch* touch, Event* event);
 	void onTouchCancelled(Touch* touch, Event* event);
-	#pragma endregion	
 
 	#pragma region Alexander Sinzig
 	// ****************************************** Alexander Sinzig ******************************************
 
 	//because it seems there is no way to hand over values with callback
-	void Transmitter1(Ref* pSender);
-	void Transmitter2(Ref* pSender);
-	void Transmitter3(Ref* pSender);
-	void UseAbility(Ref* pSender);
+	void Transmitter1(Ref * pSender);
+	void Transmitter2(Ref * pSender);
+	void Transmitter3(Ref * pSender);
+	void UseAbility(Ref * pSender);
 	void ChangeMutation(int effect);
-
-	static void JumpValues(bool midAirJump, float jumpDuration, int jumpOffset, int jumpExtremum, float fallDuration, int fallOffset, int fallExtremum);
-	static void ChargeMode(bool enabled, float speedMulitplyer);
-	static void TrampleMode(bool enabled, float speedMulitplyer);
-	static void ButtonValues(int slot, int chosenSpecialAbility, string chosenPic, string chosenPicSelected);
 
 	// ***************************************************************************************************
 	#pragma endregion
@@ -119,16 +110,14 @@ private:
 	#pragma region Fethi Isfarca
 	// Shake the screen.
 	void ShakeScreen();
-
-	// Player collision with boxes.
-	void PlayerCollisionBox(Sprite* playerSprite, Sprite* boxSprite);
 	#pragma endregion
 
-	#pragma region Scene handlings
 	// Scene handlings.
-	void GoToLoseLoadScene(float delta);
+	void GoToLoadScene(float delta);
 	void GoToLevelSelectionScene(float delta);
-	#pragma endregion
+
+
+
 };
 
 #endif

@@ -19,7 +19,7 @@ class MainMenu : public Scene
 public:
 	// Declare variables.
 	// Buttons
-	MenuItemImage * infoButton;
+	MenuItemImage* infoButton;
 	MenuItemImage* helpButton;
 	MenuItemImage* settingsButton;
 	MenuItemImage* levelSelectionButton;

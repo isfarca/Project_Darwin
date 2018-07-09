@@ -12,7 +12,7 @@ using namespace cocos2d;
 class Credits : public Scene
 {
 public:
-	// Create the credits scene.
+	// Create the prolog scene.
 	static Scene* createScene();
 	// Implement the create function.
 	CREATE_FUNC(Credits);
