@@ -1,6 +1,6 @@
 #include "LevelTwo.h"
 
-// Create the prolog scene.
+// Create the level two scene.
 Scene* LevelTwo::createScene()
 {
 	return LevelTwo::create();
@@ -9,7 +9,7 @@ Scene* LevelTwo::createScene()
 // Initializing.
 bool LevelTwo::init()
 {
-	// When the scene don't init, then stop the init process.
+	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 
@@ -17,10 +17,10 @@ bool LevelTwo::init()
 }
 
 // Scene handlings
-void LevelTwo::GoToLoadScene(float delta)
+void LevelTwo::GoToLoseLoadScene(float delta)
 {
 	// Declare variables.
-	Scene* scene = Load::createScene();
+	Scene* scene = LoseLoad::createScene();
 
 	// Replace the scene.
 	this->removeAllChildrenWithCleanup(true);

@@ -1,12 +1,12 @@
 #include "SpecialAbilities.h"
 
-// Declare variables.
 #define FLY_SFX "Bruellen.wav"
 #define CHARGE_SFX "Bruellen.wav"
 #define TRAMPLE_SFX "Bruellen.wav"
 #define SWIM_SFX "Bruellen.wav"
 #define HOLE_UP_SFX "Bruellen.wav"
 
+// Declare variables.
 int turtleCooldown, turtleDuration, hawkCooldown, hawkDuration, rhinoCooldown, rhinoDuration, elephantCooldown, elephantDuration;
 
 bool turtleActive, hawkActive, fishActive, rhinoActive, elephantActive;
@@ -29,8 +29,6 @@ void SpecialAbilities::Initiation()
 
 	//Fish
 	fishActive = 0;
-
-
 }
 
 //ability 1

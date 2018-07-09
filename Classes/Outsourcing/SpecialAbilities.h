@@ -7,8 +7,9 @@
 #include "../Levels/LevelOne.h"
 #include "SpecialAbilities.h"
 #include "SimpleAudioEngine.h"
-using namespace CocosDenshion;
+
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 class SpecialAbilities
 {

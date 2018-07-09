@@ -7,9 +7,6 @@
 #include "../Outsourcing/Definitions.h"
 #include "MainMenu.h"
 #include "Load.h"
-//>>>>>>>>>>>>>>>>>> added
-#include "../Levels/LevelOne.h"
-//<<<<<<<<<<<<<<<<<<
 
 using namespace cocos2d;
 using namespace std;
@@ -18,55 +15,94 @@ class GeneSelection : public Scene
 {
 public:
 	// Declare variables.
-	Label* testingText;
+	Label * testingText;
 
-	// Verfügbare Fähigkeiten
+	// available  mutations
 	int mutationOneInt, mutationTwoInt, mutationThreeInt, mutationFourInt, mutationFiveInt, mutationSixInt, mutationSevenInt, mutationEightInt, mutationNineInt, mutationTenInt, mutationElevenInt, mutationTwelveInt;
+
+	// reference for mutation pngs
 
 	string mutationOnePng;
 	string mutationOnePngSelected;
+	string mutationOnePngBlocked;
 
 	string mutationTwoPng;
 	string mutationTwoPngSelected;
+	string mutationTwoPngBlocked;
 
 	string mutationThreePng;
 	string mutationThreePngSelected;
+	string mutationThreePngBlocked;
 
 	string mutationFourPng;
 	string mutationFourPngSelected;
+	string mutationFourPngBlocked;
 
 	string mutationFivePng;
 	string mutationFivePngSelected;
+	string mutationFivePngBlocked;
 
 	string reset;
 	string resetSelected;
 
-	//needed 
 	string specialOnePng;
 	string specialTwoPng;
 	string specialThreePng;
 
-	// Ausgewählte Fähigkeiten
+	// reference for start png
+	string startPng;
+	string startPngSelected;
+
+	string characterWithMutationOne;
+	string characterWithMutationTwo;
+	string characterWithMutationThree;
+	string characterWithMutationFour;
+	string characterWithMutationFive;
+
+	string characterWithMutationClear;
+
+	string currentCharacter;
+
+	// reference for exit buttons
+
+	string returnToLevelSelectionPng;
+	string returnToLevelSelectionPngSelected;
+
+	string returnToMainMenuPng;
+	string returnToMainMenuPngSelected;
+
+	// chosen mutations
 	int specialOne = 0;
 	int specialTwo = 0;
 	int specialThree = 0;
 
-	//>>>>>>>>>>>> 3 new strings added to the rest
-	//strings for button-pictures
+	// png reference for chosen mutations
 	string chosenMutationPngFirst, chosenMutationPngSecond, chosenMutationPngThird, chosenMutationPngFirstSelected, chosenMutationPngSecondSelected, chosenMutationPngThirdSelected;
-	//<<<<<<<<<<<<
 
+	// mutation button reference
 	MenuItemImage* mutationOneBtn;
 	MenuItemImage* mutationTwoBtn;
 	MenuItemImage* mutationThreeBtn;
 	MenuItemImage* mutationFourBtn;
 	MenuItemImage* mutationFiveBtn;
 
+	// reset mutations that are selected button reference
 	MenuItemImage* resetSelectedMutationBtn;
 
+	// start button reference
+	MenuItemImage* startGameBtn;
+
+	// sprite reference for selected genes
 	Sprite* firstGeneSprite;
 	Sprite* secondGeneSprite;
 	Sprite* thirdGeneSprite;
+
+	Sprite* ChosenCharacterMutation;
+
+
+	// Return Buttons
+	MenuItemImage* returnToLevelSelectionBtn;
+	MenuItemImage* returnToMainMenuBtn;
 
 	// Create the gene selection scene.
 	static Scene* createScene();
@@ -84,10 +120,15 @@ public:
 	void mutationThree(Ref* pSender);
 	void mutationFour(Ref* pSender);
 	void mutationFive(Ref* pSender);
+	void startGame(Ref* pSender);
 
 	void ResetSelectedMutation(Ref *pSender);
 
-	void ChosenMutation(int mutationKind, string mutationPng, string specialPngSelected);
+	void ChosenMutation(int mutationKind, string mutationPng);
+
+
+	void ReturnToLevelSelection(Ref* pSender);
+	void ReturnToMainMenu(Ref* pSender);
 
 private:
 	// Scene handlings.

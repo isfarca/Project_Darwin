@@ -1,6 +1,6 @@
 #include "Settings.h"
 
-// Create the prolog scene.
+// Create the settings scene.
 Scene* Settings::createScene()
 {
 	return Settings::create();
@@ -9,7 +9,7 @@ Scene* Settings::createScene()
 // Initializing.
 bool Settings::init()
 {
-	// When the scene don't init, then stop the init process.
+	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 

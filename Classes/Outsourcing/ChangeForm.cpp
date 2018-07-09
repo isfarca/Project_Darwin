@@ -6,7 +6,6 @@
 #define FISH_MUTATION_SFX "Bruellen.wav"
 #define TURTLE_MUTATION_SFX "Bruellen.wav"
 
-
 //mutation 1
 void ChangeForm::mutationHawk()
 {
@@ -39,7 +38,7 @@ void ChangeForm::mutationElephant()
 
 //mutation 4
 void ChangeForm::mutationFish()
-{ 
+{
 	//smoke-sprite
 
 	//fish-sound

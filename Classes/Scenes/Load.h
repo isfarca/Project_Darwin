@@ -25,7 +25,7 @@ private:
 	Label* darwinInfoLabel;
 
 public:
-	// Create the loading scene.
+	// Create the load scene.
 	static Scene* createScene();
 	// Implement the create function.
 	CREATE_FUNC(Load);
