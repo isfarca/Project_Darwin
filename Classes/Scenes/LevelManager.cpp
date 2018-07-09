@@ -3,7 +3,7 @@
 // Declare variables.
 int levelId;
 
-// Create the prolog scene.
+// Create the level manager scene.
 Scene* LevelManager::createScene()
 {
 	return LevelManager::create();
@@ -12,31 +12,32 @@ Scene* LevelManager::createScene()
 // Initializing.
 bool LevelManager::init()
 {
-	// When the scene don't init, then stop the init process.
+	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
 
-	LevelManager::SetLevelId(1); // Default value.
+	// Default value.
+	LevelManager::SetLevelId(1);
 
 	// Call the current level from id.
 	switch (LevelManager::GetLevelId())
 	{
-		case 1:
-			// Go to next scene and disable the loading progress.
-			this->scheduleOnce(schedule_selector(LevelManager::GoToLevelOne), DISPLAY_TIME_NEXT_SCENE);
-			break;
-		case 2:
-			// Go to next scene and disable the loading progress.
-			this->scheduleOnce(schedule_selector(LevelManager::GoToLevelTwo), DISPLAY_TIME_NEXT_SCENE);
-			break;
-		case 3:
-			// Go to next scene and disable the loading progress.
-			this->scheduleOnce(schedule_selector(LevelManager::GoToLevelThree), DISPLAY_TIME_NEXT_SCENE);
-			break;
-		case 4:
-			// Go to next scene and disable the loading progress.
-			this->scheduleOnce(schedule_selector(LevelManager::GoToLevelFour), DISPLAY_TIME_NEXT_SCENE);
-			break;
+	case 1:
+		// Go to next scene and disable the loading progress.
+		this->scheduleOnce(schedule_selector(LevelManager::GoToLevelOne), DISPLAY_TIME_NEXT_SCENE);
+		break;
+	case 2:
+		// Go to next scene and disable the loading progress.
+		this->scheduleOnce(schedule_selector(LevelManager::GoToLevelTwo), DISPLAY_TIME_NEXT_SCENE);
+		break;
+	case 3:
+		// Go to next scene and disable the loading progress.
+		this->scheduleOnce(schedule_selector(LevelManager::GoToLevelThree), DISPLAY_TIME_NEXT_SCENE);
+		break;
+	case 4:
+		// Go to next scene and disable the loading progress.
+		this->scheduleOnce(schedule_selector(LevelManager::GoToLevelFour), DISPLAY_TIME_NEXT_SCENE);
+		break;
 	}
 
 	return true;

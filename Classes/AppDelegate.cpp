@@ -65,7 +65,7 @@ void AppDelegate::initOpenGL()
 void AppDelegate::initDirector()
 {
 	// Declare variables.
-	Director *director = Director::getInstance();
+	Director* director = Director::getInstance();
 
 	director->setAnimationInterval(1.0f / 60);
 	director->setDisplayStats(false);

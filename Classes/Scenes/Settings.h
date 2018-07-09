@@ -14,7 +14,7 @@ using namespace cocos2d;
 class Settings : public Scene
 {
 public:
-	// Create the prolog scene.
+	// Create the settings scene.
 	static Scene* createScene();
 	// Implement the create function.
 	CREATE_FUNC(Settings);

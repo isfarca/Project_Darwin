@@ -31,25 +31,25 @@ bool LevelSelection::init()
 
 	string levelFourPng = "Png/Level_4.png";
 	string levelFourPngSelected = "Png/Level_4Selected.png";
-	string levelFourPngBlocked = "Png/.png";
+	string levelFourPngBlocked = "Png/nothingSelected.png";
 
 	// MENU PNG PATH
-	string goToMainMenuPng = "";
-	string goToMainMenuPngSelected = "";
+	string goToMainMenuPng = "MainMenu.png";
+	string goToMainMenuPngSelected = "MainMenuSelected.png";
 
-	string goToGeneSelectionPng = "Png/continue.png";
-	string goToGeneSelectionPngSelected = "Png/continue.png";
+	//string goToGeneSelectionPng = "Png/continue.png"; **********DELETED
+	//string goToGeneSelectionPngSelected = "Png/continue.png"; **********DELETED
 
 	// Buttons
-	levelOneButton = MenuItemImage::create(levelOnePng, levelOnePngSelected, CC_CALLBACK_1(LevelSelection::StartLevelOne, this));
-	levelTwoButton = MenuItemImage::create(levelTwoPng, levelTwoPngSelected, CC_CALLBACK_1(LevelSelection::StartLevelTwo, this));
-	levelThreeButton = MenuItemImage::create(levelThreePng, levelThreePngSelected, CC_CALLBACK_1(LevelSelection::StartLevelThree, this));
-	levelFourButton = MenuItemImage::create(levelFourPng, levelFourPngSelected, CC_CALLBACK_1(LevelSelection::StartLevelFour, this));
+	levelOneButton = MenuItemImage::create(levelOnePng, levelOnePngSelected, levelOnePngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelOne, this));
+	levelTwoButton = MenuItemImage::create(levelTwoPng, levelTwoPngSelected, levelTwoPngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelTwo, this));
+	levelThreeButton = MenuItemImage::create(levelThreePng, levelThreePngSelected, levelThreePngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelThree, this));
+	levelFourButton = MenuItemImage::create(levelFourPng, levelFourPngSelected, levelFourPngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelFour, this));
 
 	goToMainMenuButton = MenuItemImage::create(goToMainMenuPng, goToMainMenuPngSelected, CC_CALLBACK_1(LevelSelection::GoToMainMenuScene, this));
-	goToGeneSelectionButton = MenuItemImage::create(goToGeneSelectionPng, goToGeneSelectionPngSelected, CC_CALLBACK_1(LevelSelection::GoToGeneSelectionScene, this));
+	//goToGeneSelectionButton = MenuItemImage::create(goToGeneSelectionPng, goToGeneSelectionPngSelected, CC_CALLBACK_1(LevelSelection::GoToGeneSelectionScene, this)); **********DELETED
 
-	auto menu = Menu::create(levelOneButton, levelTwoButton, levelThreeButton, levelFourButton, goToMainMenuButton, goToGeneSelectionButton, nullptr);
+	auto menu = Menu::create(levelOneButton, levelTwoButton, levelThreeButton, levelFourButton, goToMainMenuButton,/* goToGeneSelectionButton**********DELETED,*/ nullptr);
 
 	menu->setPosition(Point::ZERO);
 
@@ -60,7 +60,11 @@ bool LevelSelection::init()
 	levelFourButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 200);
 
 	goToMainMenuButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 400);
-	goToGeneSelectionButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 450);
+	//goToGeneSelectionButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 450); **********DELETED
+
+	levelTwoButton->setEnabled(false);
+	levelThreeButton->setEnabled(false);
+	levelFourButton->setEnabled(false);
 
 	this->addChild(menu);
 
@@ -77,6 +81,8 @@ void LevelSelection::GoToMainMenuScene(Ref* pSender)
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
+
+
 void LevelSelection::GoToGeneSelectionScene(Ref* pSender)
 {
 	// Declare variables.

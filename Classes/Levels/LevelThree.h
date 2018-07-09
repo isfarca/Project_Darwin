@@ -6,7 +6,7 @@
 #include "cocos2d.h"
 #include "../Outsourcing/ScreenShake.h"
 #include "../Outsourcing/Definitions.h"
-#include "../Scenes/Load.h"
+#include "../Scenes/LoseLoad.h"
 #include "../Scenes/LevelSelection.h"
 
 using namespace cocos2d;
@@ -14,7 +14,7 @@ using namespace cocos2d;
 class LevelThree : public Scene
 {
 public:
-	// Create the prolog scene.
+	// Create the level three scene.
 	static Scene* createScene();
 	// Implement the create function.
 	CREATE_FUNC(LevelThree);
@@ -24,7 +24,7 @@ public:
 
 private:
 	// Scene handlings.
-	void GoToLoadScene(float delta);
+	void GoToLoseLoadScene(float delta);
 	void GoToLevelSelectionScene(float delta);
 };
 
