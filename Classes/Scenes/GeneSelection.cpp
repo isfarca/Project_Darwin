@@ -93,12 +93,12 @@ bool GeneSelection::init()
 	// MainMenu / Return to Level Selection create
 	returnToMainMenuBtn = MenuItemImage::create(returnToMainMenuPng, returnToMainMenuPngSelected, CC_CALLBACK_1(GeneSelection::ReturnToMainMenu, this));
 
-	returnToLevelSelectionBtn = MenuItemImage::create(returnToLevelSelectionPng,returnToLevelSelectionPngSelected, CC_CALLBACK_1(GeneSelection::ReturnToLevelSelection, this));
+	returnToLevelSelectionBtn = MenuItemImage::create(returnToLevelSelectionPng, returnToLevelSelectionPngSelected, CC_CALLBACK_1(GeneSelection::ReturnToLevelSelection, this));
 
 	// reset selected mutations create
 	resetSelectedMutationBtn = MenuItemImage::create(reset, resetSelected, CC_CALLBACK_1(GeneSelection::ResetSelectedMutation, this));
 
-	auto menu = Menu::create(mutationOneBtn, mutationTwoBtn, mutationThreeBtn, mutationFourBtn, mutationFiveBtn, resetSelectedMutationBtn, startGameBtn,returnToMainMenuBtn, returnToLevelSelectionBtn, nullptr);
+	auto menu = Menu::create(mutationOneBtn, mutationTwoBtn, mutationThreeBtn, mutationFourBtn, mutationFiveBtn, resetSelectedMutationBtn, startGameBtn, returnToMainMenuBtn, returnToLevelSelectionBtn, nullptr);
 	menu->setPosition(Point::ZERO);
 
 	// mutation button position
@@ -124,7 +124,7 @@ bool GeneSelection::init()
 	resetSelectedMutationBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 800));
 
 	// start game button position
-	startGameBtn->setPosition(Vec2(visibleSize.width / 2 , 300));
+	startGameBtn->setPosition(Vec2(visibleSize.width / 2, 300));
 
 	startGameBtn->setEnabled(false);
 
@@ -139,7 +139,7 @@ bool GeneSelection::init()
 
 	this->scheduleUpdate();
 
-	
+
 
 	return true;
 
@@ -172,7 +172,7 @@ void GeneSelection::update(float delta)
 	this->addChild(thirdGeneSprite);
 	this->addChild(ChosenCharacterMutation);
 }
-	// MainMenu
+// MainMenu
 void GeneSelection::ReturnToMainMenu(Ref* pSender)
 {
 	Scene* scene = MainMenu::createScene();

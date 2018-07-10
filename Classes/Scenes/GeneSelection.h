@@ -15,7 +15,7 @@ class GeneSelection : public Scene
 {
 public:
 	// Declare variables.
-	Label* testingText;
+	Label * testingText;
 
 	// available  mutations
 	int mutationOneInt, mutationTwoInt, mutationThreeInt, mutationFourInt, mutationFiveInt, mutationSixInt, mutationSevenInt, mutationEightInt, mutationNineInt, mutationTenInt, mutationElevenInt, mutationTwelveInt;

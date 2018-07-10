@@ -1,6 +1,6 @@
 #include "Credits.h"
 
-// Create the prolog scene.
+// Create the credits scene.
 Scene* Credits::createScene()
 {
 	return Credits::create();
@@ -9,9 +9,20 @@ Scene* Credits::createScene()
 // Initializing.
 bool Credits::init()
 {
-	// When the scene don't init, then stop the init process.
+	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
+
+	///// ADDED
+
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->setSwallowTouches(true);
+
+	listener->onTouchBegan = CC_CALLBACK_2(Credits::onTouchBegan, this);
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+	///// ADDED END
 
 	return true;
 }
@@ -26,3 +37,19 @@ void Credits::GoToMainMenuScene(float delta)
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
+
+///// ADDED
+
+bool Credits::onTouchBegan(Touch *touch, Event * event)
+{
+	// Declare variables.
+	Scene* scene = Settings::createScene();
+
+	// Replace the scene.
+	this->removeAllChildrenWithCleanup(true);
+	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+
+	return true;
+}
+
+///// ADDED END

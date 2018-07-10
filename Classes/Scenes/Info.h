@@ -13,7 +13,16 @@ using namespace cocos2d;
 class Info : public Scene
 {
 public:
-	// Create the prolog scene.
+
+	///// added BEGIN
+	MenuItemImage* mainMenuButton;
+	MenuItemImage* creditsButton;
+
+	void returnToMainMenu(Ref* pSender);
+	void goToCredits(Ref* pSender);
+	///// added END
+
+	// Create the info scene.
 	static Scene* createScene();
 	// Implement the create function.
 	CREATE_FUNC(Info);

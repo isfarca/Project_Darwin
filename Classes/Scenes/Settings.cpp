@@ -1,6 +1,6 @@
 #include "Settings.h"
 
-// Create the prolog scene.
+// Create the settings scene.
 Scene* Settings::createScene()
 {
 	return Settings::create();
@@ -9,9 +9,35 @@ Scene* Settings::createScene()
 // Initializing.
 bool Settings::init()
 {
-	// When the scene don't init, then stop the init process.
 	if (!Scene::init())
 		return false;
+
+	/////ADDED
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+	string mainMenuButtonPng = "MainMenu.png";
+	string mainMenuButtonPngSelected = "MainMenuSelected.png";
+
+	string goToInfoButtonPng = "exit.png";
+	string goToInfoButtonPngSelected = "exitSelected.png" ;
+
+	mainMenuButton = MenuItemImage::create(mainMenuButtonPng, mainMenuButtonPngSelected, CC_CALLBACK_1(Settings::returnToMainMenu, this));
+	goToHelpButton = MenuItemImage::create(goToInfoButtonPng, goToInfoButtonPngSelected, CC_CALLBACK_1(Settings::goToHelp, this));
+
+	// auto menu = Settings::create(returnToMainMenuButton, nullptr);
+	//menu->setPosition(Point::ZERO);
+
+	auto menu = Menu::create(mainMenuButton, goToHelpButton, nullptr);
+	menu->setPosition(Point::ZERO);
+
+	mainMenuButton->setPosition(Vec2(visibleSize.width / 2 + 800, 1200));
+	goToHelpButton->setPosition(Vec2(visibleSize.width / 2, 300));
+	this->addChild(menu);
+
+	/////ADDED END
+
+	// When the scene doesn't init, then stop the init process.
 
 	return true;
 }
@@ -35,7 +61,7 @@ void Settings::GoToPrologScene(float delta)
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
-void Settings::GoToMainMenuScene(float delta)
+void Settings::returnToMainMenuScene(Ref* pSender)
 {
 	// Declare variables.
 	Scene* scene = MainMenu::createScene();
@@ -44,3 +70,25 @@ void Settings::GoToMainMenuScene(float delta)
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
+
+
+///// ADDED
+void Settings::returnToMainMenu(Ref* pSender)
+{
+	// Declare variables.
+	Scene* scene = MainMenu::createScene();
+
+	// Replace the scene.
+	this->removeAllChildrenWithCleanup(true);
+	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+}
+
+void Settings::goToHelp(Ref* pSender)
+{
+	Scene* scene = Help::create();
+
+	this->removeAllChildrenWithCleanup(true);
+	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+}
+
+///// ADDED END

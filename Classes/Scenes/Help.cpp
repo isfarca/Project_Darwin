@@ -1,6 +1,6 @@
 #include "Help.h"
 
-// Create the prolog scene.
+// Create the help scene.
 Scene* Help::createScene()
 {
 	return Help::create();
@@ -9,9 +9,20 @@ Scene* Help::createScene()
 // Initializing.
 bool Help::init()
 {
-	// When the scene don't init, then stop the init process.
+	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
+
+	///// ADDED
+
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->setSwallowTouches(true);
+
+	listener->onTouchBegan = CC_CALLBACK_2(Help::onTouchBegan, this);
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+	///// ADDED END
 
 	return true;
 }
@@ -26,3 +37,19 @@ void Help::GoToMainMenuScene(float delta)
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
+
+///// ADDED
+
+bool Help::onTouchBegan(Touch *touch, Event * event)
+{
+	// Declare variables.
+	Scene* scene = Settings::createScene();
+
+	// Replace the scene.
+	this->removeAllChildrenWithCleanup(true);
+	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+
+	return true;
+}
+
+///// ADDED END

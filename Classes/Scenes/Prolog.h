@@ -20,6 +20,14 @@ public:
 	// Initializing.
 	virtual bool init();
 
+	///// ADDED
+
+	bool onTouchBegan(Touch *touch, Event * event);
+
+
+
+	///// ADDED END
+
 private:
 	// Scene handlings.
 	void GoToMainMenuScene(float delta);
