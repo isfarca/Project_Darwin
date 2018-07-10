@@ -69,7 +69,7 @@ void ChangeForm::mutationElephant(Sprite* smoke)
 
 //mutation 4
 void ChangeForm::mutationFish(Sprite* smoke)
-{ 
+{
 	//smoke-sprite
 	auto emitter = ParticleSmoke::create();
 

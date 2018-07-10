@@ -7,8 +7,9 @@
 #include "../Levels/LevelOne.h"
 #include "SpecialAbilities.h"
 #include "SimpleAudioEngine.h"
-using namespace CocosDenshion;
+
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 class SpecialAbilities
 {
@@ -16,13 +17,13 @@ public:
 	static void Initiation();
 	static void TimingHandler();
 	static void Water(bool isInWater);
-	static void ResetAllEffects();
 
 	static void RhinoAbility();
 	static void TurtleAbility();
 	static void HawkAbility();
 	static void ElephantAbility();
 	static void FishAbility();
+	static void ResetAllEffects();
 };
 
 #endif

@@ -6,6 +6,7 @@
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 #include "SpecialAbilities.h"
+
 using namespace CocosDenshion;
 using namespace cocos2d;
 

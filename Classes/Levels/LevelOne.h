@@ -10,10 +10,8 @@
 #include "../Scenes/LoseLoad.h"
 #include "../Scenes/LevelSelection.h"
 #include "../Outsourcing/SpecialAbilities.h"
-//>>>>>>>>>>>> added
 #include "../Outsourcing/ChangeForm.h"
 #include "../Scenes/GeneSelection.h"
-//<<<<<<<<<<<<
 #include "../Outsourcing/Health.h"
 
 using namespace cocos2d;
@@ -29,17 +27,16 @@ private:
 	float cameraEndPositionX, cameraShakePositionX;
 	Vec2 cameraPosition;
 	float cameraSpeed = playerSpeed / 4;
-	Sprite* mapSprite;
-	Sprite* greyBoxSprite;
-	Sprite* playerSprite;
-	Size playerSpriteSize;
-	PhysicsBody* playerPhysicsBody;
+	Sprite* mapSprite, * mapCollider;
+	Sprite* playerSprite, * playerLeftCollider, * playerTopCollider, * playerRightCollider, * playerBottomCollider;
+	Rect playerLeftColliderRect, playerTopColliderRect, playerRightColliderRect, playerBottomColliderRect, mapColliderRect;
+	Sprite* greyBoxSprite[1], * greyBoxCollider[(sizeof(LevelOne::greyBoxSprite) / sizeof(*LevelOne::greyBoxSprite)) * 4];
 	Vec2 playerSpritePosition;
 	float tick = playerSpeed;
 	Size visibleSize;
 	Vec2 origin;
 	EventListenerTouchOneByOne* eventListenerTouchOneByOne;
-	bool isTouched = false, moveLeft = false, moveRight = false, moveDown = false, jump = false;
+	bool isTouched = false, moveLeft = false, moveRight = false, moveDown = false, jump = false, falling = false;
 	float initialTouchPosition[2] =
 	{
 		0,
@@ -52,13 +49,16 @@ private:
 
 	#pragma region Alexander Sinzig
 	// ****************************************** Alexander Sinzig ******************************************
-
 	// Declare variables.
 	Label* menuLabel;
 	Sprite* sprite;
-	//>>>>>>> added
 	Sprite* smokeParent;
-	//<<<<<<<
+	//>>>>>>>>>> added
+	//sprite and collider for bars (trample-obstacle)
+	Sprite* barsSprite[1], * barsCollider[(sizeof(LevelOne::barsSprite) / sizeof(*LevelOne::barsSprite)) * 4];
+	//sprite and collider for door (charge-obstacle)
+	Sprite* doorSprite[1], *doorCollider[(sizeof(LevelOne::doorSprite) / sizeof(*LevelOne::doorSprite)) * 4];
+	//<<<<<<<<<<
 
 	//variables for mutationButton-picture-loading
 	string abilityPicture1, abilityPicture2;
@@ -66,14 +66,13 @@ private:
 	float cameraX;
 	float cameraY;
 
-	//save the current form fpr selecting special abilty
+	//save the current form for selecting special abilty
 	int currentForm;
 
 	MenuItemImage *mutationButton1;
 	MenuItemImage *mutationButton2;
 	MenuItemImage *mutationButton3;
 	MenuItemImage *specialAbilityButton;
-
 	// ***************************************************************************************************
 	#pragma endregion
 
@@ -103,7 +102,6 @@ public:
 
 	#pragma region Alexander Sinzig
 	// ****************************************** Alexander Sinzig ******************************************
-
 	//because it seems there is no way to hand over values with callback
 	void Transmitter1(Ref* pSender);
 	void Transmitter2(Ref* pSender);
@@ -111,15 +109,19 @@ public:
 	void UseAbility(Ref* pSender);
 	void ChangeMutation(int effect);
 
-	static void JumpValues(bool midAirJump, float jumpDuration, int jumpOffset, int jumpExtremum, float fallDuration, int fallOffset, int fallExtremum);
+	static void JumpValues(bool midAirJump, float jumpDuration, int jumpOffset, float fallDuration, int fallOffset);
 	static void ChargeMode(bool enabled, float speedMulitplyer);
 	static void TrampleMode(bool enabled, float speedMulitplyer);
 	static void ButtonValues(int slot, int chosenSpecialAbility, string chosenPic, string chosenPicSelected);
 
-	//>>>>>>>>>>>>>>> added
 	static void Usable(int abilityNumber, bool usabilityState);
-	//<<<<<<<<<<<<<<<
 
+	//>>>>>>>>>>> added
+	void InitBarsWithCollider();
+	void PlayerBarsCollisionDetection();
+	void InitDoorWithCollider();
+	void PlayerDoorCollisionDetection();
+	//<<<<<<<<<<<
 	// ***************************************************************************************************
 	#pragma endregion
 
@@ -128,8 +130,11 @@ private:
 	// Shake the screen.
 	void ShakeScreen();
 
-	// Player collision with boxes.
-	void PlayerCollisionBox(Sprite* playerSprite, Sprite* boxSprite);
+	// Init collidable boxes.
+	void InitBoxesWithCollider();
+
+	// Collision detection between player and boxes.
+	void PlayerBoxesCollisionDetection();
 	#pragma endregion
 
 	#pragma region Scene handlings

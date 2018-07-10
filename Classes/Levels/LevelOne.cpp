@@ -6,13 +6,15 @@ bool inWater;
 bool isGrounded, midAirJumping;
 float jumpingDuration, fallingDuration;
 int jumpingOffset, jumpingExtremum, fallingOffset, fallingExtremum;
-//>>>>>>>>>> added
 //abilityStates
 bool hawkReady, rhinoReady, elephantReady, turtleReady;
-//<<<<<<<<<<
 //buttonValues
 int mutationButtonEffect1, mutationButtonEffect2, mutationButtonEffect3;
 string mutationButtonPicture1_1, mutationButtonPicture1_2, mutationButtonPicture2_1, mutationButtonPicture2_2, mutationButtonPicture3_1, mutationButtonPicture3_2;
+
+//>>>>>>>>>>>>>> added
+bool charge, trample, barsExist, doorExists;
+//<<<<<<<<<<<<<<
 #pragma endregion
 
 // Create the level one scene.
@@ -42,20 +44,47 @@ bool LevelOne::init()
 
 	// Add the map sprite.
 	mapSprite = Sprite::create("LevelOne.png");
-	mapSprite->setPosition(Vec2(2900, 780));
+	mapSprite->setPosition(2900, 780);
 	mapSprite->setScale(1.7f, 1.7f);
 	this->addChild(mapSprite, 0);
+	// Collider.
+	mapCollider = Sprite::create("Collider.png");
+	mapCollider->setPosition(1450, 345);
+	mapCollider->setScaleX(215);
+	mapCollider->setVisible(false);
+	this->addChild(mapCollider, 0);
 
 	// Add the player sprite.
 	playerSprite = Sprite::create("HelloWorld.png");
 	playerSprite->setPosition(600, 495);
 	this->addChild(playerSprite, 0);
+	// Left collider.
+	playerLeftCollider = Sprite::create("Collider.png");
+	playerLeftCollider->setPosition(playerSprite->getPositionX() - 80, playerSprite->getPositionY());
+	playerLeftCollider->setScaleY(3);
+	playerLeftCollider->setVisible(false);
+	this->addChild(playerLeftCollider, 0);
+	// Top collider.
+	playerTopCollider = Sprite::create("Collider.png");
+	playerTopCollider->setPosition(playerSprite->getPositionX(), playerSprite->getPositionY() + 115);
+	playerTopCollider->setScaleX(3);
+	playerTopCollider->setVisible(false);
+	this->addChild(playerTopCollider, 0);
+	// Right collider.
+	playerRightCollider = Sprite::create("Collider.png");
+	playerRightCollider->setPosition(playerSprite->getPositionX() + 80, playerSprite->getPositionY());
+	playerRightCollider->setScaleY(3);
+	playerRightCollider->setVisible(false);
+	this->addChild(playerRightCollider, 0);
+	// Bottom collider.
+	playerBottomCollider = Sprite::create("Collider.png");
+	playerBottomCollider->setPosition(playerSprite->getPositionX(), playerSprite->getPositionY() - 115);
+	playerBottomCollider->setScaleX(3);
+	playerBottomCollider->setVisible(false);
+	this->addChild(playerBottomCollider, 0);
 
-	// Add the grey box.
-	greyBoxSprite = Sprite::create("Greybox.png");
-	greyBoxSprite->setPosition(1735, 461);
-	greyBoxSprite->setScale(2.9f, 2.9f);
-	this->addChild(greyBoxSprite, 0);
+	// Add collidable boxes.
+	LevelOne::InitBoxesWithCollider();
 
 	// Initialize the event listener for touch events.
 	eventListenerTouchOneByOne = EventListenerTouchOneByOne::create();
@@ -78,18 +107,18 @@ bool LevelOne::init()
 
 	//create health and hearts
 	Health::InitialHealth(this);
+	//create special abilities
 	SpecialAbilities::Initiation();
-
+	//>>>>>>>>> added
+	//create obstacles
+	LevelOne::InitBarsWithCollider();
+	LevelOne::InitDoorWithCollider();
+	//<<<<<<<<<<
 
 	//starting values for jumping / falling properties
 	bool inWater = false;
 	midAirJumping = false;
-	jumpingDuration = 1.0;
-	fallingDuration = 1.0;
-	jumpingOffset = 0;
-	jumpingExtremum = 300;
-	fallingOffset = 0;
-	fallingExtremum = -200;
+	isGrounded = true;
 
 	//default-values for the buttons if GeneSelection did not hand over values
 	if (mutationButtonPicture1_1 == "")
@@ -111,13 +140,9 @@ bool LevelOne::init()
 		mutationButtonEffect3 = 5;
 	}
 
-	//>>>>>>>>>> added
 	//a new Object to spawn the smoke for ChangeForm
 	smokeParent = Sprite::create("CloseSelected.png");
 	playerSprite->addChild(smokeParent);
-	//<<<<<<<<<<
-
-	//>>>>>>>>>> changed
 
 	//create the 3 mutationButtons
 	mutationButton1 = MenuItemImage::create(mutationButtonPicture1_1, mutationButtonPicture1_2, CC_CALLBACK_1(LevelOne::Transmitter1, this));
@@ -126,8 +151,6 @@ bool LevelOne::init()
 
 	specialAbilityButton = MenuItemImage::create("dna6-2.png", "dna_line6.png", "dna_empty.png", CC_CALLBACK_1(LevelOne::UseAbility, this));
 	specialAbilityButton->setScale(0.1f, 0.1f);
-
-	//<<<<<<<<<
 
 	auto menu = Menu::create(mutationButton1, mutationButton2, mutationButton3, specialAbilityButton, nullptr);
 	menu->setPosition(Point::ZERO);
@@ -147,7 +170,6 @@ void LevelOne::update(float delta)
 {
 	#pragma region Fethi Isfarca
 	// ************************************************** Fethi Isfarca *******************************************************************************************************
-
 	// Move the camera to the right automatically.
 	cameraPosition = camera->getPosition();
 	cameraPosition.x += cameraSpeed * delta;
@@ -184,7 +206,12 @@ void LevelOne::update(float delta)
 		}
 		else if (initialTouchPosition[1] - currentTouchPosition[1] < -visibleSize.width * 0.05f)
 		{
-			jump = true;
+			if (isGrounded || midAirJumping)
+			{
+				jump = true;
+			}
+			else
+				jump = false;
 
 			isTouched = false;
 		}
@@ -227,24 +254,34 @@ void LevelOne::update(float delta)
 		}
 	}
 	playerSprite->setPosition(playerSpritePosition);
+	playerLeftCollider->setPosition(playerSprite->getPositionX() - 80, playerSprite->getPositionY());
+	playerTopCollider->setPosition(playerSprite->getPositionX(), playerSprite->getPositionY() + 115);
+	playerRightCollider->setPosition(playerSprite->getPositionX() + 80, playerSprite->getPositionY());
+	playerBottomCollider->setPosition(playerSprite->getPositionX(), playerSprite->getPositionY() - 115);
 
-	isGrounded = true;
 	// Jump by swiping up.
-	if (jump && midAirJumping)
+	if (jump)
 	{
 		jumpTo = new JumpTo();
-		jumpTo->initWithDuration(jumpingDuration, Vec2(playerSprite->getPositionX(), playerSprite->getPositionY() + jumpingOffset), jumpingExtremum, 1);
-		playerSprite->runAction(jumpTo);
+		jumpTo->initWithDuration(jumpingDuration, Vec2(playerSprite->getPositionX(), playerSprite->getPositionY() + jumpingOffset), 0, 1);
 		jumpTo->autorelease();
+		playerSprite->runAction(jumpTo);
 		jump = false;
 	}
-	else if (jump && isGrounded)
+
+	// Get colliders.
+	playerLeftColliderRect = playerLeftCollider->getBoundingBox();
+	playerTopColliderRect = playerTopCollider->getBoundingBox();
+	playerRightColliderRect = playerRightCollider->getBoundingBox();
+	playerBottomColliderRect = playerBottomCollider->getBoundingBox();
+	mapColliderRect = mapCollider->getBoundingBox();
+
+	// Is falling?
+	isGrounded = playerBottomColliderRect.intersectsRect(mapColliderRect) ? true : false;
+	if (!isGrounded && falling)
 	{
-		jumpTo = new JumpTo();
-		jumpTo->initWithDuration(jumpingDuration, Vec2(playerSprite->getPositionX(), playerSprite->getPositionY() + jumpingOffset), jumpingExtremum, 1);
-		playerSprite->runAction(jumpTo);
-		jumpTo->autorelease();
-		jump = false;
+		playerSpritePosition.y -= playerSpeed * delta;
+		playerSprite->setPosition(playerSpritePosition);
 	}
 
 	// At screen ends, do activate the screen shake.
@@ -263,18 +300,26 @@ void LevelOne::update(float delta)
 		this->unscheduleUpdate();
 	}
 
-	// Detection collision.
-	LevelOne::PlayerCollisionBox(playerSprite, greyBoxSprite);
-
+	// Check collisions between player and boxes.
+	LevelOne::PlayerBoxesCollisionDetection();
 	// ************************************************************************************************************************************************************************
 	#pragma endregion
 
 	#pragma region Alexander Sinzig
 	// ************************************************** Alexander Sinzig *******************************************************************************************************
 
-	//call 'FakeUpdates'
+	//call 'FakeUpdate' for 'SpecialAbilities'
 	SpecialAbilities::TimingHandler();
 	ChangeForm::SmokeTimer(smokeParent);
+
+	//>>>>>>>>>>>>>>>>>>> added
+	// Check collisions between player and bars.
+	if (barsExist == true)
+		LevelOne::PlayerBarsCollisionDetection();
+
+	if (doorExists == true)
+		LevelOne::PlayerDoorCollisionDetection();
+	//<<<<<<<<<<<<<<<<<<<
 
 	//hand over cameraX to Health-script
 	cameraX = camera->getPositionX();
@@ -290,7 +335,6 @@ void LevelOne::update(float delta)
 	mutationButton3->setPosition(camera->getPositionX() + 40, camera->getPositionY() - visibleSize.width / 4 + 40);
 	specialAbilityButton->setPosition(camera->getPositionX() + 90, camera->getPositionY() - visibleSize.width / 4 + 40);
 
-	//>>>>>>>>>>>>>>>> added
 	//enable/disable special-ability depending on currentForm and cooldowns
 	switch (currentForm)
 	{
@@ -321,18 +365,6 @@ void LevelOne::update(float delta)
 	default:
 		break;
 	}
-	//<<<<<<<<<<<<<<<<
-
-
-
-	//falling
-	//muss wiewder aktiviert werden, wenn 
-	/*
-	jumpTo = new JumpTo();
-	jumpTo->initWithDuration(fallingDuration, Vec2(helloWorldSprite->getPositionX(), helloWorldSprite->getPositionY() + fallingOffset), fallingExtremum, 1);
-	helloWorldSprite->runAction(jumpTo);
-	jumpTo->autorelease();
-	*/
 
 	// ************************************************************************************************************************************************************************
 	#pragma endregion
@@ -400,25 +432,25 @@ void LevelOne::ButtonValues(int slot, int chosenSpecialAbility, string chosenPic
 }
 
 //change jumping and falling-properties when called
-void LevelOne::JumpValues(bool midAirJump, float jumpDuration, int jumpOffset, int jumpExtremum, float fallDuration, int fallOffset, int fallExtremum)
+void LevelOne::JumpValues(bool midAirJump, float jumpDuration, int jumpOffset, float fallDuration, int fallOffset)
 {
 	midAirJumping = midAirJump;
 	jumpingDuration = jumpDuration;
 	jumpingOffset = jumpOffset;
-	jumpingExtremum = jumpExtremum;
 	fallingDuration = fallDuration;
 	fallingOffset = fallOffset;
-	fallingExtremum = fallExtremum;
 }
 
 void LevelOne::ChargeMode(bool enabled, float speedMulitplyer)
 {
 	//change speed and check collision with trapdoors
+	charge = enabled;
 }
 
 void LevelOne::TrampleMode(bool enabled, float speedMulitplyer)
 {
 	//change speed and check collision with doors
+	trample = enabled;
 }
 
 //the 4 transimitters
@@ -437,7 +469,6 @@ void LevelOne::Transmitter3(Ref *pSender)
 	LevelOne::ChangeMutation(mutationButtonEffect3);
 }
 
-//>>>>>>>>>>>>>>> IMPORTANT: changed
 void LevelOne::ChangeMutation(int effect)
 {
 	//save current form for ability
@@ -472,6 +503,7 @@ void LevelOne::UseAbility(Ref *pSender)
 	{
 	case 1:
 		SpecialAbilities::HawkAbility();
+		
 		break;
 	case 2:
 		SpecialAbilities::RhinoAbility();
@@ -489,9 +521,6 @@ void LevelOne::UseAbility(Ref *pSender)
 		break;
 	}
 }
-//<<<<<<<<<<<<<<<
-
-//>>>>>>>>>>>>>>> added
 void LevelOne::Usable(int abilityNumber, bool usabilityState)
 {
 	switch (abilityNumber)
@@ -511,6 +540,93 @@ void LevelOne::Usable(int abilityNumber, bool usabilityState)
 	default:
 		break;
 	}
+}
+
+//>>>>>>>>>>>>>>> added
+//create obacles
+void LevelOne::InitBarsWithCollider()
+{
+	// Add 'BarsSprite' with colliders.
+	barsSprite[0] = Sprite::create("Greybox.png");
+	barsSprite[0]->setPosition(2000, 361);
+	barsSprite[0]->setScale(2.9f, 2.9f);
+	this->addChild(barsSprite[0], 0);
+
+	barsCollider[0] = Sprite::create("Collider.png");
+	barsCollider[0]->setPosition(barsSprite[0]->getPosition());
+	barsCollider[0]->setScale(5, 5);
+	barsCollider[0]->setVisible(false);
+	this->addChild(barsCollider[0], 0);
+
+	//enable search for barsSprite
+	barsExist = true;
+}
+void LevelOne::InitDoorWithCollider()
+{
+	// Add 'BarsSprite' with colliders.
+	doorSprite[0] = Sprite::create("Greybox.png");
+	doorSprite[0]->setPosition(2500, 450);
+	doorSprite[0]->setScale(2.9f, 2.9f);
+	this->addChild(doorSprite[0], 0);
+
+	doorCollider[0] = Sprite::create("Collider.png");
+	doorCollider[0]->setPosition(doorSprite[0]->getPosition());
+	doorCollider[0]->setScale(5, 5);
+	doorCollider[0]->setVisible(false);
+	this->addChild(doorCollider[0], 0);
+
+	//enable search for doorSprite
+	doorExists = true;
+}
+
+//collide and destroy bars / trapdoor
+void LevelOne::PlayerBarsCollisionDetection()
+{
+		// Declare variables.
+		Rect barsColliderRect[sizeof(LevelOne::barsCollider) / sizeof(*LevelOne::barsCollider)] =
+		{
+			barsCollider[0]->getBoundingBox()
+		};
+
+
+		// Collision detection with door
+		if (playerBottomColliderRect.intersectsRect(barsColliderRect[0]) && trample) // destroy bars
+		{
+			this->removeChild(barsCollider[0]);
+			this->removeChild(barsSprite[0]);
+			barsExist = false;
+		}
+		else if (playerBottomColliderRect.intersectsRect(barsColliderRect[0])) // bars collision standard
+			falling = false;
+}
+
+//collide and destroy door
+void LevelOne::PlayerDoorCollisionDetection()
+{
+	// Declare variables.
+	Rect doorColliderRect[sizeof(LevelOne::doorCollider) / sizeof(*LevelOne::doorCollider)] =
+	{
+		doorCollider[0]->getBoundingBox()
+	};
+
+
+	// Collision detection with door
+	if (playerLeftColliderRect.intersectsRect(doorColliderRect[0]) && charge) // crush door
+	{
+		this->removeChild(doorCollider[0]);
+		this->removeChild(doorSprite[0]);
+		doorExists = false;
+	}
+	else if (playerRightColliderRect.intersectsRect(doorColliderRect[0]) && charge) // crush door
+	{
+		this->removeChild(doorCollider[0]);
+		this->removeChild(doorSprite[0]);
+		doorExists = false;
+	}
+	else if (playerLeftColliderRect.intersectsRect(doorColliderRect[0])) // door collision standard
+		moveLeft = false;
+	else if (playerRightColliderRect.intersectsRect(doorColliderRect[0])) // door collision standard
+		moveRight = false;
 }
 //<<<<<<<<<<<<<<<
 
@@ -533,22 +649,42 @@ void LevelOne::ShakeScreen()
 	return;
 }
 
-// Player collision with boxes.
-void LevelOne::PlayerCollisionBox(Sprite* playerSprite, Sprite* boxSprite)
+// Init collidable boxes.
+void LevelOne::InitBoxesWithCollider()
 {
-	// Declare variables.
-	Rect rect1 = playerSprite->getBoundingBox();
-	Rect rect2 = boxSprite->getBoundingBox();
+	// Add 'greyBoxSprite[0]' with colliders.
+	greyBoxSprite[0] = Sprite::create("Greybox.png");
+	greyBoxSprite[0]->setPosition(1735, 461);
+	greyBoxSprite[0]->setScale(2.9f, 2.9f);
+	this->addChild(greyBoxSprite[0], 0);
 
-	// Detection collision.
-	if (rect1.intersectsRect(rect2))
+	greyBoxCollider[0] = Sprite::create("Collider.png");
+	greyBoxCollider[0]->setPosition(greyBoxSprite[0]->getPosition());
+	greyBoxCollider[0]->setScale(5, 5);
+	greyBoxCollider[0]->setVisible(false);
+	this->addChild(greyBoxCollider[0], 0);
+}
+
+// Collision detection between player and boxes.
+void LevelOne::PlayerBoxesCollisionDetection()
+{
+	// Declare variuables.
+	Rect greyBoxColliderRect[sizeof(LevelOne::greyBoxCollider) / sizeof(*LevelOne::greyBoxCollider)] =
 	{
-		playerSprite->pauseSchedulerAndActions();
+		greyBoxCollider[0]->getBoundingBox()
+	};
+
+	// Collision detection with 'greyBoxSprite[0]'.
+	if (playerLeftColliderRect.intersectsRect(greyBoxColliderRect[0])) // Left <-> Right.
 		moveLeft = false;
-		moveRight = moveRight ? false : true;
-	}
+	else if (playerTopColliderRect.intersectsRect(greyBoxColliderRect[0])) // Top <-> Bottom.
+		this->stopAction(jumpTo);
+	else if (playerRightColliderRect.intersectsRect(greyBoxColliderRect[0])) // Right <-> Left.
+		moveRight = false;
+	else if (playerBottomColliderRect.intersectsRect(greyBoxColliderRect[0])) // Bottom <-> Top.
+		falling = false;
 	else
-		playerSprite->resumeSchedulerAndActions();
+		falling = true;
 }
 // ************************************************************************************************************************************************************************
 #pragma endregion
@@ -557,14 +693,12 @@ void LevelOne::PlayerCollisionBox(Sprite* playerSprite, Sprite* boxSprite)
 // Scene handlings
 void LevelOne::GoToLoseLoadScene(float delta)
 {
-	/*
 	// Declare variables.
 	Scene* scene = LoseLoad::createScene();
 
 	// Replace the scene.
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
-	*/
 }
 void LevelOne::GoToLevelSelectionScene(float delta)
 {

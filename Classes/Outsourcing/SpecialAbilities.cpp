@@ -1,12 +1,12 @@
 #include "SpecialAbilities.h"
 
-// Declare variables.
 #define FLY_SFX "Bruellen.wav"
 #define CHARGE_SFX "Bruellen.wav"
 #define TRAMPLE_SFX "Bruellen.wav"
 #define SWIM_SFX "Bruellen.wav"
 #define HOLE_UP_SFX "Bruellen.wav"
 
+// Declare variables.
 int turtleCooldown, turtleDuration, hawkCooldown, hawkDuration, rhinoCooldown, rhinoDuration, elephantCooldown, elephantDuration;
 
 bool turtleActive, hawkActive, fishActive, rhinoActive, elephantActive;
@@ -30,54 +30,54 @@ void SpecialAbilities::Initiation()
 	//Fish
 	fishActive = 0;
 
-
+	// Standart values.
+	LevelOne::JumpValues(false, 0.5f, 400, 0.5f, -200);
 }
 
 //ability 1
 void SpecialAbilities::HawkAbility()
 {
-		//equals 5 seconds
-		hawkDuration = 300;
-		//equals 15 seconds
-		hawkCooldown = 900;
-		hawkActive = true;
-		//call function to set new values for jump and gravity in scene-script
-		//jumpInMidAir + Jump (duration, offsetY, extremaY) + Falling (duration, offsetY, extremaY) 
-		LevelOne::JumpValues(true, 1.5, 200, 0, 2.0, -200, 0);
-		//play sound and debug
-		SimpleAudioEngine::getInstance()->playEffect(FLY_SFX);
-		log("fly");
+	//equals 5 seconds
+	hawkDuration = 300;
+	//equals 15 seconds
+	hawkCooldown = 900;
+	hawkActive = true;
+	//call function to set new values for jump and gravity in scene-script
+	//jumpInMidAir + Jump (duration, offsetY) + Falling (duration, offsetY) 
+	LevelOne::JumpValues(true, 1.0f, 400, 1.0f, -200);
+	//play sound and debug
+	SimpleAudioEngine::getInstance()->playEffect(FLY_SFX);
+	log("fly");
 }
 
 //ability 2
 void SpecialAbilities::RhinoAbility()
 {
-		//equals 3 seconds
-		rhinoDuration = 180;
-		//equals 9 seconds
-		rhinoCooldown = 540;
-		rhinoActive = true;
-		//call other script to start charging
-		LevelOne::ChargeMode(true, 1.4f);
-		//play sound and debug
-		SimpleAudioEngine::getInstance()->playEffect(CHARGE_SFX);
-		log("charge");
+	//equals 3 seconds
+	rhinoDuration = 180;
+	//equals 9 seconds
+	rhinoCooldown = 540;
+	rhinoActive = true;
+	//call other script to start charging
+	LevelOne::ChargeMode(true, 1.4f);
+	//play sound and debug
+	SimpleAudioEngine::getInstance()->playEffect(CHARGE_SFX);
+	log("charge");
 }
 
 //ability 3
 void SpecialAbilities::ElephantAbility()
 {
-		//equals 3 seconds
-		elephantDuration = 180;
-		//equals 9 seconds
-		elephantCooldown = 540;
-		elephantActive = true;
-		//call other script to start charging
-		LevelOne::TrampleMode(true, 1.2f);
-		//play sound and debug
-		SimpleAudioEngine::getInstance()->playEffect(TRAMPLE_SFX);
-		log("stomp");
-
+	//equals 3 seconds
+	elephantDuration = 180;
+	//equals 9 seconds
+	elephantCooldown = 540;
+	elephantActive = true;
+	//call other script to start charging
+	LevelOne::TrampleMode(true, 1.2f);
+	//play sound and debug
+	SimpleAudioEngine::getInstance()->playEffect(TRAMPLE_SFX);
+	log("stomp");
 }
 
 //ability 4
@@ -89,7 +89,7 @@ void SpecialAbilities::FishAbility()
 		fishActive = true;
 		//call function to set new values for jump and gravity in scene-script
 		//jumpInMidAir + Jump (duration, offsetY, extremaY) + Falling (duration, offsetY, extremaY) 
-		LevelOne::JumpValues(true, 1.5f, 200, 0, 2.0, -200, 0);
+		LevelOne::JumpValues(true, 1.0f, 200, 2.0, -200);
 	}
 	//deactivate if already active
 	else if (playerIsInWater && fishActive == true)
@@ -97,7 +97,7 @@ void SpecialAbilities::FishAbility()
 		fishActive = false;
 		//call function to restore default values for jump and gravity in scene-script
 		//jumpInMidAir + Jump (duration, offsetY, extremaY) + Falling (duration, offsetY, extremaY
-		LevelOne::JumpValues(false, 1.0f, 0, 300, 1.0, -200, 0);
+		LevelOne::JumpValues(false, 0.5f, 400, 1.0f, -200);
 	}
 	//play sound and debug
 	SimpleAudioEngine::getInstance()->playEffect(SWIM_SFX);
@@ -107,15 +107,15 @@ void SpecialAbilities::FishAbility()
 //ability 5
 void SpecialAbilities::TurtleAbility()
 {
-		//equals 4 seconds
-		turtleDuration = 240;
-		//equels 12 seconds
-		turtleCooldown = 720;
-		turtleActive = true;
-		Health::InvulnerableStart();
-		//play sound and debug
-		SimpleAudioEngine::getInstance()->playEffect(HOLE_UP_SFX);
-		log("hole up");
+	//equals 4 seconds
+	turtleDuration = 240;
+	//equels 12 seconds
+	turtleCooldown = 720;
+	turtleActive = true;
+	Health::InvulnerableStart();
+	//play sound and debug
+	SimpleAudioEngine::getInstance()->playEffect(HOLE_UP_SFX);
+	log("hole up");
 }
 
 //to manage cooldowns and durations
@@ -184,7 +184,7 @@ void SpecialAbilities::TimingHandler()
 		//jumpInMidAir + Jump (duration, offsetY, extremaY) + Falling (duration, offsetY, extremaY)  
 		//extrema: Größe des Bogens
 		//offset: Höhenunterschied am Ende 
-		LevelOne::JumpValues(false, 1.0f, 0, 300, 1.0, -200, 0);
+		LevelOne::JumpValues(false, 0.5f, 400, 1.0f, -200);
 	}
 
 	//rhino
@@ -215,7 +215,7 @@ void SpecialAbilities::TimingHandler()
 		fishActive = false;
 		//call function to restore default values for jump and gravity in scene-script
 		//jumpInMidAir + Jump (duration, offsetY, extremaY) + Falling (duration, offsetY, extremaY
-		LevelOne::JumpValues(false, 1.0f, 0, 300, 1.0, -200, 0);
+		LevelOne::JumpValues(false, 0.5f, 400, 1.0f, -200);
 	}
 }
 
@@ -226,7 +226,7 @@ void SpecialAbilities::Water(bool isInWater)
 
 void SpecialAbilities::ResetAllEffects()
 {
-	turtleDuration = 0; 
+	turtleDuration = 0;
 	hawkDuration = 0;
 	rhinoDuration = 0;
 	elephantDuration = 0;

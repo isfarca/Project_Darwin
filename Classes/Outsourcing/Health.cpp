@@ -22,7 +22,7 @@ void Health::InitialHealth(Scene* scene)
 	for (int i = 1; i < hp + 1; i++)
 	{
 		hearts = Sprite::create("Heart.png");
-		hearts->setPosition(-(visibleSize.width / 2) + (i+1) * 40 + origin.x, visibleSize.height * 29 / 40 + origin.y);
+		hearts->setPosition(-(visibleSize.width / 2) + (i + 1) * 40 + origin.x, visibleSize.height * 29 / 40 + origin.y);
 		heartParent->addChild(hearts, 0);
 	}
 }
