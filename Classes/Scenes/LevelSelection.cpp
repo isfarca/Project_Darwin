@@ -54,10 +54,10 @@ bool LevelSelection::init()
 	menu->setPosition(Point::ZERO);
 
 	//Level Selection Position
-	levelOneButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 50);
-	levelTwoButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 100);
-	levelThreeButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 150);
-	levelFourButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 200);
+	levelOneButton->setPosition(Vec2(visibleSize.width / 2, 1000));
+	levelTwoButton->setPosition(Vec2(visibleSize.width / 2, 950));
+	levelThreeButton->setPosition(Vec2(visibleSize.width / 2, 900));
+	levelFourButton->setPosition(Vec2(visibleSize.width / 2, 850));
 
 	goToMainMenuButton->setPosition(Vec2(visibleSize.width / 2 + 800, 1200));
 	//goToGeneSelectionButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 450); **********DELETED
