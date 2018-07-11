@@ -4,9 +4,11 @@
 #define Health_h
 
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 #include <string>
 
 using namespace cocos2d;
+using namespace CocosDenshion;
 using namespace std;
 
 class Health
@@ -19,5 +21,4 @@ public:
 	static void InvulnerableEnd();
 	static void MoveHearts(float xPosition, float yPosition);
 };
-
 #endif

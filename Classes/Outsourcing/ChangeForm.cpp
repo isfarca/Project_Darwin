@@ -1,10 +1,10 @@
 #include "ChangeForm.h"
 
-#define HAWK_MUTATION_SFX "Bruellen.wav"
-#define RHINO_MUTATION_SFX "Bruellen.wav"
-#define ELEPHANT_MUTATION_SFX "Bruellen.wav"
-#define FISH_MUTATION_SFX "Bruellen.wav"
-#define TURTLE_MUTATION_SFX "Bruellen.wav"
+#define HAWK_MUTATION_SFX "sounds/forms/hawk.wav"
+#define RHINO_MUTATION_SFX "sounds/forms/rhino.wav"	//change sound
+#define ELEPHANT_MUTATION_SFX "sounds/forms/elephant.wav"
+#define FISH_MUTATION_SFX "sounds/forms/fish.wav"
+#define TURTLE_MUTATION_SFX "sounds/forms/turtle.wav"	//change sound
 
 //variables
 int smokeDuration;

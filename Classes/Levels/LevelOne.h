@@ -5,6 +5,9 @@
 
 #include <string>
 #include "cocos2d.h"
+//>>>>>>>>>> added
+#include "SimpleAudioEngine.h"
+//<<<<<<<<<<
 #include "../Outsourcing/ScreenShake.h"
 #include "../Outsourcing/Definitions.h"
 #include "../Scenes/LoseLoad.h"
@@ -15,6 +18,9 @@
 #include "../Outsourcing/Health.h"
 
 using namespace cocos2d;
+//>>>>>>>>> added
+using namespace CocosDenshion;
+//<<<<<<<<<
 
 class LevelOne : public Scene
 {
@@ -147,5 +153,4 @@ private:
 	void GoToLevelSelectionScene(float delta);
 	#pragma endregion
 };
-
 #endif

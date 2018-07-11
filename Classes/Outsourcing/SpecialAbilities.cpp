@@ -1,10 +1,10 @@
 #include "SpecialAbilities.h"
 
-#define FLY_SFX "Bruellen.wav"
-#define CHARGE_SFX "Bruellen.wav"
-#define TRAMPLE_SFX "Bruellen.wav"
-#define SWIM_SFX "Bruellen.wav"
-#define HOLE_UP_SFX "Bruellen.wav"
+#define FLY_SFX "sounds/abilities/fly.wav"
+#define CHARGE_SFX "sounds/abilities/charge.wav"
+#define TRAMPLE_SFX "sounds/abilities/trample.wav"
+#define SWIM_SFX "sounds/abilities/swim.wav"
+#define HOLE_UP_SFX "sounds/abilities/hole_up.wav"	//change sound
 
 // Declare variables.
 int turtleCooldown, turtleDuration, hawkCooldown, hawkDuration, rhinoCooldown, rhinoDuration, elephantCooldown, elephantDuration;

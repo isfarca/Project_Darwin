@@ -21,5 +21,4 @@ public:
 
 	static void SmokeTimer(Sprite* smoke);
 };
-
 #endif

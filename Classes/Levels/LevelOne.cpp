@@ -1,6 +1,14 @@
 #include "LevelOne.h"
 
 #pragma region Declare variables
+//>>>>>>>>>> added
+//sounds
+#define DESTROY_BARS_SFX "sounds/interactions/destroy.wav"
+#define DESTROY_DOOR_SFX "sounds/interactions/destroy.wav"
+#define JUMP_SFX "sounds/interactions/jump.wav"
+#define SOUNDTRACK_LEVEL_SFX "sounds/soundtracks/Module2.wav"
+//<<<<<<<<<<
+
 //jumping / falling-properties
 bool inWater;
 bool isGrounded, midAirJumping;
@@ -119,7 +127,9 @@ bool LevelOne::init()
 	//create obstacles
 	LevelOne::InitBarsWithCollider();
 	LevelOne::InitDoorWithCollider();
-	//<<<<<<<<<<
+
+	//start soundtrack
+	SimpleAudioEngine::getInstance()->playEffect(SOUNDTRACK_LEVEL_SFX, true);
 
 	//starting values for jumping / falling properties
 	bool inWater = false;
@@ -137,26 +147,32 @@ bool LevelOne::init()
 	{
 		mutationButtonPicture2_1 = "CloseNormal.png";
 		mutationButtonPicture2_2 = "CloseSelected.png";
-		mutationButtonEffect2 = 4;
+		mutationButtonEffect2 = 2;
 	}
 	if (mutationButtonPicture3_1 == "")
 	{
 		mutationButtonPicture3_1 = "CloseNormal.png";
 		mutationButtonPicture3_2 = "CloseSelected.png";
-		mutationButtonEffect3 = 5;
+		mutationButtonEffect3 = 3;
 	}
 
 	//a new Object to spawn the smoke for ChangeForm
-	smokeParent = Sprite::create("CloseSelected.png");
+	smokeParent = Sprite::create("Schonstes_Bild_der_Welt_2.png");
 	playerSprite->addChild(smokeParent);
 
+	//>>>>>>>>>>> changed
 	//create the 3 mutationButtons
 	mutationButton1 = MenuItemImage::create(mutationButtonPicture1_1, mutationButtonPicture1_2, CC_CALLBACK_1(LevelOne::Transmitter1, this));
+	mutationButton1->setScale(0.15f, 0.15f);
 	mutationButton2 = MenuItemImage::create(mutationButtonPicture2_1, mutationButtonPicture2_2, CC_CALLBACK_1(LevelOne::Transmitter2, this));
+	mutationButton2->setScale(0.15f, 0.15f);
 	mutationButton3 = MenuItemImage::create(mutationButtonPicture3_1, mutationButtonPicture3_2, CC_CALLBACK_1(LevelOne::Transmitter3, this));
+	mutationButton3->setScale(0.15f, 0.15f);
 
 	specialAbilityButton = MenuItemImage::create("dna6-2.png", "dna_line6.png", "dna_empty.png", CC_CALLBACK_1(LevelOne::UseAbility, this));
 	specialAbilityButton->setScale(0.1f, 0.1f);
+
+	//<<<<<<<<<<<
 
 	auto menu = Menu::create(mutationButton1, mutationButton2, mutationButton3, specialAbilityButton, nullptr);
 	menu->setPosition(Point::ZERO);
@@ -273,6 +289,9 @@ void LevelOne::update(float delta)
 		jumpTo->autorelease();
 		playerSprite->runAction(jumpTo);
 		jump = false;
+		//>>>>>>>>>>>> added
+		SimpleAudioEngine::getInstance()->playEffect(JUMP_SFX);
+		//<<<<<<<<<<<< added
 	}
 
 	// Get colliders.
@@ -321,11 +340,10 @@ void LevelOne::update(float delta)
 	//>>>>>>>>>>>>>>>>>>> added
 	// Check collisions of player
 	LevelOne::PlayerWaterCollisionDetection();
-	if (barsExist == true)
-		LevelOne::PlayerBarsCollisionDetection();
-
 	if (doorExists == true)
 		LevelOne::PlayerDoorCollisionDetection();
+	if (barsExist == true)
+		LevelOne::PlayerBarsCollisionDetection();
 	//<<<<<<<<<<<<<<<<<<<
 
 	//hand over cameraX to Health-script
@@ -378,7 +396,6 @@ void LevelOne::update(float delta)
 	default:
 		break;
 	}
-
 	// ************************************************************************************************************************************************************************
 	#pragma endregion
 }
@@ -623,12 +640,13 @@ void LevelOne::PlayerBarsCollisionDetection()
 		};
 
 
-		// Collision detection with door
+		// Collision detection with bars
 		if (playerBottomColliderRect.intersectsRect(barsColliderRect[0]) && trample) // destroy bars
 		{
 			this->removeChild(barsCollider[0]);
 			this->removeChild(barsSprite[0]);
 			barsExist = false;
+			SimpleAudioEngine::getInstance()->playEffect(DESTROY_BARS_SFX);
 		}
 		else if (playerBottomColliderRect.intersectsRect(barsColliderRect[0])) // bars collision standard
 			falling = false;
@@ -649,6 +667,7 @@ void LevelOne::PlayerDoorCollisionDetection()
 		this->removeChild(doorCollider[0]);
 		this->removeChild(doorSprite[0]);
 		doorExists = false;
+		SimpleAudioEngine::getInstance()->playEffect(DESTROY_DOOR_SFX); // IS NOT PLAYED SOMEHOW
 	}
 	else if (playerRightColliderRect.intersectsRect(doorColliderRect[0]) && charge) // crush door
 	{

@@ -1,5 +1,9 @@
 #include "Health.h"
 
+//sounds
+#define GET_HIT_SFX "sounds/interactions/getHit.wav"
+#define GET_HIT_BLOCK_SFX "sounds/interactions/getHitBlock.wav"
+
 bool shielded;
 int hp;
 Size visibleSize;
@@ -16,7 +20,7 @@ void Health::InitialHealth(Scene* scene)
 	origin = Director::getInstance()->getVisibleOrigin();
 
 	//create parent for hearts
-	heartParent = Sprite::create("CloseSelected.png");
+	heartParent = Sprite::create("Schonstes_Bild_der_Welt_2.png");
 	scene->addChild(heartParent);
 
 	for (int i = 1; i < hp + 1; i++)
@@ -62,8 +66,7 @@ void Health::TakeDamage()
 	if (shielded == false)
 	{
 		//play damageSound
-
-
+		SimpleAudioEngine::getInstance()->playEffect(GET_HIT_SFX);
 		hp--;
 		//delete current heart-sprites
 		heartParent->removeAllChildren();
@@ -86,6 +89,7 @@ void Health::TakeDamage()
 	else
 	{
 		//play blockSound
+		SimpleAudioEngine::getInstance()->playEffect(GET_HIT_BLOCK_SFX);
 	}
 }
 
