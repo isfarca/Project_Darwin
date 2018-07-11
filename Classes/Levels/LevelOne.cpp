@@ -7,7 +7,7 @@ bool isGrounded, midAirJumping;
 float jumpingDuration, fallingDuration;
 int jumpingOffset, jumpingExtremum, fallingOffset, fallingExtremum;
 //abilityStates
-bool hawkReady, rhinoReady, elephantReady, turtleReady;
+bool hawkReady, rhinoReady, elephantReady, fishReady, turtleReady;
 //buttonValues
 int mutationButtonEffect1, mutationButtonEffect2, mutationButtonEffect3;
 string mutationButtonPicture1_1, mutationButtonPicture1_2, mutationButtonPicture2_1, mutationButtonPicture2_2, mutationButtonPicture3_1, mutationButtonPicture3_2;
@@ -29,6 +29,7 @@ bool LevelOne::init()
 	// When the scene doesn't init, then stop the init process.
 	if (!Scene::init())
 		return false;
+
 
 	#pragma region Fethi Isfarca
 	// ************************************************** Fethi Isfarca *******************************************************************************************************
@@ -53,6 +54,11 @@ bool LevelOne::init()
 	mapCollider->setScaleX(215);
 	mapCollider->setVisible(false);
 	this->addChild(mapCollider, 0);
+
+	//>>>>>>>>>>>>>>>>>>>>>> added
+	//must be initiated b4 player
+	LevelOne::InitWaterWithCollider();
+	//<<<<<<<<<<<<<<<<<<<<<<
 
 	// Add the player sprite.
 	playerSprite = Sprite::create("HelloWorld.png");
@@ -131,7 +137,7 @@ bool LevelOne::init()
 	{
 		mutationButtonPicture2_1 = "CloseNormal.png";
 		mutationButtonPicture2_2 = "CloseSelected.png";
-		mutationButtonEffect2 = 2;
+		mutationButtonEffect2 = 4;
 	}
 	if (mutationButtonPicture3_1 == "")
 	{
@@ -313,7 +319,8 @@ void LevelOne::update(float delta)
 	ChangeForm::SmokeTimer(smokeParent);
 
 	//>>>>>>>>>>>>>>>>>>> added
-	// Check collisions between player and bars.
+	// Check collisions of player
+	LevelOne::PlayerWaterCollisionDetection();
 	if (barsExist == true)
 		LevelOne::PlayerBarsCollisionDetection();
 
@@ -352,6 +359,12 @@ void LevelOne::update(float delta)
 		break;
 	case 3:
 		if (elephantReady)
+			specialAbilityButton->setEnabled(true);
+		else
+			specialAbilityButton->setEnabled(false);
+		break;
+	case 4:
+		if (fishReady)
 			specialAbilityButton->setEnabled(true);
 		else
 			specialAbilityButton->setEnabled(false);
@@ -534,6 +547,8 @@ void LevelOne::Usable(int abilityNumber, bool usabilityState)
 	case 3:
 		elephantReady = usabilityState;
 		break;
+	case 4:
+		fishReady = usabilityState;
 	case 5:
 		turtleReady = usabilityState;
 		break;
@@ -563,7 +578,7 @@ void LevelOne::InitBarsWithCollider()
 }
 void LevelOne::InitDoorWithCollider()
 {
-	// Add 'BarsSprite' with colliders.
+	// Add 'DoorSprite' with colliders.
 	doorSprite[0] = Sprite::create("Greybox.png");
 	doorSprite[0]->setPosition(2500, 450);
 	doorSprite[0]->setScale(2.9f, 2.9f);
@@ -577,6 +592,25 @@ void LevelOne::InitDoorWithCollider()
 
 	//enable search for doorSprite
 	doorExists = true;
+}
+
+//create the water
+void LevelOne::InitWaterWithCollider()
+{
+	// Add waterSprite' with colliders.
+	waterSprite[0] = Sprite::create("Greybox.png");
+	waterSprite[0]->setPosition(3500, 800);
+	waterSprite[0]->setScale(11.6f, 11.6f);
+	this->addChild(waterSprite[0], 0);
+
+	waterCollider[0] = Sprite::create("Collider.png");
+	waterCollider[0]->setPosition(waterSprite[0]->getPosition());
+	waterCollider[0]->setScale(20, 20);
+	waterCollider[0]->setVisible(false);
+	this->addChild(waterCollider[0], 0);
+
+	//enable search for barsSprite
+	barsExist = true;
 }
 
 //collide and destroy bars / trapdoor
@@ -609,7 +643,6 @@ void LevelOne::PlayerDoorCollisionDetection()
 		doorCollider[0]->getBoundingBox()
 	};
 
-
 	// Collision detection with door
 	if (playerLeftColliderRect.intersectsRect(doorColliderRect[0]) && charge) // crush door
 	{
@@ -627,6 +660,28 @@ void LevelOne::PlayerDoorCollisionDetection()
 		moveLeft = false;
 	else if (playerRightColliderRect.intersectsRect(doorColliderRect[0])) // door collision standard
 		moveRight = false;
+}
+
+// Collision detection between player and water.
+void LevelOne::PlayerWaterCollisionDetection()
+{
+	// Declare variables.
+	Rect waterColliderRect[sizeof(LevelOne::waterCollider) / sizeof(*LevelOne::waterCollider)] =
+	{
+		waterCollider[0]->getBoundingBox()
+	};
+
+	// Collision detection with water
+	if (playerLeftColliderRect.intersectsRect(waterColliderRect[0])) // Left <-> Right.
+		inWater = true;
+	else if (playerTopColliderRect.intersectsRect(waterColliderRect[0])) // Top <-> Bottom.
+		inWater = true;
+	else if (playerRightColliderRect.intersectsRect(waterColliderRect[0])) // Right <-> Left.
+		inWater = true;
+	else if (playerBottomColliderRect.intersectsRect(waterColliderRect[0])) // Bottom <-> Top.
+		inWater = true;
+	else
+		inWater = false;
 }
 //<<<<<<<<<<<<<<<
 

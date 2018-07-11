@@ -58,6 +58,8 @@ private:
 	Sprite* barsSprite[1], * barsCollider[(sizeof(LevelOne::barsSprite) / sizeof(*LevelOne::barsSprite)) * 4];
 	//sprite and collider for door (charge-obstacle)
 	Sprite* doorSprite[1], *doorCollider[(sizeof(LevelOne::doorSprite) / sizeof(*LevelOne::doorSprite)) * 4];
+	//sprite for water
+	Sprite* waterSprite[1], *waterCollider[(sizeof(LevelOne::waterSprite) / sizeof(*LevelOne::waterSprite)) * 4];
 	//<<<<<<<<<<
 
 	//variables for mutationButton-picture-loading
@@ -121,6 +123,8 @@ public:
 	void PlayerBarsCollisionDetection();
 	void InitDoorWithCollider();
 	void PlayerDoorCollisionDetection();
+	void InitWaterWithCollider();
+	void PlayerWaterCollisionDetection();
 	//<<<<<<<<<<<
 	// ***************************************************************************************************
 	#pragma endregion

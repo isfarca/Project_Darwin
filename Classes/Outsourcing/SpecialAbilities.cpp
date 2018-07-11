@@ -123,6 +123,7 @@ void SpecialAbilities::TimingHandler()
 {
 	//cooldowns
 	//tell LevelOne if abilities are ready or not
+	//fly
 	if (hawkCooldown > 0)
 	{
 		hawkCooldown--;
@@ -132,6 +133,7 @@ void SpecialAbilities::TimingHandler()
 	{
 		LevelOne::Usable(1, true);
 	}
+	//charge
 	if (rhinoCooldown > 0)
 	{
 		rhinoCooldown--;
@@ -141,6 +143,7 @@ void SpecialAbilities::TimingHandler()
 	{
 		LevelOne::Usable(2, true);
 	}
+	//stomp
 	if (elephantCooldown > 0)
 	{
 		elephantCooldown--;
@@ -150,6 +153,16 @@ void SpecialAbilities::TimingHandler()
 	{
 		LevelOne::Usable(3, true);
 	}
+	//swim
+	if (fishActive)
+	{
+		LevelOne::Usable(4, false);
+	}
+	else
+	{
+		LevelOne::Usable(4, true);
+	}
+	//hole up
 	if (turtleCooldown > 0)
 	{
 		turtleCooldown--;
