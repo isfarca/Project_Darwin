@@ -11,6 +11,7 @@
 #include "../Outsourcing/Definitions.h"
 #include "Load.h"
 #include "LevelSelection.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 

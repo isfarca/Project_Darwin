@@ -8,6 +8,7 @@
 #include "MainMenu.h"
 #include "Help.h"
 #include "Prolog.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 

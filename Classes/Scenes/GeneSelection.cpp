@@ -1,4 +1,5 @@
 #include "GeneSelection.h"
+#define BUTTON_SFX "sounds/Button_Sound.wav"
 
 // Create the prolog scene.
 Scene* GeneSelection::createScene()
@@ -13,64 +14,72 @@ bool GeneSelection::init()
 	if (!Scene::init())
 		return false;
 
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
+
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	// icon size multiplier
+	sizeMultiplierMutations = 0.15f;
+
 	// png reference mutation
-	mutationOnePng = "Png/Mutation/mutation1.png";
-	mutationOnePngSelected = "Png/Mutation/mutation1Selected.png";
-	mutationOnePngBlocked = "Png/nothingSelected.png";
+	mutationOnePng = "Menu/hawkselect.png";
+	mutationOnePngSelected = "Menu/hawkdeselected.png";
+	mutationOnePngBlocked = "Menu/hawkcrossed.png";
 
-	mutationTwoPng = "Png/Mutation/mutation2.png";
-	mutationTwoPngSelected = "Png/Mutation/mutation2Selected.png";
-	mutationTwoPngBlocked = "Png/nothingSelected.png";
+	mutationTwoPng = "Menu/rhinoselect.png";
+	mutationTwoPngSelected = "Menu/rhinodeselected.png";
+	mutationTwoPngBlocked = "Menu/rhinocrossed.png";
 
-	mutationThreePng = "Png/Mutation/mutation3.png";
-	mutationThreePngSelected = "Png/Mutation/mutation3Selected.png";
-	mutationThreePngBlocked = "Png/nothingSelected.png";
+	mutationThreePng = "Menu/elephantselect.png";
+	mutationThreePngSelected = "Menu/elephantdeselected.png";
+	mutationThreePngBlocked = "Menu/elephantcrossed.png";
 
-	mutationFourPng = "Png/Mutation/mutation4.png";
-	mutationFourPngSelected = "Png/Mutation/mutation4Selected.png";
-	mutationFourPngBlocked = "Png/nothingSelected.png";
+	mutationFourPng = "Menu/fishselect.png";
+	mutationFourPngSelected = "Menu/fishdeselected.png";
+	mutationFourPngBlocked = "Menu/fishcrossed.png";
 
-	mutationFivePng = "Png/Mutation/mutation5.png";
-	mutationFivePngSelected = "Png/Mutation/mutation5Selected.png";
-	mutationFivePngBlocked = "Png/nothingSelected.png";
+	mutationFivePng = "Menu/turtleselect.png";
+	mutationFivePngSelected = "Menu/turtledeselected.png";
+	mutationFivePngBlocked = "Menu/turtlecrossed.png";
 
 	// Available character mutations png
-	characterWithMutationOne = "Png/Mutation/mutation1.png";
-	characterWithMutationTwo = "Png/Mutation/mutation2.png";
-	characterWithMutationThree = "Png/Mutation/mutation3.png";
-	characterWithMutationFour = "Png/Mutation/mutation4.png";
-	characterWithMutationFive = "Png/Mutation/mutation5.png";
+	characterWithMutationOne = "Menu/hawkselect.png";
+	characterWithMutationTwo = "Menu/rhinoselect.png";
+	characterWithMutationThree = "Menu/elephantselect.png";
+	characterWithMutationFour = "Menu/fishselect.png";
+	characterWithMutationFive = "Menu/turtleselect.png";
 
-	characterWithMutationClear = "Png/nothingSelected.png";
+	characterWithMutationClear = "Menu/bethereorbesquare.png";
 
-	currentCharacter = "Png/nothingSelected.png";
+	currentCharacter = "Menu/bethereorbesquare.png";
 
 
 	// png reference start
-	startPng = "Png/continue.png";
-	startPngSelected = "Png/continueSelected.png";
+	startPng = "Menu/continuepressed.png";
+	startPngSelected = "Menu/continue.png";
+	startPngBlocked = "Menu/continuegrey.png";
 
 
 	// png reference reset
-	reset = "Png/Mutation/reset.png";
-	resetSelected = "Png/Mutation/resetSelected";
+	reset = "Menu/resetpressed.png";
+	resetSelected = "Menu/reset.png";
 
 	// mutations that are selected PNG reference
-	chosenMutationPngFirst = "Png/nothingSelected.png";
-	chosenMutationPngSecond = "Png/nothingSelected.png";
-	chosenMutationPngThird = "Png/nothingSelected.png";
+	chosenMutationPngFirst = "Menu/bethereorbesquare.png";
+	chosenMutationPngSecond = "Menu/bethereorbesquare.png";
+	chosenMutationPngThird = "Menu/bethereorbesquare.png";
 
 	// png reference return to MainMenu/GeneSelection
 
-	returnToMainMenuPng = "MainMenu.png";
+	returnToMainMenuPng = "Icons/home.png";
 	returnToMainMenuPngSelected = "MainMenuSelected.png";
 
-	returnToLevelSelectionPng = "BackToLevelSelection.png";
+	returnToLevelSelectionPng = "Icons/arrow.png";
 	returnToLevelSelectionPngSelected = "BackToLevelSelectionSelected.png";
 
+
+	/*
 	// mutations that are selected Sprite create
 	firstGeneSprite = Sprite::create(chosenMutationPngFirst);
 	secondGeneSprite = Sprite::create(chosenMutationPngSecond);
@@ -78,6 +87,7 @@ bool GeneSelection::init()
 
 	// current character mutation png
 	ChosenCharacterMutation = Sprite::create(currentCharacter);
+	*/
 
 	// mutation buttons created
 	mutationOneBtn = MenuItemImage::create(mutationOnePng, mutationOnePngSelected, mutationOnePngBlocked, CC_CALLBACK_1(GeneSelection::mutationOne, this));
@@ -86,31 +96,43 @@ bool GeneSelection::init()
 	mutationFourBtn = MenuItemImage::create(mutationFourPng, mutationFourPngSelected, mutationFourPngBlocked, CC_CALLBACK_1(GeneSelection::mutationFour, this));
 	mutationFiveBtn = MenuItemImage::create(mutationFivePng, mutationFivePngSelected, mutationFivePngBlocked, CC_CALLBACK_1(GeneSelection::mutationFive, this));
 
-	// start game button create
-	startGameBtn = MenuItemImage::create(startPng, startPngSelected, CC_CALLBACK_1(GeneSelection::startGame, this));
+	mutationOneBtn->setScale(sizeMultiplierMutations, sizeMultiplierMutations);
+	mutationTwoBtn->setScale(sizeMultiplierMutations, sizeMultiplierMutations);
+	mutationThreeBtn->setScale(sizeMultiplierMutations, sizeMultiplierMutations);
+	mutationFourBtn->setScale(sizeMultiplierMutations, sizeMultiplierMutations);
+	mutationFiveBtn->setScale(sizeMultiplierMutations, sizeMultiplierMutations);
 
+	// start game button create
+	startGameBtn = MenuItemImage::create(startPng, startPngSelected, startPngBlocked, CC_CALLBACK_1(GeneSelection::startGame, this));
+
+	startGameBtn->setScale(0.15f, 0.15f);
 
 	// MainMenu / Return to Level Selection create
 	returnToMainMenuBtn = MenuItemImage::create(returnToMainMenuPng, returnToMainMenuPngSelected, CC_CALLBACK_1(GeneSelection::ReturnToMainMenu, this));
+	returnToMainMenuBtn->setScale(0.15f, 0.15f);
 
 	returnToLevelSelectionBtn = MenuItemImage::create(returnToLevelSelectionPng, returnToLevelSelectionPngSelected, CC_CALLBACK_1(GeneSelection::ReturnToLevelSelection, this));
-
+	returnToLevelSelectionBtn->setScale(0.15f, 0.15f);
 	// reset selected mutations create
 	resetSelectedMutationBtn = MenuItemImage::create(reset, resetSelected, CC_CALLBACK_1(GeneSelection::ResetSelectedMutation, this));
+	resetSelectedMutationBtn->setScale(0.15f, 0.15f);
+
 
 	auto menu = Menu::create(mutationOneBtn, mutationTwoBtn, mutationThreeBtn, mutationFourBtn, mutationFiveBtn, resetSelectedMutationBtn, startGameBtn, returnToMainMenuBtn, returnToLevelSelectionBtn, nullptr);
 	menu->setPosition(Point::ZERO);
 
+
+	
 	// mutation button position
 	mutationOneBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1200));
-	mutationTwoBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1150));
-	mutationThreeBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1100));
-	mutationFourBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1050));
-	mutationFiveBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1000));
+	mutationTwoBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 1000));
+	mutationThreeBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 800));
+	mutationFourBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 600));
+	mutationFiveBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 400));
 
 	// MainMenu / LevelSelection button position
 	returnToMainMenuBtn->setPosition(Vec2(visibleSize.width / 2 + 800, 1200));
-	returnToLevelSelectionBtn->setPosition(Vec2(visibleSize.width / 2 + 700, 1200));
+	returnToLevelSelectionBtn->setPosition(Vec2(visibleSize.width / 2 + 600, 1200));
 
 
 	//ChosenCharacterMutation->setPosition(Vec2(visibleSize.width / 2 + 300, 1200));
@@ -121,20 +143,21 @@ bool GeneSelection::init()
 	//thirdGeneSprite->setPosition(Vec2(visibleSize.width / 2, 900));
 
 	// reset selected mutations position	
-	resetSelectedMutationBtn->setPosition(Vec2(visibleSize.width / 2 - 800, 800));
+	resetSelectedMutationBtn->setPosition(Vec2(visibleSize.width / 2 - 400, 400));
 
 	// start game button position
 	startGameBtn->setPosition(Vec2(visibleSize.width / 2, 300));
 
 	startGameBtn->setEnabled(false);
 
+	/*
 	// adding to scene
 	this->addChild(firstGeneSprite);
 	this->addChild(secondGeneSprite);
 	this->addChild(thirdGeneSprite);
 
 	this->addChild(ChosenCharacterMutation);
-
+	*/
 	this->addChild(menu);
 
 	this->scheduleUpdate();
@@ -155,7 +178,10 @@ void GeneSelection::update(float delta)
 	// current character mutation png
 	ChosenCharacterMutation = Sprite::create(currentCharacter);
 
-
+	firstGeneSprite->setScale(sizeMultiplierMutations, sizeMultiplierMutations);
+	secondGeneSprite->setScale(sizeMultiplierMutations, sizeMultiplierMutations);
+	thirdGeneSprite->setScale(sizeMultiplierMutations, sizeMultiplierMutations);
+	ChosenCharacterMutation->setScale(sizeMultiplierMutations, sizeMultiplierMutations);
 
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -163,9 +189,9 @@ void GeneSelection::update(float delta)
 	ChosenCharacterMutation->setPosition(visibleSize.width / 2 + 500, visibleSize.height / 2);
 
 	// selected gene position
-	firstGeneSprite->setPosition(Vec2(visibleSize.width / 2, 1000));
-	secondGeneSprite->setPosition(Vec2(visibleSize.width / 2, 950));
-	thirdGeneSprite->setPosition(Vec2(visibleSize.width / 2, 900));
+	firstGeneSprite->setPosition(Vec2(visibleSize.width / 2, 1100));
+	secondGeneSprite->setPosition(Vec2(visibleSize.width / 2, 850));
+	thirdGeneSprite->setPosition(Vec2(visibleSize.width / 2, 600));
 
 	this->addChild(firstGeneSprite);
 	this->addChild(secondGeneSprite);
@@ -175,6 +201,7 @@ void GeneSelection::update(float delta)
 // MainMenu
 void GeneSelection::ReturnToMainMenu(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
 	Scene* scene = MainMenu::createScene();
 
 	// Replace the scene.
@@ -185,6 +212,7 @@ void GeneSelection::ReturnToMainMenu(Ref* pSender)
 
 void GeneSelection::ReturnToLevelSelection(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
 	Scene* scene = LevelSelection::createScene();
 
 	// Replace the scene.
@@ -215,6 +243,7 @@ void GeneSelection::GoToLoadScene(float delta)
 // Mutation handlings.
 void GeneSelection::mutationOne(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
 	GeneSelection::mutationOneInt = 1;
 	ChosenMutation(1, mutationOnePng/***DELETED, mutationFourPng*/);
 
@@ -235,6 +264,7 @@ void GeneSelection::mutationOne(Ref* pSender)
 
 void GeneSelection::mutationTwo(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
 	GeneSelection::mutationTwoInt = 2;
 	ChosenMutation(2, mutationTwoPng/***DELETED, mutationFourPng*/);
 
@@ -257,6 +287,7 @@ void GeneSelection::mutationTwo(Ref* pSender)
 
 void GeneSelection::mutationThree(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
 	GeneSelection::mutationThreeInt = 3;
 	ChosenMutation(3, mutationThreePng/***DELETED, mutationFourPng*/);
 	mutationThreeBtn->setEnabled(false);
@@ -278,6 +309,7 @@ void GeneSelection::mutationThree(Ref* pSender)
 
 void GeneSelection::mutationFour(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
 	GeneSelection::mutationFourInt = 4;
 	ChosenMutation(4, mutationFourPng/***DELETED, mutationFourPng*/);
 	mutationFourBtn->setEnabled(false);
@@ -298,6 +330,7 @@ void GeneSelection::mutationFour(Ref* pSender)
 
 void GeneSelection::mutationFive(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
 	GeneSelection::mutationFiveInt = 5;
 
 	ChosenMutation(5, mutationFivePng/***DELETED, mutationFivePng*/);
@@ -320,18 +353,19 @@ void GeneSelection::mutationFive(Ref* pSender)
 
 void GeneSelection::ResetSelectedMutation(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
 	specialOne = 0;
 	specialTwo = 0;
 	specialThree = 0;
 
-	chosenMutationPngFirst = "Png/nothingSelected.png";
-	chosenMutationPngSecond = "Png/nothingSelected.png";
-	chosenMutationPngThird = "Png/nothingSelected.png";
+	chosenMutationPngFirst = "Menu/bethereorbesquare.png";
+	chosenMutationPngSecond = "Menu/bethereorbesquare.png";
+	chosenMutationPngThird = "Menu/bethereorbesquare.png";
 
 	// not selected png due to selection reset
-	specialOnePng = "Png/nothingSelected.png";
-	specialTwoPng = "Png/nothingSelected.png";
-	specialThreePng = "Png/nothingSelected.png";
+	specialOnePng = "Menu/bethereorbesquare.png";
+	specialTwoPng = "Menu/bethereorbesquare.png";
+	specialThreePng = "Menu/bethereorbesquare.png";
 
 	startGameBtn->setEnabled(false);
 
@@ -347,6 +381,7 @@ void GeneSelection::ResetSelectedMutation(Ref* pSender)
 
 void GeneSelection::startGame(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
 	Scene* scene = Load::createScene();
 	this->removeAllChildrenWithCleanup(true);
 	Director::getInstance()->replaceScene(scene);

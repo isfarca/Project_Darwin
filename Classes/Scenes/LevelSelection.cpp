@@ -1,4 +1,5 @@
 #include "LevelSelection.h"
+#define BUTTON_SFX "sounds/Button_Sound.wav"
 
 // Create the prolog scene.
 Scene* LevelSelection::createScene()
@@ -17,25 +18,52 @@ bool LevelSelection::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	// LEVEL PNG PATH
-	string levelOnePng = "Png/Level_1.png";
-	string levelOnePngSelected = "Png/Level_1Selected.png";
+	string levelOnePng = "Menu/Level/levl1.png";
+	string levelOnePngSelected = "Menu/Level/levl1pressed.png";
 	string levelOnePngBlocked = "";
 
 	string levelTwoPng = "Png/Level_2.png";
 	string levelTwoPngSelected = "Png/Level_2Selected.png";
-	string levelTwoPngBlocked = "";
+	string levelTwoPngBlocked = "Menu/Level/levl2.png";
 
 	string levelThreePng = "Png/Level_3.png";
 	string levelThreePngSelected = "Png/Level_3Selected.png";
-	string levelThreePngBlocked = "Png/.png";
+	string levelThreePngBlocked = "Menu/Level/levl4.png";
 
 	string levelFourPng = "Png/Level_4.png";
 	string levelFourPngSelected = "Png/Level_4Selected.png";
-	string levelFourPngBlocked = "Png/nothingSelected.png";
+	string levelFourPngBlocked = "Menu/Level/levl4.png";
 
 	// MENU PNG PATH
-	string goToMainMenuPng = "MainMenu.png";
-	string goToMainMenuPngSelected = "MainMenuSelected.png";
+	string goToMainMenuPng = "Icons/home.png";
+	string goToMainMenuPngSelected = "Icons/home.png";
+
+	// Level Sprite Png Reference
+	/*
+	string levelOneSpritePng = "";
+	string levelTwoSpritePng = "";
+	string levelThreeSpritePng = "";
+	string levelFourSpritePng = "";
+
+
+
+
+	LevelOneSprite = Sprite::create(levelOneSpritePng);
+	LevelTwoSprite = Sprite::create(levelTwoSpritePng);
+	LevelThreeSprite = Sprite::create(levelThreeSpritePng);
+	LevelFourSprite = Sprite::create(levelFourSpritePng);
+	
+	LevelOneSprite->setScale(0.15f, 0.15f);
+	LevelTwoSprite->setScale(0.15f, 0.15f);
+	LevelThreeSprite->setScale(0.15f, 0.15f);
+	LevelFourSprite->setScale(0.15f, 0.15f);
+
+	LevelOneSprite->setPosition(Vec2(visibleSize.width / 2, 1200));
+	LevelTwoSprite->setPosition(Vec2(visibleSize.width / 2, 1200));
+	LevelThreeSprite->setPosition(Vec2(visibleSize.width / 2, 1200));
+	LevelFourSprite->setPosition(Vec2(visibleSize.width / 2, 1200));
+
+	*/
 
 	//string goToGeneSelectionPng = "Png/continue.png"; **********DELETED
 	//string goToGeneSelectionPngSelected = "Png/continue.png"; **********DELETED
@@ -47,17 +75,30 @@ bool LevelSelection::init()
 	levelFourButton = MenuItemImage::create(levelFourPng, levelFourPngSelected, levelFourPngBlocked, CC_CALLBACK_1(LevelSelection::StartLevelFour, this));
 
 	goToMainMenuButton = MenuItemImage::create(goToMainMenuPng, goToMainMenuPngSelected, CC_CALLBACK_1(LevelSelection::GoToMainMenuScene, this));
+	
 	//goToGeneSelectionButton = MenuItemImage::create(goToGeneSelectionPng, goToGeneSelectionPngSelected, CC_CALLBACK_1(LevelSelection::GoToGeneSelectionScene, this)); **********DELETED
+	
+	
+	levelOneButton->setScale(0.77f, 0.77f);
+	levelTwoButton->setScale(0.77f, 0.77f);
+	levelThreeButton->setScale(0.77f, 0.77f);
+	levelFourButton->setScale(0.77f, 0.77f);
+	
+	goToMainMenuButton->setScale(0.15f, 0.15f);
 
 	auto menu = Menu::create(levelOneButton, levelTwoButton, levelThreeButton, levelFourButton, goToMainMenuButton,/* goToGeneSelectionButton**********DELETED,*/ nullptr);
 
 	menu->setPosition(Point::ZERO);
 
+
+	// level selection scale button
+
+
 	//Level Selection Position
-	levelOneButton->setPosition(Vec2(visibleSize.width / 2, 1000));
-	levelTwoButton->setPosition(Vec2(visibleSize.width / 2, 950));
-	levelThreeButton->setPosition(Vec2(visibleSize.width / 2, 900));
-	levelFourButton->setPosition(Vec2(visibleSize.width / 2, 850));
+	levelOneButton->setPosition(Vec2(visibleSize.width / 2 + 123, 1070));
+	levelTwoButton->setPosition(Vec2(visibleSize.width / 2, 800));
+	levelThreeButton->setPosition(Vec2(visibleSize.width / 2, 600));
+	levelFourButton->setPosition(Vec2(visibleSize.width / 2, 400));
 
 	goToMainMenuButton->setPosition(Vec2(visibleSize.width / 2 + 800, 1200));
 	//goToGeneSelectionButton->setPosition(visibleSize.width / 2, visibleSize.height / 2 + 450); **********DELETED
@@ -85,6 +126,8 @@ void LevelSelection::GoToMainMenuScene(Ref* pSender)
 
 void LevelSelection::GoToGeneSelectionScene(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_SFX);
+
 	// Declare variables.
 	Scene* scene = GeneSelection::createScene();
 

@@ -7,6 +7,7 @@
 #include "../Outsourcing/Definitions.h"
 #include "Credits.h"
 #include "MainMenu.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 

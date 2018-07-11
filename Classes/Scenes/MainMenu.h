@@ -10,7 +10,10 @@
 #include "Info.h"
 #include "Help.h"
 #include "LevelSelection.h"
+#include "SimpleAudioEngine.h"
 
+
+using namespace CocosDenshion;
 using namespace cocos2d;
 using namespace std;
 

@@ -9,7 +9,9 @@
 #include "MainMenu.h"
 #include "GeneSelection.h"
 #include "LevelManager.h"
+#include "SimpleAudioEngine.h"
 
+using namespace CocosDenshion;
 using namespace cocos2d;
 using namespace std;
 
@@ -17,7 +19,7 @@ class LevelSelection : public Scene
 {
 public:
 	// Declare variables.
-
+	
 	// Levels
 	MenuItemImage* levelOneButton;
 	MenuItemImage* levelTwoButton;
@@ -25,6 +27,11 @@ public:
 	MenuItemImage* levelFourButton;
 
 	MenuItemImage* goToMainMenuButton;
+
+	Sprite* LevelOneSprite;
+	Sprite* LevelTwoSprite;
+	Sprite* LevelThreeSprite;
+	Sprite* LevelFourSprite;
 	// MenuItemImage* goToGeneSelectionButton; **********DELETED
 
 	// Create the prolog scene.

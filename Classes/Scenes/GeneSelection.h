@@ -7,7 +7,9 @@
 #include "../Outsourcing/Definitions.h"
 #include "MainMenu.h"
 #include "Load.h"
+#include "SimpleAudioEngine.h"
 
+using namespace CocosDenshion;
 using namespace cocos2d;
 using namespace std;
 
@@ -16,6 +18,8 @@ class GeneSelection : public Scene
 public:
 	// Declare variables.
 	Label * testingText;
+
+	float sizeMultiplierMutations;
 
 	// available  mutations
 	int mutationOneInt, mutationTwoInt, mutationThreeInt, mutationFourInt, mutationFiveInt, mutationSixInt, mutationSevenInt, mutationEightInt, mutationNineInt, mutationTenInt, mutationElevenInt, mutationTwelveInt;
@@ -52,6 +56,7 @@ public:
 	// reference for start png
 	string startPng;
 	string startPngSelected;
+	string startPngBlocked;
 
 	string characterWithMutationOne;
 	string characterWithMutationTwo;

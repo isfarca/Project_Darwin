@@ -7,6 +7,7 @@
 #include "../Outsourcing/Definitions.h"
 #include "MainMenu.h"
 
+
 using namespace cocos2d;
 
 class Prolog : public Scene

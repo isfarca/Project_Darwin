@@ -16,15 +16,18 @@ bool Settings::init()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	string mainMenuButtonPng = "MainMenu.png";
+	string mainMenuButtonPng = "Icons/home.png";
 	string mainMenuButtonPngSelected = "MainMenuSelected.png";
 
-	string goToInfoButtonPng = "exit.png";
-	string goToInfoButtonPngSelected = "exitSelected.png" ;
+	string goToHelpButtonPng = "Menu/help.png";
+	string goToHelpButtonPngSelected = "exitSelected.png" ;
 
 	mainMenuButton = MenuItemImage::create(mainMenuButtonPng, mainMenuButtonPngSelected, CC_CALLBACK_1(Settings::returnToMainMenu, this));
-	goToHelpButton = MenuItemImage::create(goToInfoButtonPng, goToInfoButtonPngSelected, CC_CALLBACK_1(Settings::goToHelp, this));
+	goToHelpButton = MenuItemImage::create(goToHelpButtonPng, goToHelpButtonPngSelected, CC_CALLBACK_1(Settings::goToHelp, this));
 
+
+	goToHelpButton->setScale(0.15f, 0.15f);
+	mainMenuButton->setScale(0.15f, 0.15f);
 	// auto menu = Settings::create(returnToMainMenuButton, nullptr);
 	//menu->setPosition(Point::ZERO);
 
